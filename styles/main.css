@@ -16,12 +16,12 @@
   --c-text: #f0f0f5;
   --c-text-muted: #8888a0;
   --c-text-dim: #5c5c78;
-  --c-accent: #6c5ce7;
-  --c-accent-light: #a29bfe;
-  --c-accent-glow: rgba(108, 92, 231, 0.3);
-  --c-gradient-1: #6c5ce7;
-  --c-gradient-2: #00cec9;
-  --c-gradient-3: #fd79a8;
+  --c-accent: #00f5b8;
+  --c-accent-light: #33ffcc;
+  --c-accent-glow: rgba(0, 245, 184, 0.3);
+  --c-gradient-1: #00f5b8;
+  --c-gradient-2: #00d4aa;
+  --c-gradient-3: #00b894;
   --c-white: #ffffff;
 
   /* Typography */
