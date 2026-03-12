@@ -33,12 +33,12 @@
   --c-text: #f0f0f5;
   --c-text-muted: #8888a0;
   --c-text-dim: #5c5c78;
-  --c-accent: #6c5ce7;
-  --c-accent-light: #a29bfe;
-  --c-accent-glow: rgba(108, 92, 231, 0.3);
-  --c-gradient-1: #6c5ce7;
-  --c-gradient-2: #00cec9;
-  --c-gradient-3: #fd79a8;
+  --c-accent: #00f5b8;
+  --c-accent-light: #33ffcc;
+  --c-accent-glow: rgba(0, 245, 184, 0.3);
+  --c-gradient-1: #00f5b8;
+  --c-gradient-2: #00d4aa;
+  --c-gradient-3: #00b894;
   --c-white: #ffffff;
 
   /* Typography */
@@ -190,40 +190,15 @@ img {
 }
 
 .brand-mark {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 44px;
-  height: 44px;
-  background: linear-gradient(135deg, var(--c-gradient-1), var(--c-gradient-2));
-  border-radius: var(--r-sm);
-  font-weight: 900;
-  font-size: 1.1rem;
-  letter-spacing: -0.02em;
-  color: var(--c-white);
-  transition: transform var(--t-mid) var(--ease-spring), box-shadow var(--t-mid);
+  height: 36px;
+  width: auto;
+  object-fit: contain;
+  transition: transform var(--t-mid) var(--ease-spring), filter var(--t-mid);
 }
 
 .brand:hover .brand-mark {
-  transform: rotate(-6deg) scale(1.08);
-  box-shadow: 0 0 30px var(--c-accent-glow);
-}
-
-.brand-copy {
-  display: flex;
-  flex-direction: column;
-}
-
-.brand-name {
-  font-weight: 700;
-  font-size: 1rem;
-  letter-spacing: -0.02em;
-}
-
-.brand-tagline {
-  font-size: 0.7rem;
-  color: var(--c-text-muted);
-  letter-spacing: 0.02em;
+  transform: scale(1.08);
+  filter: drop-shadow(0 0 20px var(--c-accent-glow));
 }
 
 /* Nav */
@@ -318,13 +293,14 @@ img {
 
 .button--secondary {
   background: linear-gradient(135deg, var(--c-gradient-1), var(--c-gradient-2));
-  color: var(--c-white);
+  color: var(--c-bg);
+  font-weight: 600;
   box-shadow: 0 4px 20px var(--c-accent-glow);
 }
 
 .button--secondary:hover {
   transform: translateY(-2px) scale(1.03);
-  box-shadow: 0 8px 40px var(--c-accent-glow), 0 0 60px rgba(108, 92, 231, 0.15);
+  box-shadow: 0 8px 40px var(--c-accent-glow), 0 0 60px rgba(0, 245, 184, 0.15);
 }
 
 .button--secondary:active {
@@ -339,7 +315,7 @@ img {
 
 .button--ghost:hover {
   border-color: var(--c-accent-light);
-  background: rgba(108, 92, 231, 0.08);
+  background: rgba(0, 245, 184, 0.08);
   color: var(--c-accent-light);
   transform: translateY(-2px);
 }
@@ -489,7 +465,7 @@ img {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(108, 92, 231, 0.05), rgba(0, 206, 201, 0.05));
+  background: linear-gradient(135deg, rgba(0, 245, 184, 0.05), rgba(0, 245, 184, 0.05));
   opacity: 0;
   transition: opacity var(--t-mid);
 }
@@ -698,7 +674,7 @@ img {
 }
 
 .phase-list li:hover {
-  background: rgba(108, 92, 231, 0.06);
+  background: rgba(0, 245, 184, 0.06);
 }
 
 .phase-list li > span {
@@ -709,7 +685,7 @@ img {
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  background: rgba(108, 92, 231, 0.15);
+  background: rgba(0, 245, 184, 0.15);
   color: var(--c-accent-light);
   font-size: 0.75rem;
   font-weight: 700;
@@ -812,7 +788,7 @@ img {
 .manifesto-footer span:hover {
   border-color: var(--c-accent-light);
   color: var(--c-accent-light);
-  background: rgba(108, 92, 231, 0.08);
+  background: rgba(0, 245, 184, 0.08);
 }
 
 /* Value Stack */
@@ -1043,7 +1019,7 @@ img {
 .chip-row span:hover {
   border-color: var(--c-accent-light);
   color: var(--c-accent-light);
-  background: rgba(108, 92, 231, 0.08);
+  background: rgba(0, 245, 184, 0.08);
   transform: translateY(-2px);
 }
 
@@ -1137,13 +1113,13 @@ img {
 
 .credential-grid article {
   padding: var(--s-sm);
-  background: rgba(108, 92, 231, 0.04);
+  background: rgba(0, 245, 184, 0.04);
   border-radius: var(--r-sm);
   transition: background var(--t-fast);
 }
 
 .credential-grid article:hover {
-  background: rgba(108, 92, 231, 0.08);
+  background: rgba(0, 245, 184, 0.08);
 }
 
 .credential-grid span {
@@ -1269,13 +1245,13 @@ img {
 .impact-tile {
   padding: var(--s-sm);
   border-left: 3px solid var(--c-accent);
-  background: rgba(108, 92, 231, 0.04);
+  background: rgba(0, 245, 184, 0.04);
   border-radius: 0 var(--r-sm) var(--r-sm) 0;
   transition: all var(--t-fast);
 }
 
 .impact-tile:hover {
-  background: rgba(108, 92, 231, 0.08);
+  background: rgba(0, 245, 184, 0.08);
   transform: translateX(4px);
 }
 
@@ -1364,7 +1340,7 @@ img {
 }
 
 .momentum-step:hover {
-  background: rgba(108, 92, 231, 0.06);
+  background: rgba(0, 245, 184, 0.06);
   transform: translateX(4px);
 }
 
@@ -1377,7 +1353,7 @@ img {
   justify-content: center;
   border-radius: 50%;
   background: linear-gradient(135deg, var(--c-gradient-1), var(--c-gradient-2));
-  color: var(--c-white);
+  color: var(--c-bg);
   font-size: 0.75rem;
   font-weight: 700;
 }
@@ -1437,7 +1413,7 @@ img {
 }
 
 .contact-panel {
-  background: linear-gradient(135deg, rgba(108, 92, 231, 0.08), rgba(0, 206, 201, 0.05));
+  background: linear-gradient(135deg, rgba(0, 245, 184, 0.08), rgba(0, 245, 184, 0.05));
   border: 1px solid var(--c-border);
   border-radius: var(--r-xl);
   padding: var(--s-2xl);
@@ -1501,7 +1477,7 @@ img {
 
 .contact-link:hover {
   border-color: var(--c-accent-light);
-  background: rgba(108, 92, 231, 0.08);
+  background: rgba(0, 245, 184, 0.08);
   transform: translateY(-4px);
   box-shadow: 0 10px 30px var(--c-accent-glow);
 }
@@ -2289,11 +2265,7 @@ img {
   <div class="site-shell">
     <header class="site-header" id="top">
       <a class="brand" href="#top" aria-label="JE Labs home">
-        <span class="brand-mark">JE</span>
-        <span class="brand-copy">
-          <span class="brand-name">JE Labs</span>
-          <span class="brand-tagline">Creative growth studio for frontier tech</span>
-        </span>
+        <img class="brand-mark" src="assets/logo.svg" alt="JE Labs" />
       </a>
 
       <button
