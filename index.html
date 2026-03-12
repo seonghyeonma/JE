@@ -1622,39 +1622,62 @@ img {
 }
 
 /* ============================================================
-   Marquee / Infinite Scroll Text
+   Marquee / NYSE Ticker Strip
    ============================================================ */
 .marquee-strip {
   overflow: hidden;
   white-space: nowrap;
-  border-top: 1px solid var(--c-border);
-  border-bottom: 1px solid var(--c-border);
-  padding: var(--s-sm) 0;
+  background: rgba(0, 245, 184, 0.03);
+  border-top: 1px solid rgba(0, 245, 184, 0.12);
+  border-bottom: 1px solid rgba(0, 245, 184, 0.12);
+  padding: 6px 0;
 }
 
 .marquee-inner {
   display: inline-flex;
-  animation: marquee 30s linear infinite;
+  align-items: center;
+  animation: marquee 40s linear infinite;
 }
 
-.marquee-inner span {
-  font-size: clamp(1.2rem, 3vw, 2rem);
-  font-weight: 700;
-  letter-spacing: 0.05em;
+.marquee-inner .ticker-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 20px;
+  font-family: var(--f-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--c-text-dim);
-  padding: 0 var(--s-lg);
   white-space: nowrap;
+  color: var(--c-text-muted);
 }
 
-.marquee-inner span .dot {
-  display: inline-block;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--c-accent);
-  margin: 0 var(--s-md);
-  vertical-align: middle;
+.marquee-inner .ticker-item .ticker-symbol {
+  color: var(--c-accent);
+  font-weight: 600;
+}
+
+.marquee-inner .ticker-item .ticker-value {
+  color: var(--c-text);
+  font-weight: 500;
+}
+
+.marquee-inner .ticker-item .ticker-change {
+  font-size: 0.65rem;
+  padding: 1px 5px;
+  border-radius: 2px;
+}
+
+.marquee-inner .ticker-item .ticker-change.up {
+  color: #00f5b8;
+  background: rgba(0, 245, 184, 0.1);
+}
+
+.marquee-inner .ticker-item .ticker-sep {
+  width: 1px;
+  height: 14px;
+  background: rgba(255, 255, 255, 0.08);
+  margin: 0 4px;
 }
 
 @keyframes marquee {
@@ -1880,6 +1903,79 @@ img {
   }
 }
 
+/* ============================================================
+   Global Network Map
+   ============================================================ */
+.network-map-section {
+  position: relative;
+  padding: var(--s-xl) var(--s-lg);
+  overflow: hidden;
+}
+
+.network-map-section .section-header {
+  text-align: center;
+  margin-bottom: var(--s-lg);
+}
+
+.network-map-container {
+  position: relative;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  aspect-ratio: 2 / 1;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  background: radial-gradient(ellipse at center, rgba(0, 245, 184, 0.04) 0%, transparent 70%);
+  border: 1px solid var(--c-border);
+}
+
+.network-map-container canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.network-map-legend {
+  display: flex;
+  justify-content: center;
+  gap: var(--s-lg);
+  margin-top: var(--s-md);
+  flex-wrap: wrap;
+}
+
+.network-map-legend .legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.75rem;
+  font-family: var(--f-mono);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--c-text-muted);
+}
+
+.network-map-legend .legend-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.network-map-legend .legend-dot--hub {
+  background: var(--c-accent);
+  box-shadow: 0 0 8px var(--c-accent-glow);
+}
+
+.network-map-legend .legend-dot--node {
+  background: rgba(0, 245, 184, 0.4);
+}
+
+.network-map-legend .legend-dot--link {
+  width: 16px;
+  height: 1px;
+  border-radius: 0;
+  background: rgba(0, 245, 184, 0.3);
+}
+
   </style>
   <script>
 /* ============================================================
@@ -2008,7 +2104,7 @@ img {
 
   // ── Wave Text Animation ───────────────────────────────────
   function initWaveText() {
-    const targets = document.querySelectorAll('.section-break span, .hero-branding');
+    const targets = document.querySelectorAll('.section-break span');
 
     targets.forEach((el) => {
       const text = el.textContent.trim();
@@ -2070,19 +2166,26 @@ img {
     marquee.className = 'marquee-strip';
     marquee.setAttribute('aria-hidden', 'true');
 
-    const words = [
-      'Strategy', 'Narrative', 'Distribution', 'Ecosystem',
-      'Growth', 'Innovation', 'Momentum', 'Global',
-      'Strategy', 'Narrative', 'Distribution', 'Ecosystem',
-      'Growth', 'Innovation', 'Momentum', 'Global'
+    const tickers = [
+      { sym: 'STRAT', val: '100+', chg: '+24.3%' },
+      { sym: 'NARR', val: '30+', chg: '+18.7%' },
+      { sym: 'DIST', val: '15+', chg: '+31.2%' },
+      { sym: 'ECHO', val: '1K+', chg: '+42.5%' },
+      { sym: 'GROW', val: '100M+', chg: '+56.1%' },
+      { sym: 'INNOV', val: '8+', chg: '+12.8%' },
+      { sym: 'MNTM', val: '350%', chg: '+89.3%' },
+      { sym: 'GLBL', val: '10M+', chg: '+67.4%' },
     ];
+    // Duplicate for seamless loop
+    const allTickers = [...tickers, ...tickers];
 
     const inner = document.createElement('div');
     inner.className = 'marquee-inner';
-    words.forEach((word) => {
-      const span = document.createElement('span');
-      span.innerHTML = word + '<span class="dot"></span>';
-      inner.appendChild(span);
+    allTickers.forEach((t) => {
+      const item = document.createElement('span');
+      item.className = 'ticker-item';
+      item.innerHTML = `<span class="ticker-symbol">${t.sym}</span><span class="ticker-value">${t.val}</span><span class="ticker-change up">${t.chg}</span><span class="ticker-sep"></span>`;
+      inner.appendChild(item);
     });
 
     marquee.appendChild(inner);
@@ -2232,6 +2335,216 @@ img {
     });
   }
 
+  // ── Global Network Map ───────────────────────────────────
+  function initNetworkMap() {
+    const canvas = document.getElementById('networkMap');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    const container = canvas.parentElement;
+
+    function resize() {
+      const rect = container.getBoundingClientRect();
+      canvas.width = rect.width * (window.devicePixelRatio || 1);
+      canvas.height = rect.height * (window.devicePixelRatio || 1);
+      ctx.scale(window.devicePixelRatio || 1, window.devicePixelRatio || 1);
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    // Simplified world map outline points (longitude, latitude -> x, y)
+    function project(lon, lat, w, h) {
+      const x = ((lon + 180) / 360) * w;
+      const y = ((90 - lat) / 180) * h;
+      return [x, y];
+    }
+
+    // Hub cities (major offices/presence)
+    const hubs = [
+      { name: 'Seoul', lon: 126.97, lat: 37.56 },
+      { name: 'Singapore', lon: 103.85, lat: 1.35 },
+      { name: 'San Francisco', lon: -122.41, lat: 37.77 },
+    ];
+
+    // Active market nodes
+    const nodes = [
+      { name: 'Tokyo', lon: 139.69, lat: 35.68 },
+      { name: 'Shanghai', lon: 121.47, lat: 31.23 },
+      { name: 'London', lon: -0.12, lat: 51.5 },
+      { name: 'New York', lon: -74.0, lat: 40.71 },
+      { name: 'Dubai', lon: 55.27, lat: 25.2 },
+      { name: 'Berlin', lon: 13.4, lat: 52.52 },
+      { name: 'Mumbai', lon: 72.87, lat: 19.07 },
+      { name: 'Sydney', lon: 151.2, lat: -33.86 },
+      { name: 'São Paulo', lon: -46.63, lat: -23.55 },
+      { name: 'Lagos', lon: 3.38, lat: 6.52 },
+      { name: 'Bangkok', lon: 100.5, lat: 13.75 },
+      { name: 'Jakarta', lon: 106.84, lat: -6.2 },
+      { name: 'Taipei', lon: 121.56, lat: 25.03 },
+      { name: 'Ho Chi Minh', lon: 106.66, lat: 10.82 },
+    ];
+
+    // Connections (hub index -> node indices)
+    const links = [
+      [0, 0], [0, 1], [0, 3], [0, 10], [0, 12], [0, 13], // Seoul connections
+      [1, 1], [1, 4], [1, 6], [1, 10], [1, 11], [1, 7],  // Singapore connections
+      [2, 3], [2, 5], [2, 8], [2, 2],                      // SF connections
+    ];
+
+    // Simple continent outlines (very simplified)
+    const continents = [
+      // North America (simplified)
+      [[-130,50],[-125,55],[-120,60],[-100,60],[-80,55],[-75,45],[-80,30],[-90,25],[-100,20],[-105,20],[-110,25],[-115,30],[-120,35],[-125,45],[-130,50]],
+      // South America
+      [[-80,10],[-75,5],[-60,5],[-50,0],[-40,-5],[-35,-10],[-40,-20],[-45,-25],[-50,-30],[-55,-35],[-60,-40],[-65,-45],[-70,-50],[-75,-45],[-70,-30],[-70,-20],[-75,-5],[-80,0],[-80,10]],
+      // Europe
+      [[-10,40],[-5,45],[0,50],[5,55],[10,55],[15,55],[25,55],[30,55],[35,50],[30,45],[25,40],[20,38],[10,38],[5,40],[0,45],[-5,45],[-10,40]],
+      // Africa
+      [[-15,15],[-15,10],[-10,5],[0,5],[10,5],[15,0],[20,-5],[25,-10],[30,-20],[35,-30],[30,-35],[25,-30],[20,-15],[15,-5],[10,5],[5,10],[0,10],[-5,15],[-15,15]],
+      // Asia
+      [[30,55],[40,55],[50,55],[60,55],[70,55],[80,55],[90,55],[100,55],[110,50],[120,50],[130,50],[140,45],[145,40],[140,35],[130,30],[120,25],[110,20],[105,15],[100,10],[95,15],[90,20],[85,25],[80,30],[75,25],[70,20],[65,25],[60,30],[55,25],[50,25],[45,30],[40,35],[35,40],[30,45],[30,55]],
+      // Australia
+      [[115,-15],[120,-15],[130,-15],[140,-15],[150,-20],[155,-25],[150,-35],[145,-38],[140,-35],[135,-30],[130,-25],[125,-20],[120,-20],[115,-20],[115,-15]],
+    ];
+
+    let time = 0;
+
+    function draw() {
+      const w = container.getBoundingClientRect().width;
+      const h = container.getBoundingClientRect().height;
+      ctx.clearRect(0, 0, w, h);
+      time += 0.005;
+
+      // Draw grid lines
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.02)';
+      ctx.lineWidth = 0.5;
+      for (let lon = -180; lon <= 180; lon += 30) {
+        const [x] = project(lon, 0, w, h);
+        ctx.beginPath();
+        ctx.moveTo(x, 0);
+        ctx.lineTo(x, h);
+        ctx.stroke();
+      }
+      for (let lat = -60; lat <= 80; lat += 20) {
+        const [, y] = project(0, lat, w, h);
+        ctx.beginPath();
+        ctx.moveTo(0, y);
+        ctx.lineTo(w, y);
+        ctx.stroke();
+      }
+
+      // Draw continents
+      ctx.strokeStyle = 'rgba(0, 245, 184, 0.08)';
+      ctx.fillStyle = 'rgba(0, 245, 184, 0.02)';
+      ctx.lineWidth = 1;
+      continents.forEach(function(pts) {
+        ctx.beginPath();
+        pts.forEach(function(p, i) {
+          const [x, y] = project(p[0], p[1], w, h);
+          if (i === 0) ctx.moveTo(x, y);
+          else ctx.lineTo(x, y);
+        });
+        ctx.closePath();
+        ctx.fill();
+        ctx.stroke();
+      });
+
+      // Draw connections with animated pulse
+      links.forEach(function(link) {
+        const hub = hubs[link[0]];
+        const node = nodes[link[1]];
+        const [x1, y1] = project(hub.lon, hub.lat, w, h);
+        const [x2, y2] = project(node.lon, node.lat, w, h);
+
+        const grad = ctx.createLinearGradient(x1, y1, x2, y2);
+        const pulse = (Math.sin(time * 2 + link[0] + link[1]) + 1) / 2;
+        grad.addColorStop(0, 'rgba(0, 245, 184, ' + (0.15 + pulse * 0.15) + ')');
+        grad.addColorStop(0.5, 'rgba(0, 245, 184, ' + (0.05 + pulse * 0.1) + ')');
+        grad.addColorStop(1, 'rgba(0, 245, 184, ' + (0.15 + pulse * 0.15) + ')');
+
+        ctx.strokeStyle = grad;
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        // Curved lines
+        const mx = (x1 + x2) / 2;
+        const my = Math.min(y1, y2) - Math.abs(x2 - x1) * 0.1;
+        ctx.moveTo(x1, y1);
+        ctx.quadraticCurveTo(mx, my, x2, y2);
+        ctx.stroke();
+
+        // Animated dot along path
+        const t2 = (time * 0.5 + link[0] * 0.3 + link[1] * 0.2) % 1;
+        const px = (1 - t2) * (1 - t2) * x1 + 2 * (1 - t2) * t2 * mx + t2 * t2 * x2;
+        const py = (1 - t2) * (1 - t2) * y1 + 2 * (1 - t2) * t2 * my + t2 * t2 * y2;
+        ctx.fillStyle = 'rgba(0, 245, 184, ' + (0.6 + pulse * 0.4) + ')';
+        ctx.beginPath();
+        ctx.arc(px, py, 1.5, 0, Math.PI * 2);
+        ctx.fill();
+      });
+
+      // Draw nodes
+      nodes.forEach(function(node) {
+        const [x, y] = project(node.lon, node.lat, w, h);
+        const pulse = (Math.sin(time * 3 + node.lon * 0.1) + 1) / 2;
+
+        // Glow ring
+        ctx.strokeStyle = 'rgba(0, 245, 184, ' + (0.1 + pulse * 0.1) + ')';
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.arc(x, y, 5 + pulse * 3, 0, Math.PI * 2);
+        ctx.stroke();
+
+        // Core dot
+        ctx.fillStyle = 'rgba(0, 245, 184, 0.5)';
+        ctx.beginPath();
+        ctx.arc(x, y, 2.5, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Label
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.3)';
+        ctx.font = '9px Inter, sans-serif';
+        ctx.fillText(node.name, x + 8, y + 3);
+      });
+
+      // Draw hubs (bigger, brighter)
+      hubs.forEach(function(hub) {
+        const [x, y] = project(hub.lon, hub.lat, w, h);
+        const pulse = (Math.sin(time * 2 + hub.lon * 0.1) + 1) / 2;
+
+        // Outer glow
+        const glow = ctx.createRadialGradient(x, y, 0, x, y, 20 + pulse * 8);
+        glow.addColorStop(0, 'rgba(0, 245, 184, 0.2)');
+        glow.addColorStop(1, 'rgba(0, 245, 184, 0)');
+        ctx.fillStyle = glow;
+        ctx.beginPath();
+        ctx.arc(x, y, 20 + pulse * 8, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Core
+        ctx.fillStyle = '#00f5b8';
+        ctx.beginPath();
+        ctx.arc(x, y, 4, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Label
+        ctx.fillStyle = 'rgba(0, 245, 184, 0.8)';
+        ctx.font = 'bold 10px Inter, sans-serif';
+        ctx.fillText(hub.name, x + 10, y + 4);
+      });
+
+      requestAnimationFrame(draw);
+    }
+
+    // Start animation when visible
+    const observer = new IntersectionObserver(function(entries) {
+      if (entries[0].isIntersecting) {
+        resize();
+        draw();
+        observer.disconnect();
+      }
+    }, { threshold: 0.1 });
+    observer.observe(canvas);
+  }
+
   // ── Initialize Everything ─────────────────────────────────
   function init() {
     initReveal();
@@ -2248,6 +2561,7 @@ img {
     initParallax();
     initButtonRipple();
     initMagneticButtons();
+    initNetworkMap();
   }
 
   if (document.readyState === 'loading') {
@@ -2648,6 +2962,21 @@ img {
         </div>
       </section>
 
+      <section class="network-map-section reveal reveal--up" style="--delay: 0.06s;">
+        <div class="section-header">
+          <p class="eyebrow">Global Reach</p>
+          <h2>Activation across every key market.</h2>
+        </div>
+        <div class="network-map-container">
+          <canvas id="networkMap"></canvas>
+        </div>
+        <div class="network-map-legend">
+          <div class="legend-item"><span class="legend-dot legend-dot--hub"></span> Hub offices</div>
+          <div class="legend-item"><span class="legend-dot legend-dot--node"></span> Active markets</div>
+          <div class="legend-item"><span class="legend-dot legend-dot--link"></span> Network links</div>
+        </div>
+      </section>
+
       <section class="section section--leadership">
         <div class="section-header section-header--split">
           <div class="reveal reveal--left" style="--delay: 0.04s;">
@@ -2832,6 +3161,46 @@ img {
                 <div class="impact-tile">
                   <strong>10K+</strong>
                   <span>community contributions</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="panel case-card reveal reveal--scale" style="--delay: 0.18s;">
+            <div class="case-meta">
+              <p class="card-label">Case study</p>
+              <span>SURF AI</span>
+            </div>
+
+            <div class="case-body">
+              <div class="case-copy">
+                <h3>Community-led DAU surge through strategic positioning and creator activation.</h3>
+                <p>
+                  SURF AI needed to break through in a saturated AI consumer market.
+                  JE Labs designed a full-spectrum growth campaign combining narrative
+                  repositioning, influencer seeding, and community activation programs
+                  that drove viral adoption.
+                </p>
+
+                <ul class="detail-list">
+                  <li>Brand repositioning with consumer-first narrative design</li>
+                  <li>Multi-tier KOL activation across tech and lifestyle verticals</li>
+                  <li>Community-driven referral loops and ambassador programs</li>
+                </ul>
+              </div>
+
+              <div class="case-impact">
+                <div class="impact-tile">
+                  <strong>+350%</strong>
+                  <span>DAU growth achieved</span>
+                </div>
+                <div class="impact-tile">
+                  <strong>2.5x</strong>
+                  <span>engagement rate increase</span>
+                </div>
+                <div class="impact-tile">
+                  <strong>500K+</strong>
+                  <span>new user signups</span>
                 </div>
               </div>
             </div>
