@@ -40,6 +40,6 @@ Active markets: Tokyo, Shanghai, London, New York, Dubai, Berlin, Mumbai, Sydney
 
 ## Links
 
-- [Homepage](https://jelabs.xyz/)
+- [Homepage](https://je-kohl.vercel.app/)
 - [Email](mailto:Evie@jelabs.xyz)
 - [Telegram](https://t.me/0xEvieYa)
