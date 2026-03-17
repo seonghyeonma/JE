@@ -42,7 +42,6 @@ Active markets: Tokyo, Shanghai, London, New York, Dubai, Berlin, Mumbai, Sydney
 
 - [Homepage](https://je-kohl.vercel.app/)
 - [Main Website](https://www.jelabs.top/home.html)
-- [Company Site](https://www.jelabs2024.com/)
 - [Twitter/X](https://x.com/JELabs2024)
 - [Email](mailto:Evie@jelabs.xyz)
 - [Telegram](https://t.me/0xEvieYa)
