@@ -1079,19 +1079,9 @@ img {
 /* --- Capabilities --- */
 .capability-stage {
   display: grid;
-  grid-template-columns: 1.5fr 1fr 1fr;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: var(--s-md);
   margin-bottom: var(--s-xl);
-}
-
-.capability-hero {
-  grid-row: 1 / 1;
-}
-
-.capability-hero h3 {
-  font-size: clamp(1.5rem, 3vw, 2.2rem);
-  font-weight: 700;
-  letter-spacing: -0.03em;
   margin-bottom: var(--s-sm);
 }
 
@@ -3156,7 +3146,7 @@ img {
 
       <section class="section section--capabilities" id="capabilities">
         <div class="capability-stage">
-          <article class="panel capability-hero reveal reveal--scale" style="--delay: 0.05s;">
+          <article class="panel capability-card reveal reveal--up" style="--delay: 0.05s;">
             <p class="capability-index">01 / Strategy &amp; narrative</p>
             <h3>Shape the thesis before you scale the noise.</h3>
             <p>
