@@ -1643,21 +1643,18 @@ img {
 .momentum-media {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   gap: var(--s-md);
-  height: 100%;
 }
 
 .momentum-image-card {
   padding: 0;
   overflow: hidden;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
 }
 
 .momentum-image-card img {
   width: 100%;
-  flex: 1;
+  height: 200px;
   object-fit: cover;
   transition: transform var(--t-slow) var(--ease-out);
 }
@@ -1667,7 +1664,7 @@ img {
 }
 
 .momentum-caption {
-  padding: 0.6rem 0.8rem;
+  padding: var(--s-md);
 }
 
 .momentum-caption p {
