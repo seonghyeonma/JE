@@ -1798,62 +1798,52 @@ img {
 }
 
 /* ============================================================
-   Marquee / NYSE Ticker Strip
+   Trusted By – Client Logo Strip
    ============================================================ */
-.marquee-strip {
+.trusted-strip {
   overflow: hidden;
   white-space: nowrap;
-  background: rgba(0, 245, 184, 0.03);
-  border-top: 1px solid rgba(0, 245, 184, 0.12);
-  border-bottom: 1px solid rgba(0, 245, 184, 0.12);
-  padding: 6px 0;
+  background: rgba(0, 0, 0, 0.4);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 18px 0;
+  position: relative;
 }
 
-.marquee-inner {
-  display: inline-flex;
-  align-items: center;
-  animation: marquee 40s linear infinite;
-}
-
-.marquee-inner .ticker-item {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 0 20px;
+.trusted-strip .trusted-label {
+  position: absolute;
+  left: 32px;
+  top: 50%;
+  transform: translateY(-50%);
   font-family: var(--f-mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  white-space: nowrap;
-  color: var(--c-text-muted);
-}
-
-.marquee-inner .ticker-item .ticker-symbol {
-  color: var(--c-accent);
-  font-weight: 600;
-}
-
-.marquee-inner .ticker-item .ticker-value {
-  color: var(--c-text);
-  font-weight: 500;
-}
-
-.marquee-inner .ticker-item .ticker-change {
   font-size: 0.65rem;
-  padding: 1px 5px;
-  border-radius: 2px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--c-text-muted);
+  z-index: 2;
 }
 
-.marquee-inner .ticker-item .ticker-change.up {
-  color: #00f5b8;
-  background: rgba(0, 245, 184, 0.1);
+.trusted-inner {
+  display: inline-flex;
+  align-items: center;
+  animation: marquee 30s linear infinite;
 }
 
-.marquee-inner .ticker-item .ticker-sep {
-  width: 1px;
-  height: 14px;
-  background: rgba(255, 255, 255, 0.08);
-  margin: 0 4px;
+.trusted-inner .client-logo {
+  display: inline-flex;
+  align-items: center;
+  padding: 0 36px;
+  font-family: var(--f-heading);
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  color: rgba(255, 255, 255, 0.45);
+  transition: color 0.3s ease;
+}
+
+.trusted-inner .client-logo:hover {
+  color: rgba(255, 255, 255, 0.8);
 }
 
 @keyframes marquee {
@@ -2407,39 +2397,39 @@ img {
     document.body.appendChild(overlay);
   }
 
-  // ── Marquee Strip ─────────────────────────────────────────
+  // ── Trusted By – Client Logo Strip ───────────────────────
   function initMarquee() {
     const heroSection = document.querySelector('.stats-strip');
     if (!heroSection) return;
 
-    const marquee = document.createElement('div');
-    marquee.className = 'marquee-strip';
-    marquee.setAttribute('aria-hidden', 'true');
+    const strip = document.createElement('div');
+    strip.className = 'trusted-strip';
+    strip.setAttribute('aria-hidden', 'true');
 
-    const tickers = [
-      { sym: 'STRAT', val: '100+', chg: '+24.3%' },
-      { sym: 'NARR', val: '30+', chg: '+18.7%' },
-      { sym: 'DIST', val: '15+', chg: '+31.2%' },
-      { sym: 'ECHO', val: '1K+', chg: '+42.5%' },
-      { sym: 'GROW', val: '100M+', chg: '+56.1%' },
-      { sym: 'INNOV', val: '8+', chg: '+12.8%' },
-      { sym: 'MNTM', val: '350%', chg: '+89.3%' },
-      { sym: 'GLBL', val: '10M+', chg: '+67.4%' },
+    const label = document.createElement('span');
+    label.className = 'trusted-label';
+    label.textContent = 'Trusted by';
+    strip.appendChild(label);
+
+    const clients = [
+      'GSR', 'Immutable', 'LINE FRIENDS', 'Binance',
+      'Sentient', 'MiniMax', 'CommonStack', 'AMD',
+      'Baidu Cloud', 'OPENCLAW', 'JP Labs',
     ];
     // Duplicate for seamless loop
-    const allTickers = [...tickers, ...tickers];
+    const allClients = [...clients, ...clients];
 
     const inner = document.createElement('div');
-    inner.className = 'marquee-inner';
-    allTickers.forEach((t) => {
+    inner.className = 'trusted-inner';
+    allClients.forEach((name) => {
       const item = document.createElement('span');
-      item.className = 'ticker-item';
-      item.innerHTML = `<span class="ticker-symbol">${t.sym}</span><span class="ticker-value">${t.val}</span><span class="ticker-change up">${t.chg}</span><span class="ticker-sep"></span>`;
+      item.className = 'client-logo';
+      item.textContent = name;
       inner.appendChild(item);
     });
 
-    marquee.appendChild(inner);
-    heroSection.after(marquee);
+    strip.appendChild(inner);
+    heroSection.after(strip);
   }
 
   // ── Stat Counter Animation ────────────────────────────────
