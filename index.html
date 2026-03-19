@@ -1558,6 +1558,39 @@ img {
   font-size: clamp(1.4rem, 2.5vw, 1.8rem);
 }
 
+/* --- Highlight Media --- */
+.highlight-media {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--s-md);
+}
+
+.highlight-card {
+  padding: 0;
+  overflow: hidden;
+}
+
+.highlight-card img {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  transition: transform var(--t-slow) var(--ease-out);
+}
+
+.highlight-card:hover img {
+  transform: scale(1.05);
+}
+
+.highlight-caption {
+  padding: var(--s-md);
+}
+
+.highlight-caption p {
+  font-size: 0.85rem;
+  color: var(--c-text-muted);
+  line-height: 1.6;
+}
+
 /* --- Contact --- */
 .section--contact {
   padding: var(--s-3xl) var(--s-lg);
@@ -1957,6 +1990,10 @@ img {
   }
 
   .leadership-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .highlight-media {
     grid-template-columns: 1fr;
   }
 
@@ -2825,6 +2862,7 @@ img {
       <nav class="site-nav" id="site-nav" aria-label="Primary">
         <a href="#studio">Studio</a>
         <a href="#approach">Approach</a>
+        <a href="#leadership">Leadership</a>
         <a href="#capabilities">Services</a>
         <a href="#proof">Proof</a>
         <a href="#insights">Insights</a>
@@ -3010,133 +3048,7 @@ img {
         </div>
       </section>
 
-      <div class="section-break reveal reveal--up" style="--delay: 0.02s;">
-        <span>Services</span>
-        <p>
-          Three coordinated pillars that make the brand feel sharper, louder,
-          and more durable.
-        </p>
-      </div>
-
-      <section class="section section--capabilities" id="capabilities">
-        <div class="capability-stage">
-          <article class="panel capability-card reveal reveal--up" style="--delay: 0.05s;">
-            <p class="capability-index">01 / Strategy &amp; narrative</p>
-            <h3>Shape the thesis before you scale the noise.</h3>
-            <p>
-              Go-to-market strategy, category positioning, and narrative design
-              that defines your market thesis before you scale.
-            </p>
-            <ul class="detail-list">
-              <li>Go-to-market strategy and category positioning</li>
-              <li>Founder storytelling and personal brand architecture</li>
-              <li>Next-gen marketing infrastructure for long-term clarity</li>
-            </ul>
-          </article>
-
-          <article class="panel capability-card reveal reveal--up" style="--delay: 0.1s;">
-            <p class="capability-index">02 / Distribution</p>
-            <h3>High-signal visibility with global intent.</h3>
-            <p>
-              Media, thought leadership, and creator networks that create authority
-              instead of empty attention.
-            </p>
-            <ul class="detail-list">
-              <li>Global media and thought leadership placement</li>
-              <li>KOL and technical creator collaboration</li>
-              <li>Localized content syndication for market expansion</li>
-            </ul>
-          </article>
-
-          <article class="panel capability-card reveal reveal--up" style="--delay: 0.14s;">
-            <p class="capability-index">03 / Ecosystem</p>
-            <h3>Builder-centric systems that keep momentum alive.</h3>
-            <p>
-              Developer ecosystem activation and community programs designed to turn
-              early usage into sustained participation.
-            </p>
-            <ul class="detail-list">
-              <li>Developer ecosystem activation and dev-rel programs</li>
-              <li>Ambassador workflows for early adopter advocacy</li>
-              <li>Community growth systems for acquisition and retention</li>
-            </ul>
-          </article>
-        </div>
-
-        <div class="network-grid">
-          <article class="panel network-card reveal reveal--up" style="--delay: 0.06s;">
-            <p class="capability-index">Media &amp; thought leadership</p>
-            <h3>High-signal narratives, placed globally.</h3>
-            <p>
-              Editorial storytelling across global business and technology outlets,
-              with localization for each market instead of one generic press push.
-            </p>
-            <div class="chip-row">
-              <span>Forbes</span>
-              <span>TechCrunch</span>
-              <span>Bloomberg</span>
-              <span>Reuters</span>
-              <span>North America</span>
-              <span>Europe</span>
-              <span>Asia</span>
-            </div>
-          </article>
-
-          <article class="panel network-card reveal reveal--up" style="--delay: 0.1s;">
-            <p class="capability-index">Global KOL network</p>
-            <h3>Expert-led technical advocacy.</h3>
-            <p>
-              Deep sourcing, technical onboarding, and creator alignment connect
-              products with trusted technical voices across the US, Korea, Japan,
-              Europe, and Southeast Asia.
-            </p>
-            <div class="metric-pair">
-              <div>
-                <strong>1,000+</strong>
-                <span>top-tier creators</span>
-              </div>
-              <div>
-                <strong>100M+</strong>
-                <span>technical exposure</span>
-              </div>
-            </div>
-          </article>
-
-          <article class="panel network-card reveal reveal--up" style="--delay: 0.14s;">
-            <p class="capability-index">Developer ecosystem</p>
-            <h3>Builder-centric growth programs.</h3>
-            <p>
-              Conferences, technical communities, ecosystem collaboration, and
-              ambassador workflows create stronger paths from first touch to active
-              contribution.
-            </p>
-            <div class="chip-row">
-              <span>Conferences</span>
-              <span>Community programs</span>
-              <span>Ambassadors</span>
-              <span>Onboarding loops</span>
-              <span>Retention paths</span>
-            </div>
-          </article>
-        </div>
-      </section>
-
-      <section class="network-map-section reveal reveal--up" style="--delay: 0.06s;">
-        <div class="section-header">
-          <p class="eyebrow">Global Reach</p>
-          <h2>Activation across every key market.</h2>
-        </div>
-        <div class="network-map-container">
-          <canvas id="networkMap"></canvas>
-        </div>
-        <div class="network-map-legend">
-          <div class="legend-item"><span class="legend-dot legend-dot--hub"></span> Hub offices</div>
-          <div class="legend-item"><span class="legend-dot legend-dot--node"></span> Active markets</div>
-          <div class="legend-item"><span class="legend-dot legend-dot--link"></span> Network links</div>
-        </div>
-      </section>
-
-      <section class="section section--leadership">
+      <section class="section section--leadership" id="leadership">
         <div class="section-header section-header--split">
           <div class="reveal reveal--left" style="--delay: 0.04s;">
             <p class="eyebrow">Leadership &amp; expertise</p>
@@ -3259,6 +3171,162 @@ img {
               </div>
             </article>
           </div>
+        </div>
+      </section>
+
+      <div class="section-break reveal reveal--up" style="--delay: 0.02s;">
+        <span>Services</span>
+        <p>
+          Three coordinated pillars that make the brand feel sharper, louder,
+          and more durable.
+        </p>
+      </div>
+
+      <section class="section section--capabilities" id="capabilities">
+        <div class="capability-stage">
+          <article class="panel capability-card reveal reveal--up" style="--delay: 0.05s;">
+            <p class="capability-index">01 / Strategy &amp; narrative</p>
+            <h3>Shape the thesis before you scale the noise.</h3>
+            <p>
+              Go-to-market strategy, category positioning, and narrative design
+              that defines your market thesis before you scale.
+            </p>
+            <ul class="detail-list">
+              <li>Go-to-market strategy and category positioning</li>
+              <li>Founder storytelling and personal brand architecture</li>
+              <li>Next-gen marketing infrastructure for long-term clarity</li>
+            </ul>
+          </article>
+
+          <article class="panel capability-card reveal reveal--up" style="--delay: 0.1s;">
+            <p class="capability-index">02 / Distribution</p>
+            <h3>High-signal visibility with global intent.</h3>
+            <p>
+              Media, thought leadership, and creator networks that create authority
+              instead of empty attention.
+            </p>
+            <ul class="detail-list">
+              <li>Global media and thought leadership placement</li>
+              <li>KOL and technical creator collaboration</li>
+              <li>Localized content syndication for market expansion</li>
+            </ul>
+          </article>
+
+          <article class="panel capability-card reveal reveal--up" style="--delay: 0.14s;">
+            <p class="capability-index">03 / Ecosystem</p>
+            <h3>Builder-centric systems that keep momentum alive.</h3>
+            <p>
+              Developer ecosystem activation and community programs designed to turn
+              early usage into sustained participation.
+            </p>
+            <ul class="detail-list">
+              <li>Developer ecosystem activation and dev-rel programs</li>
+              <li>Ambassador workflows for early adopter advocacy</li>
+              <li>Community growth systems for acquisition and retention</li>
+            </ul>
+          </article>
+        </div>
+
+        <div class="network-grid">
+          <article class="panel network-card reveal reveal--up" style="--delay: 0.06s;">
+            <p class="capability-index">Media &amp; thought leadership</p>
+            <h3>High-signal narratives, placed globally.</h3>
+            <p>
+              Editorial storytelling across global business and technology outlets,
+              with localization for each market instead of one generic press push.
+            </p>
+            <div class="chip-row">
+              <span>Forbes</span>
+              <span>TechCrunch</span>
+              <span>Bloomberg</span>
+              <span>Reuters</span>
+              <span>North America</span>
+              <span>Europe</span>
+              <span>Asia</span>
+            </div>
+          </article>
+
+          <article class="panel network-card reveal reveal--up" style="--delay: 0.1s;">
+            <p class="capability-index">Global KOL network</p>
+            <h3>Expert-led technical advocacy.</h3>
+            <p>
+              Deep sourcing, technical onboarding, and creator alignment connect
+              products with trusted technical voices across the US, Korea, Japan,
+              Europe, and Southeast Asia.
+            </p>
+            <div class="metric-pair">
+              <div>
+                <strong>1,000+</strong>
+                <span>top-tier creators</span>
+              </div>
+              <div>
+                <strong>100M+</strong>
+                <span>technical exposure</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="panel network-card reveal reveal--up" style="--delay: 0.14s;">
+            <p class="capability-index">Developer ecosystem</p>
+            <h3>Builder-centric growth programs.</h3>
+            <p>
+              Conferences, technical communities, ecosystem collaboration, and
+              ambassador workflows create stronger paths from first touch to active
+              contribution.
+            </p>
+            <div class="chip-row">
+              <span>Conferences</span>
+              <span>Community programs</span>
+              <span>Ambassadors</span>
+              <span>Onboarding loops</span>
+              <span>Retention paths</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" style="padding-top: 0;">
+        <div class="highlight-media">
+          <article class="panel highlight-card reveal reveal--up" style="--delay: 0.08s;">
+            <img
+              src="assets/developer-activation.jpg.jpg"
+              alt="Developer conference audience"
+              loading="lazy"
+              decoding="async"
+            />
+            <div class="highlight-caption">
+              <p class="card-label">Developer activation</p>
+              <p>Community-first programs that move builders from awareness to contribution.</p>
+            </div>
+          </article>
+
+          <article class="panel highlight-card reveal reveal--up" style="--delay: 0.12s;">
+            <img
+              src="assets/openclaw-stage.jpg.jpg"
+              alt="OPENCLAW Shanghai stage team"
+              loading="lazy"
+              decoding="async"
+            />
+            <div class="highlight-caption">
+              <p class="card-label">Market signal</p>
+              <p>High-context events and partnerships that strengthen technical credibility.</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="network-map-section reveal reveal--up" style="--delay: 0.06s;">
+        <div class="section-header">
+          <p class="eyebrow">Global Reach</p>
+          <h2>Activation across every key market.</h2>
+        </div>
+        <div class="network-map-container">
+          <canvas id="networkMap"></canvas>
+        </div>
+        <div class="network-map-legend">
+          <div class="legend-item"><span class="legend-dot legend-dot--hub"></span> Hub offices</div>
+          <div class="legend-item"><span class="legend-dot legend-dot--node"></span> Active markets</div>
+          <div class="legend-item"><span class="legend-dot legend-dot--link"></span> Network links</div>
         </div>
       </section>
 
