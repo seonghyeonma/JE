@@ -651,7 +651,7 @@ img {
 }
 
 .stat-eyebrow {
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   font-weight: 500;
   letter-spacing: 0.15em;
   text-transform: uppercase;
@@ -674,7 +674,7 @@ img {
 .stat-label {
   font-size: 0.8rem;
   color: var(--c-text-dim);
-  line-height: 1.5;
+  line-height: 1.6;
   max-width: 240px;
   margin: 0 auto;
 }
@@ -1082,14 +1082,6 @@ img {
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: var(--s-md);
   margin-bottom: var(--s-xl);
-  margin-bottom: var(--s-sm);
-}
-
-.capability-emphasis {
-  font-size: 1.05rem;
-  color: var(--c-text-muted);
-  margin-bottom: var(--s-md);
-  line-height: 1.6;
 }
 
 .capability-index {
@@ -1128,7 +1120,7 @@ img {
   padding-left: 1.2rem;
   font-size: 0.85rem;
   color: var(--c-text-muted);
-  line-height: 1.5;
+  line-height: 1.6;
 }
 
 .detail-list li::before {
@@ -1351,14 +1343,14 @@ img {
 .expertise-card p {
   font-size: 0.82rem;
   color: var(--c-text-muted);
-  line-height: 1.5;
+  line-height: 1.6;
 }
 
 /* --- Team Grid --- */
 .team-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: var(--s-sm);
+  gap: var(--s-md);
 }
 
 .team-card {
@@ -1566,114 +1558,6 @@ img {
   font-size: clamp(1.4rem, 2.5vw, 1.8rem);
 }
 
-/* --- Momentum Section --- */
-.momentum-layout {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--s-md);
-  align-items: stretch;
-}
-
-.momentum-system h3 {
-  font-size: clamp(1.4rem, 3vw, 2rem);
-  font-weight: 700;
-  letter-spacing: -0.03em;
-  line-height: 1.3;
-  margin-bottom: var(--s-sm);
-}
-
-.momentum-intro {
-  font-size: 0.95rem;
-  color: var(--c-text-muted);
-  line-height: 1.7;
-  margin-bottom: var(--s-lg);
-}
-
-.momentum-track {
-  display: flex;
-  flex-direction: column;
-  gap: var(--s-sm);
-  margin-bottom: var(--s-lg);
-}
-
-.momentum-step {
-  display: flex;
-  gap: var(--s-sm);
-  align-items: flex-start;
-  padding: var(--s-sm);
-  border-radius: var(--r-sm);
-  transition: all var(--t-fast);
-}
-
-.momentum-step:hover {
-  background: rgba(0, 245, 184, 0.06);
-  transform: translateX(4px);
-}
-
-.momentum-step > span {
-  flex-shrink: 0;
-  width: 36px;
-  height: 36px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--c-gradient-1), var(--c-gradient-2));
-  color: var(--c-bg);
-  font-size: 0.75rem;
-  font-weight: 700;
-}
-
-.momentum-step strong {
-  display: block;
-  font-weight: 600;
-  margin-bottom: 0.2rem;
-}
-
-.momentum-step p {
-  font-size: 0.85rem;
-  color: var(--c-text-muted);
-}
-
-.momentum-actions {
-  padding-top: var(--s-md);
-  border-top: 1px solid var(--c-border);
-}
-
-/* Momentum Media */
-.momentum-media {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: var(--s-md);
-}
-
-.momentum-image-card {
-  padding: 0;
-  overflow: hidden;
-}
-
-.momentum-image-card img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-  transition: transform var(--t-slow) var(--ease-out);
-}
-
-.momentum-image-card:hover img {
-  transform: scale(1.05);
-}
-
-.momentum-caption {
-  padding: var(--s-md);
-}
-
-.momentum-caption p {
-  font-size: 0.85rem;
-  color: var(--c-text-muted);
-  line-height: 1.5;
-}
-
 /* --- Contact --- */
 .section--contact {
   padding: var(--s-3xl) var(--s-lg);
@@ -1810,14 +1694,6 @@ img {
 .reveal.visible {
   opacity: 1;
   transform: translate(0) scale(1);
-}
-
-/* ============================================================
-   Magnetic / Tilt Effect Classes (added via JS)
-   ============================================================ */
-.tilt-card {
-  transform-style: preserve-3d;
-  perspective: 1000px;
 }
 
 /* ============================================================
@@ -2099,10 +1975,6 @@ img {
 
   .insight-card--featured {
     grid-row: auto;
-  }
-
-  .momentum-layout {
-    grid-template-columns: 1fr;
   }
 
   .contact-panel {
@@ -2953,8 +2825,7 @@ img {
       <nav class="site-nav" id="site-nav" aria-label="Primary">
         <a href="#studio">Studio</a>
         <a href="#approach">Approach</a>
-        <a href="#momentum">Momentum</a>
-        <a href="#capabilities">Capabilities</a>
+        <a href="#capabilities">Services</a>
         <a href="#proof">Proof</a>
         <a href="#insights">Insights</a>
         <a href="#faq">FAQ</a>
@@ -3609,89 +3480,6 @@ img {
         </div>
       </section>
 
-      <div class="section-break reveal reveal--up" style="--delay: 0.02s;">
-        <span>Momentum</span>
-        <p>
-          A system-oriented block for sequencing strategy, distribution, and
-          ecosystem loops with disciplined execution.
-        </p>
-      </div>
-
-      <section class="section section--momentum" id="momentum">
-        <div class="momentum-layout">
-          <article class="panel momentum-system reveal reveal--scale" style="--delay: 0.04s;">
-            <p class="card-label">Momentum system</p>
-            <h3>Design the wave, guide the signal, sustain the flywheel.</h3>
-            <p class="momentum-intro">
-              Built as one connected operating model so each phase compounds the
-              next instead of behaving like isolated campaigns.
-            </p>
-
-            <div class="momentum-track">
-              <article class="momentum-step">
-                <span>01</span>
-                <div>
-                  <strong>Designing</strong>
-                  <p>Define the technical edge and narrative territory worth owning.</p>
-                </div>
-              </article>
-              <article class="momentum-step">
-                <span>02</span>
-                <div>
-                  <strong>Leveraging</strong>
-                  <p>Activate trusted operators, creators, and ecosystem partners.</p>
-                </div>
-              </article>
-              <article class="momentum-step">
-                <span>03</span>
-                <div>
-                  <strong>Creating</strong>
-                  <p>Launch high-signal campaigns tuned for regional relevance.</p>
-                </div>
-              </article>
-              <article class="momentum-step">
-                <span>04</span>
-                <div>
-                  <strong>Sustaining</strong>
-                  <p>Use live feedback loops to maintain authority and performance.</p>
-                </div>
-              </article>
-            </div>
-
-            <div class="momentum-actions">
-              <a class="button button--secondary" href="#contact">Build Your Momentum System</a>
-            </div>
-          </article>
-
-          <div class="momentum-media">
-            <article class="panel momentum-image-card reveal reveal--up" style="--delay: 0.08s;">
-              <img
-                src="https://www.genspark.ai/api/files/s/iW7ySjZQ"
-                alt="Developer conference audience"
-                loading="lazy"
-                decoding="async"
-              />
-              <div class="momentum-caption">
-                <p class="card-label">Developer activation</p>
-                <p>Community-first programs that move builders from awareness to contribution.</p>
-              </div>
-            </article>
-
-            <article class="panel momentum-image-card reveal reveal--up" style="--delay: 0.12s;">
-              <img
-                src="https://www.genspark.ai/api/files/s/aqjIBc4u"
-                alt="OPENCLAW Shanghai stage team"
-                loading="lazy"
-                decoding="async"
-              />
-              <div class="momentum-caption">
-                <p class="card-label">Market signal</p>
-                <p>High-context events and partnerships that strengthen technical credibility.</p>
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
 
       <section class="section" id="faq">
         <div class="section-header reveal reveal--up" style="--delay: 0.04s; text-align: center;">
