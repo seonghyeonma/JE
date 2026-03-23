@@ -2427,17 +2427,8 @@ img {
     strip.appendChild(label);
 
     const clients = [
-      { name: 'GSR' },
-      { name: 'Immutable' },
-      { name: 'LINE FRIENDS' },
-      { name: 'Binance' },
-      { name: 'Sentient' },
       { name: 'MiniMax', img: 'assets/clients/minimax-api-logo.svg', invert: true },
-      { name: 'CommonStack' },
-      { name: 'AMD' },
       { name: 'Baidu Cloud', img: 'assets/clients/baidu ai.png', invert: true },
-      { name: 'OPENCLAW' },
-      { name: 'JP Labs' },
       { name: 'Moss AI', img: 'assets/clients/Moss ai.webp', invert: true },
       { name: 'Surf', img: 'assets/clients/surf.svg', invert: false },
     ];
@@ -2449,16 +2440,12 @@ img {
     allClients.forEach((c) => {
       const item = document.createElement('span');
       item.className = 'client-logo';
-      if (c.img) {
-        const img = document.createElement('img');
-        img.src = c.img;
-        img.alt = c.name;
-        img.loading = 'lazy';
-        if (c.invert) img.classList.add('invert');
-        item.appendChild(img);
-      } else {
-        item.textContent = c.name;
-      }
+      const img = document.createElement('img');
+      img.src = c.img;
+      img.alt = c.name;
+      img.loading = 'lazy';
+      if (c.invert) img.classList.add('invert');
+      item.appendChild(img);
       inner.appendChild(item);
     });
 
