@@ -1084,6 +1084,13 @@ img {
   margin-bottom: var(--s-xl);
 }
 
+.service-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--s-md);
+  margin-bottom: var(--s-xl);
+}
+
 .capability-index {
   font-size: 0.85rem;
   font-weight: 600;
@@ -1987,6 +1994,10 @@ img {
   }
 
   .capability-stage {
+    grid-template-columns: 1fr;
+  }
+
+  .service-pair {
     grid-template-columns: 1fr;
   }
 
@@ -3208,8 +3219,9 @@ img {
       </div>
 
       <section class="section section--capabilities" id="capabilities">
-        <div class="capability-stage">
-          <article class="panel capability-card reveal reveal--up" style="--delay: 0.05s;">
+        <!-- 01 / Strategy & Narrative -->
+        <div class="service-pair reveal reveal--up" style="--delay: 0.05s;">
+          <article class="panel capability-card">
             <p class="capability-index">01 / Strategy &amp; narrative</p>
             <h3>Shape the thesis before you scale the noise.</h3>
             <p>
@@ -3222,38 +3234,7 @@ img {
               <li>Next-gen marketing infrastructure for long-term clarity</li>
             </ul>
           </article>
-
-          <article class="panel capability-card reveal reveal--up" style="--delay: 0.1s;">
-            <p class="capability-index">02 / Distribution</p>
-            <h3>High-signal visibility with global intent.</h3>
-            <p>
-              Media, thought leadership, and creator networks that create authority
-              instead of empty attention.
-            </p>
-            <ul class="detail-list">
-              <li>Global media and thought leadership placement</li>
-              <li>KOL and technical creator collaboration</li>
-              <li>Localized content syndication for market expansion</li>
-            </ul>
-          </article>
-
-          <article class="panel capability-card reveal reveal--up" style="--delay: 0.14s;">
-            <p class="capability-index">03 / Ecosystem</p>
-            <h3>Builder-centric systems that keep momentum alive.</h3>
-            <p>
-              Developer ecosystem activation and community programs designed to turn
-              early usage into sustained participation.
-            </p>
-            <ul class="detail-list">
-              <li>Developer ecosystem activation and dev-rel programs</li>
-              <li>Ambassador workflows for early adopter advocacy</li>
-              <li>Community growth systems for acquisition and retention</li>
-            </ul>
-          </article>
-        </div>
-
-        <div class="network-grid">
-          <article class="panel network-card reveal reveal--up" style="--delay: 0.06s;">
+          <article class="panel network-card">
             <p class="capability-index">Media &amp; thought leadership</p>
             <h3>High-signal narratives, placed globally.</h3>
             <p>
@@ -3270,8 +3251,24 @@ img {
               <span>Asia</span>
             </div>
           </article>
+        </div>
 
-          <article class="panel network-card reveal reveal--up" style="--delay: 0.1s;">
+        <!-- 02 / Distribution -->
+        <div class="service-pair reveal reveal--up" style="--delay: 0.1s;">
+          <article class="panel capability-card">
+            <p class="capability-index">02 / Distribution</p>
+            <h3>High-signal visibility with global intent.</h3>
+            <p>
+              Media, thought leadership, and creator networks that create authority
+              instead of empty attention.
+            </p>
+            <ul class="detail-list">
+              <li>Global media and thought leadership placement</li>
+              <li>KOL and technical creator collaboration</li>
+              <li>Localized content syndication for market expansion</li>
+            </ul>
+          </article>
+          <article class="panel network-card">
             <p class="capability-index">Global KOL network</p>
             <h3>Expert-led technical advocacy.</h3>
             <p>
@@ -3290,8 +3287,24 @@ img {
               </div>
             </div>
           </article>
+        </div>
 
-          <article class="panel network-card reveal reveal--up" style="--delay: 0.14s;">
+        <!-- 03 / Ecosystem -->
+        <div class="service-pair reveal reveal--up" style="--delay: 0.14s;">
+          <article class="panel capability-card">
+            <p class="capability-index">03 / Ecosystem</p>
+            <h3>Builder-centric systems that keep momentum alive.</h3>
+            <p>
+              Developer ecosystem activation and community programs designed to turn
+              early usage into sustained participation.
+            </p>
+            <ul class="detail-list">
+              <li>Developer ecosystem activation and dev-rel programs</li>
+              <li>Ambassador workflows for early adopter advocacy</li>
+              <li>Community growth systems for acquisition and retention</li>
+            </ul>
+          </article>
+          <article class="panel network-card">
             <p class="capability-index">Developer ecosystem</p>
             <h3>Builder-centric growth programs.</h3>
             <p>
