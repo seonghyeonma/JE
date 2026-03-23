@@ -1826,16 +1826,18 @@ img {
 }
 
 .trusted-inner {
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  animation: marquee 25s linear infinite;
+  width: max-content;
+  animation: marquee 40s linear infinite;
   will-change: transform;
 }
 
 .trusted-inner .client-logo {
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  padding: 0 32px;
+  flex-shrink: 0;
+  padding: 0 64px;
   white-space: nowrap;
 }
 
@@ -2424,8 +2426,8 @@ img {
       { name: 'Moss AI', img: 'assets/clients/Moss ai.webp', cls: 'invert-color' },
       { name: 'Surf', img: 'assets/clients/surf.svg', cls: '' },
     ];
-    // Quadruple for seamless continuous loop
-    const allClients = [...clients, ...clients, ...clients, ...clients];
+    // Repeat enough times to fill wide screens seamlessly
+    const allClients = [...clients, ...clients, ...clients, ...clients, ...clients, ...clients, ...clients, ...clients];
 
     const inner = document.createElement('div');
     inner.className = 'trusted-inner';
