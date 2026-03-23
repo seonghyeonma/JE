@@ -1827,10 +1827,14 @@ img {
 
 .trusted-inner {
   display: flex;
-  align-items: center;
   width: max-content;
-  animation: marquee 40s linear infinite;
   will-change: transform;
+}
+
+.trusted-track {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
 }
 
 .trusted-inner .client-logo {
@@ -1860,10 +1864,7 @@ img {
   opacity: 0.85;
 }
 
-@keyframes marquee {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
+/* marquee keyframes injected dynamically by initMarquee() */
 
 /* ============================================================
    Noise / Grain Overlay
@@ -2426,25 +2427,44 @@ img {
       { name: 'Moss AI', img: 'assets/clients/Moss ai.webp', cls: 'invert-color' },
       { name: 'Surf', img: 'assets/clients/surf.svg', cls: '' },
     ];
-    // Repeat enough times to fill wide screens seamlessly
-    const allClients = [...clients, ...clients, ...clients, ...clients, ...clients, ...clients, ...clients, ...clients];
+
+    function buildTrack(clientList) {
+      const track = document.createElement('div');
+      track.className = 'trusted-track';
+      clientList.forEach((c) => {
+        const item = document.createElement('span');
+        item.className = 'client-logo';
+        const img = document.createElement('img');
+        img.src = c.img;
+        img.alt = c.name;
+        img.loading = 'lazy';
+        if (c.cls) img.classList.add(c.cls);
+        item.appendChild(img);
+        track.appendChild(item);
+      });
+      return track;
+    }
 
     const inner = document.createElement('div');
     inner.className = 'trusted-inner';
-    allClients.forEach((c) => {
-      const item = document.createElement('span');
-      item.className = 'client-logo';
-      const img = document.createElement('img');
-      img.src = c.img;
-      img.alt = c.name;
-      img.loading = 'lazy';
-      if (c.cls) img.classList.add(c.cls);
-      item.appendChild(img);
-      inner.appendChild(item);
-    });
+    // Two identical tracks side by side for seamless loop
+    inner.appendChild(buildTrack(clients));
+    inner.appendChild(buildTrack(clients));
 
     strip.appendChild(inner);
     heroSection.after(strip);
+
+    // Wait for images to load, then set animation based on actual track width
+    requestAnimationFrame(() => {
+      const firstTrack = inner.querySelector('.trusted-track');
+      const trackWidth = firstTrack.offsetWidth;
+      inner.style.animation = 'none';
+      const keyframes = `@keyframes marquee-dynamic { 0% { transform: translateX(0); } 100% { transform: translateX(-${trackWidth}px); } }`;
+      const styleEl = document.createElement('style');
+      styleEl.textContent = keyframes;
+      document.head.appendChild(styleEl);
+      inner.style.animation = 'marquee-dynamic 30s linear infinite';
+    });
   }
 
   // ── Stat Counter Animation ────────────────────────────────
