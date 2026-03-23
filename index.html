@@ -1360,6 +1360,21 @@ img {
   padding: 1.2rem 1.4rem;
 }
 
+.team-left {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.team-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  flex-shrink: 0;
+}
+
 .team-info h3 {
   font-size: 1.15rem;
   font-weight: 600;
@@ -1806,46 +1821,28 @@ img {
   background: rgba(0, 0, 0, 0.4);
   border-top: 1px solid rgba(255, 255, 255, 0.06);
   border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-  padding: 18px 0;
-  position: relative;
-}
-
-.trusted-strip .trusted-label {
-  position: absolute;
-  left: 32px;
-  top: 50%;
-  transform: translateY(-50%);
-  font-family: var(--f-mono);
-  font-size: 0.65rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--c-text-muted);
-  z-index: 2;
+  padding: 16px 0;
+  width: 100%;
 }
 
 .trusted-inner {
   display: inline-flex;
   align-items: center;
-  animation: marquee 30s linear infinite;
+  animation: marquee 25s linear infinite;
+  will-change: transform;
 }
 
 .trusted-inner .client-logo {
   display: inline-flex;
   align-items: center;
-  padding: 0 36px;
-  font-family: var(--f-heading);
-  font-size: 1rem;
-  font-weight: 600;
-  letter-spacing: 0.04em;
+  padding: 0 32px;
   white-space: nowrap;
-  color: rgba(255, 255, 255, 0.45);
-  transition: color 0.3s ease, opacity 0.3s ease;
 }
 
 .trusted-inner .client-logo img {
-  height: 24px;
+  height: 22px;
   width: auto;
-  opacity: 0.45;
+  opacity: 0.5;
   transition: opacity 0.3s ease;
 }
 
@@ -1853,12 +1850,12 @@ img {
   filter: brightness(0) invert(1);
 }
 
-.trusted-inner .client-logo:hover img {
-  opacity: 0.8;
+.trusted-inner .client-logo img.invert-color {
+  filter: grayscale(1) invert(1) brightness(1.2);
 }
 
-.trusted-inner .client-logo:hover {
-  color: rgba(255, 255, 255, 0.8);
+.trusted-inner .client-logo:hover img {
+  opacity: 0.85;
 }
 
 @keyframes marquee {
@@ -2421,19 +2418,14 @@ img {
     strip.className = 'trusted-strip';
     strip.setAttribute('aria-hidden', 'true');
 
-    const label = document.createElement('span');
-    label.className = 'trusted-label';
-    label.textContent = 'Trusted by';
-    strip.appendChild(label);
-
     const clients = [
-      { name: 'MiniMax', img: 'assets/clients/minimax-api-logo.svg', invert: true },
-      { name: 'Baidu Cloud', img: 'assets/clients/baidu ai.png', invert: true },
-      { name: 'Moss AI', img: 'assets/clients/Moss ai.webp', invert: true },
-      { name: 'Surf', img: 'assets/clients/surf.svg', invert: false },
+      { name: 'MiniMax', img: 'assets/clients/minimax-api-logo.svg', cls: 'invert' },
+      { name: 'Baidu Cloud', img: 'assets/clients/baidu ai.png', cls: 'invert' },
+      { name: 'Moss AI', img: 'assets/clients/Moss ai.webp', cls: 'invert-color' },
+      { name: 'Surf', img: 'assets/clients/surf.svg', cls: '' },
     ];
-    // Duplicate for seamless loop
-    const allClients = [...clients, ...clients];
+    // Quadruple for seamless continuous loop
+    const allClients = [...clients, ...clients, ...clients, ...clients];
 
     const inner = document.createElement('div');
     inner.className = 'trusted-inner';
@@ -2444,7 +2436,7 @@ img {
       img.src = c.img;
       img.alt = c.name;
       img.loading = 'lazy';
-      if (c.invert) img.classList.add('invert');
+      if (c.cls) img.classList.add(c.cls);
       item.appendChild(img);
       inner.appendChild(item);
     });
@@ -3058,10 +3050,6 @@ img {
             <h2>Built by operators who understand growth, research, and expansion.</h2>
           </div>
 
-          <p class="section-lead reveal reveal--right" style="--delay: 0.08s;">
-            The founder profile and specialist network from the original deck now
-            sit inside a more editorial credibility section with clearer hierarchy.
-          </p>
         </div>
 
         <div class="leadership-grid">
@@ -3121,9 +3109,12 @@ img {
 
           <div class="team-grid">
             <article class="panel team-card reveal reveal--right" style="--delay: 0.08s;">
-              <div class="team-info">
-                <h3>Christine</h3>
-                <p class="team-role">Product Director</p>
+              <div class="team-left">
+                <img class="team-avatar" src="assets/team/christine.png" alt="Christine">
+                <div class="team-info">
+                  <h3>Christine</h3>
+                  <p class="team-role">Product Director</p>
+                </div>
               </div>
               <div class="team-socials">
                 <a href="https://linkedin.com/in/weilu-gao/" target="_blank" rel="noopener noreferrer" aria-label="Christine LinkedIn">
@@ -3132,9 +3123,12 @@ img {
               </div>
             </article>
             <article class="panel team-card reveal reveal--right" style="--delay: 0.11s;">
-              <div class="team-info">
-                <h3>Nina</h3>
-                <p class="team-role">Product Director</p>
+              <div class="team-left">
+                <img class="team-avatar" src="assets/team/nina.png" alt="Nina">
+                <div class="team-info">
+                  <h3>Nina</h3>
+                  <p class="team-role">Product Director</p>
+                </div>
               </div>
               <div class="team-socials">
                 <a href="https://linkedin.com/in/haochen-liu-b24333198/" target="_blank" rel="noopener noreferrer" aria-label="Nina LinkedIn">
@@ -3146,9 +3140,12 @@ img {
               </div>
             </article>
             <article class="panel team-card reveal reveal--right" style="--delay: 0.14s;">
-              <div class="team-info">
-                <h3>Nicole</h3>
-                <p class="team-role">Product Director</p>
+              <div class="team-left">
+                <img class="team-avatar" src="assets/team/nicole.png" alt="Nicole">
+                <div class="team-info">
+                  <h3>Nicole</h3>
+                  <p class="team-role">Product Director</p>
+                </div>
               </div>
               <div class="team-socials">
                 <a href="https://linkedin.com/in/congrong-zha-41b30a352" target="_blank" rel="noopener noreferrer" aria-label="Nicole LinkedIn">
@@ -3160,9 +3157,12 @@ img {
               </div>
             </article>
             <article class="panel team-card reveal reveal--right" style="--delay: 0.17s;">
-              <div class="team-info">
-                <h3>Rebecca</h3>
-                <p class="team-role">Product Associate</p>
+              <div class="team-left">
+                <img class="team-avatar" src="assets/team/rebecca.png" alt="Rebecca">
+                <div class="team-info">
+                  <h3>Rebecca</h3>
+                  <p class="team-role">Product Associate</p>
+                </div>
               </div>
               <div class="team-socials">
                 <a href="https://linkedin.com/in/seonghyeon-ma/" target="_blank" rel="noopener noreferrer" aria-label="Rebecca LinkedIn">
