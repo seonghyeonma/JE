@@ -549,7 +549,7 @@ img {
 .hero-branding {
   font-size: clamp(4rem, 12vw, 10rem);
   font-weight: 900;
-  letter-spacing: -0.04em;
+  letter-spacing: 0.08em;
   line-height: 0.9;
   margin-bottom: var(--s-md);
   background: linear-gradient(135deg, var(--c-text) 0%, var(--c-gradient-1) 50%, var(--c-gradient-2) 100%);
@@ -1839,7 +1839,22 @@ img {
   letter-spacing: 0.04em;
   white-space: nowrap;
   color: rgba(255, 255, 255, 0.45);
-  transition: color 0.3s ease;
+  transition: color 0.3s ease, opacity 0.3s ease;
+}
+
+.trusted-inner .client-logo img {
+  height: 24px;
+  width: auto;
+  opacity: 0.45;
+  transition: opacity 0.3s ease;
+}
+
+.trusted-inner .client-logo img.invert {
+  filter: brightness(0) invert(1);
+}
+
+.trusted-inner .client-logo:hover img {
+  opacity: 0.8;
 }
 
 .trusted-inner .client-logo:hover {
@@ -2412,19 +2427,25 @@ img {
     strip.appendChild(label);
 
     const clients = [
-      'GSR', 'Immutable', 'LINE FRIENDS', 'Binance',
-      'Sentient', 'MiniMax', 'CommonStack', 'AMD',
-      'Baidu Cloud', 'OPENCLAW', 'JP Labs',
+      { name: 'MiniMax', img: 'assets/clients/minimax-api-logo.svg', invert: true },
+      { name: 'Baidu Cloud', img: 'assets/clients/baidu ai.png', invert: true },
+      { name: 'Moss AI', img: 'assets/clients/Moss ai.webp', invert: true },
+      { name: 'Surf', img: 'assets/clients/surf.svg', invert: false },
     ];
     // Duplicate for seamless loop
     const allClients = [...clients, ...clients];
 
     const inner = document.createElement('div');
     inner.className = 'trusted-inner';
-    allClients.forEach((name) => {
+    allClients.forEach((c) => {
       const item = document.createElement('span');
       item.className = 'client-logo';
-      item.textContent = name;
+      const img = document.createElement('img');
+      img.src = c.img;
+      img.alt = c.name;
+      img.loading = 'lazy';
+      if (c.invert) img.classList.add('invert');
+      item.appendChild(img);
       inner.appendChild(item);
     });
 
@@ -2866,14 +2887,14 @@ img {
     <main id="main">
       <section class="section section--hero">
         <div class="hero-backdrop" aria-hidden="true">
-          <span>JE LABS</span>
+          <span>JE Labs</span>
         </div>
 
         <div class="hero-minimal reveal reveal--up" style="--delay: 0.04s;">
           <p class="eyebrow">Strategic growth partner for frontier tech builders</p>
-          <p class="hero-branding">JE LABS</p>
+          <p class="hero-branding">JE Labs</p>
           <h1 class="hero-slogan">Just Empower the Ambitious Innovators</h1>
-          <p class="hero-support">Category leadership for frontier builders.</p>
+          <p class="hero-support">Marketing Leadership for Frontier Builders.</p>
 
           <div class="hero-actions hero-actions--minimal">
             <a class="button button--secondary" href="#contact">Start a Conversation</a>
@@ -2906,14 +2927,6 @@ img {
         </article>
       </section>
 
-      <div class="section-break reveal reveal--up" style="--delay: 0.02s;">
-        <span>Studio</span>
-        <p>
-          Growth direction for companies building at the edge of AI, infrastructure,
-          and culture.
-        </p>
-      </div>
-
       <section class="section section--manifesto" id="studio">
         <div class="section-header section-header--split">
           <div class="reveal reveal--left" style="--delay: 0.03s;">
@@ -2925,7 +2938,7 @@ img {
           </div>
 
           <p class="section-lead reveal reveal--right" style="--delay: 0.08s;">
-            JE Labs combines strategy, story, distribution, and ecosystem design so
+            JE Labs combines strategy, distribution, and ecosystem design so
             technically strong companies feel legible, desirable, and globally
             relevant.
           </p>
