@@ -1826,15 +1826,17 @@ img {
 }
 
 .trusted-inner {
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  animation: marquee 25s linear infinite;
+  width: max-content;
+  animation: marquee 40s linear infinite;
   will-change: transform;
 }
 
 .trusted-inner .client-logo {
-  display: inline-flex;
+  display: flex;
   align-items: center;
+  flex-shrink: 0;
   padding: 0 64px;
   white-space: nowrap;
 }
