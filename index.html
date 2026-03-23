@@ -1091,6 +1091,67 @@ img {
   margin-bottom: var(--s-xl);
 }
 
+.service-section {
+  margin-bottom: var(--s-xl);
+}
+
+.service-section > .capability-index {
+  margin-bottom: var(--s-md);
+}
+
+.service-block {
+  margin-bottom: var(--s-md);
+}
+
+.service-block__header {
+  margin-bottom: var(--s-md);
+}
+
+.service-block__header h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.service-subtitle {
+  font-size: 0.9rem;
+  color: var(--c-accent-light);
+  font-style: italic;
+  margin: 0.25rem 0 0;
+}
+
+.service-quote {
+  border-left: 2px solid var(--c-accent);
+  padding: 1rem 1.2rem;
+  margin: 0 0 var(--s-md);
+  font-size: 0.85rem;
+  color: var(--c-text-muted);
+  line-height: 1.7;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 0 var(--r-md) var(--r-md) 0;
+}
+
+.service-pillars {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--s-md);
+}
+
+.service-pillar {
+  padding: 1.2rem;
+}
+
+.service-pillar h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin: 0 0 0.75rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 2px solid var(--c-accent);
+}
+
 .capability-index {
   font-size: 0.85rem;
   font-weight: 600;
@@ -1998,6 +2059,10 @@ img {
   }
 
   .service-pair {
+    grid-template-columns: 1fr;
+  }
+
+  .service-pillars {
     grid-template-columns: 1fr;
   }
 
@@ -3220,35 +3285,63 @@ img {
 
       <section class="section section--capabilities" id="capabilities">
         <!-- 01 / Strategy & Narrative -->
-        <div class="service-pair reveal reveal--up" style="--delay: 0.05s;">
-          <article class="panel capability-card">
-            <p class="capability-index">01 / Strategy &amp; narrative</p>
-            <h3>Shape the thesis before you scale the noise.</h3>
-            <p>
-              Go-to-market strategy, category positioning, and narrative design
-              that defines your market thesis before you scale.
-            </p>
-            <ul class="detail-list">
-              <li>Go-to-market strategy and category positioning</li>
-              <li>Founder storytelling and personal brand architecture</li>
-              <li>Next-gen marketing infrastructure for long-term clarity</li>
-            </ul>
+        <div class="service-section reveal reveal--up" style="--delay: 0.05s;">
+          <p class="capability-index">01 / Strategy &amp; narrative</p>
+
+          <!-- 1-1 Go-To-Market Strategy -->
+          <article class="panel service-block">
+            <div class="service-block__header">
+              <h3>Go-To-Market Strategy</h3>
+              <p class="service-subtitle">Building – Branding – Boosting Framework</p>
+            </div>
+            <blockquote class="service-quote">
+              Through collaborations with over <strong>100+ high-quality projects</strong> across different sectors, we have accumulated extensive marketing experience. Combined with continuous research and analysis conducted by our internal team, we provide our clients with <strong>end-to-end professional marketing strategy services</strong> — helping them avoid unnecessary waste from the start.
+            </blockquote>
+            <div class="service-pillars">
+              <div class="panel service-pillar">
+                <h4>Building</h4>
+                <ul class="detail-list">
+                  <li>Market Research &amp; Industry Mapping</li>
+                  <li>Competitive Analysis</li>
+                  <li>Target Audience Profiling</li>
+                </ul>
+              </div>
+              <div class="panel service-pillar">
+                <h4>Branding</h4>
+                <ul class="detail-list">
+                  <li>Brand Positioning and Visual Identity</li>
+                  <li>Narrative &amp; Storyline Crafting</li>
+                  <li>Content Strategy and Planning</li>
+                </ul>
+              </div>
+              <div class="panel service-pillar">
+                <h4>Boosting</h4>
+                <ul class="detail-list">
+                  <li>Global GTM</li>
+                  <li>Public Relations &amp; Reputation</li>
+                  <li>Influencer &amp; Thought Leader</li>
+                  <li>Account Matrix Strategy</li>
+                </ul>
+              </div>
+            </div>
           </article>
-          <article class="panel network-card">
-            <p class="capability-index">Media &amp; thought leadership</p>
-            <h3>High-signal narratives, placed globally.</h3>
-            <p>
-              Editorial storytelling across global business and technology outlets,
-              with localization for each market instead of one generic press push.
-            </p>
-            <div class="chip-row">
-              <span>Forbes</span>
-              <span>TechCrunch</span>
-              <span>Bloomberg</span>
-              <span>Reuters</span>
-              <span>North America</span>
-              <span>Europe</span>
-              <span>Asia</span>
+
+          <!-- 1-2 Founder Storytelling -->
+          <article class="panel service-block">
+            <div class="service-block__header">
+              <h3>Founder Storytelling</h3>
+              <p class="service-subtitle">Turn Founders into the Voice of the Category</p>
+            </div>
+            <blockquote class="service-quote">
+              We work closely with founders to uncover their vision and translate it into compelling stories that shape how the market understands their company.
+            </blockquote>
+            <div class="panel service-pillar">
+              <h4>What We've Done</h4>
+              <ul class="detail-list">
+                <li>Interviewed dozens of frontier tech founders</li>
+                <li>Crafted founder profiles and long-form narratives</li>
+                <li>Generated 500K+ organic views for a single founder interview</li>
+              </ul>
             </div>
           </article>
         </div>
