@@ -1232,6 +1232,10 @@ main section[id] {
   cursor: pointer;
 }
 
+.insight-link:first-child {
+  grid-column: span 2;
+}
+
 .insight-card {
   min-height: 18rem;
 }
