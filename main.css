@@ -1216,6 +1216,22 @@ main section[id] {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
+.insight-link {
+  display: contents;
+  text-decoration: none;
+  color: inherit;
+}
+
+.insight-link:hover,
+.insight-link:focus {
+  text-decoration: none;
+  color: inherit;
+}
+
+.insight-link .insight-card {
+  cursor: pointer;
+}
+
 .insight-card {
   min-height: 18rem;
 }
