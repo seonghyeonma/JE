@@ -2424,8 +2424,8 @@ img {
       { name: 'Moss AI', img: 'assets/clients/Moss ai.webp', cls: 'invert-color' },
       { name: 'Surf', img: 'assets/clients/surf.svg', cls: '' },
     ];
-    // Quadruple for seamless continuous loop
-    const allClients = [...clients, ...clients, ...clients, ...clients];
+    // Repeat enough times to fill wide screens seamlessly
+    const allClients = [...clients, ...clients, ...clients, ...clients, ...clients, ...clients, ...clients, ...clients];
 
     const inner = document.createElement('div');
     inner.className = 'trusted-inner';
