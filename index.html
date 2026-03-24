@@ -2536,9 +2536,10 @@ img {
 
     const inner = document.createElement('div');
     inner.className = 'trusted-inner';
-    // Two identical tracks side by side for seamless loop
-    inner.appendChild(buildTrack(clients));
-    inner.appendChild(buildTrack(clients));
+    // Enough copies to fill the viewport and allow seamless looping
+    for (let i = 0; i < 6; i++) {
+      inner.appendChild(buildTrack(clients));
+    }
 
     strip.appendChild(inner);
     heroSection.after(strip);
