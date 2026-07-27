@@ -26,4 +26,4 @@ Allow: /
 User-agent: CCBot
 Allow: /
 
-Sitemap: https://je-kohl.vercel.app/sitemap.xml
+Sitemap: https://www.jelabs.top/sitemap.xml

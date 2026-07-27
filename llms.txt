@@ -40,8 +40,8 @@ Global network spanning key markets across North America, Europe, and Asia
 
 ## Links
 
-- [Homepage](https://je-kohl.vercel.app/)
-- [Main Website](https://www.jelabs.top/home.html)
+- [Homepage](https://www.jelabs.top/)
+- [LinkedIn](https://www.linkedin.com/company/je-labs)
 - [Twitter/X](https://x.com/JELabs2024)
 - [Email](mailto:Evie@jelabs.xyz)
 - [Telegram](https://t.me/0xEvieYa)

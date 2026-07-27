@@ -48,22 +48,66 @@
     const nav = document.querySelector('.site-nav');
     if (!toggle || !nav) return;
 
-    toggle.addEventListener('click', () => {
-      const isOpen = nav.classList.toggle('open');
-      toggle.setAttribute('aria-expanded', isOpen);
+    const mobileBreakpoint = window.matchMedia('(max-width: 1024px)');
+    const navLinks = Array.from(nav.querySelectorAll('a'));
+
+    function setNavOpen(isOpen, restoreFocus = false) {
+      nav.classList.toggle('open', isOpen);
+      document.documentElement.classList.toggle('nav-open', isOpen);
+      document.body.classList.toggle('nav-open', isOpen);
+      toggle.setAttribute('aria-expanded', String(isOpen));
+      toggle.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
       toggle.textContent = isOpen ? 'Close' : 'Menu';
-      document.body.style.overflow = isOpen ? 'hidden' : '';
+
+      if (isOpen) {
+        window.scrollTo(0, window.scrollY);
+        toggle.focus({ preventScroll: true });
+      } else if (restoreFocus) {
+        toggle.focus();
+      }
+    }
+
+    toggle.addEventListener('click', () => {
+      setNavOpen(!nav.classList.contains('open'));
     });
 
-    // Close nav on link click
-    nav.querySelectorAll('a').forEach((link) => {
-      link.addEventListener('click', () => {
-        nav.classList.remove('open');
-        toggle.setAttribute('aria-expanded', 'false');
-        toggle.textContent = 'Menu';
-        document.body.style.overflow = '';
-      });
+    navLinks.forEach((link) => {
+      link.addEventListener('click', () => setNavOpen(false));
     });
+
+    nav.addEventListener('click', (event) => {
+      if (event.target === nav) setNavOpen(false, true);
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (!nav.classList.contains('open')) return;
+
+      if (event.key === 'Escape') {
+        event.preventDefault();
+        setNavOpen(false, true);
+        return;
+      }
+
+      if (event.key === 'Tab') {
+        const focusable = [toggle, ...navLinks];
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first.focus();
+        }
+      }
+    });
+
+    mobileBreakpoint.addEventListener('change', (event) => {
+      if (!event.matches) setNavOpen(false);
+    });
+
+    setNavOpen(false);
   }
 
   // ── Cursor Glow Follow ────────────────────────────────────

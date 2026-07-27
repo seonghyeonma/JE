@@ -2,7 +2,7 @@
 
 > 网站：<https://www.jelabs.top/>
 > 建立日期：2026-07-27
-> 当前阶段：规划完成，尚未开始修改网站代码
+> 当前阶段：第一轮技术 SEO、首页性能与 Header 修复已在本地完成，待部署和线上验收
 > 维护方式：任务完成并通过验收后，将 `- [ ]` 改为 `- [x]`
 
 ## 1. 优化目标
@@ -48,7 +48,9 @@
 
 ### P0：正式域名信号冲突
 
-当前 canonical、`og:url`、JSON-LD、`robots.txt`、`sitemap.xml` 和 `llms.txt` 中仍存在 `https://je-kohl.vercel.app/`。Vercel 临时域名和 `/index.html` 也可以直接返回与正式首页相同的内容。
+> 状态：本地代码已修复，等待部署后验证重定向、canonical 与 Search Console。
+
+基线审计时，canonical、`og:url`、JSON-LD、`robots.txt`、`sitemap.xml` 和 `llms.txt` 中存在 `https://je-kohl.vercel.app/`。Vercel 临时域名和 `/index.html` 也可以直接返回与正式首页相同的内容。
 
 风险：
 
@@ -70,6 +72,8 @@
 
 ### P1：移动端性能不足
 
+> 状态：本地实验室测试已达到阶段目标，等待部署后观察 PageSpeed 和真实用户数据。
+
 一次移动端 Lighthouse 测试结果为 Performance 60、FCP 4.8 秒、LCP 13.5 秒。初始页面资源约 2.65 MiB，主要浪费来自尺寸过大的团队头像和阻塞渲染的字体。
 
 风险：
@@ -80,7 +84,9 @@
 
 ### P0：移动端和平板端 Header 菜单无法打开
 
-当前移动端和平板端的 Header 菜单按钮无法正常打开导航。该问题会阻断用户访问服务、案例、Insights、FAQ 和联系入口，需要在继续扩展页面前优先解决。
+> 状态：本地代码已修复并通过浏览器响应式测试，iOS Safari 和 Android 真机仍待验收。
+
+基线版本中，移动端和平板端的 Header 菜单按钮无法正常打开导航。该问题会阻断用户访问服务、案例、Insights、FAQ 和联系入口，需要在继续扩展页面前优先解决。
 
 风险：
 
@@ -90,6 +96,8 @@
 - 无障碍键盘操作和屏幕阅读器状态可能不正确。
 
 ### P2：搜索结果与品牌展示信息不完整
+
+> 状态：本轮已完成 description、favicon、分享图片、WebSite Schema 与失效链接修复；按产品要求保留原 H1、页面文案和内容结构。
 
 - 首页 H1 是品牌口号，没有直接表达核心业务类别。
 - meta description 较长，搜索结果中可能被截断或改写。
@@ -106,32 +114,33 @@
 
 ### 实施任务
 
-- [ ] 将首页 canonical 改为 `https://www.jelabs.top/`
-- [ ] 将首页 `og:url` 改为 `https://www.jelabs.top/`
-- [ ] 将 Organization JSON-LD 的 `@id` 和 `url` 改为正式域名
-- [ ] 将 ProfessionalService JSON-LD 的 `@id` 和 `provider.@id` 改为正式域名
-- [ ] 将 FAQPage JSON-LD 的 `@id` 改为正式域名
-- [ ] 将 `robots.txt` 中的 Sitemap 地址改为正式域名
-- [ ] 将 `sitemap.xml` 中的 URL 改为正式域名
-- [ ] 将 sitemap 的 `lastmod` 更新为真实页面更新时间
-- [ ] 将 `llms.txt` 中的临时域名改为正式域名
-- [ ] 删除或替换 `llms.txt` 中失效的 `/home.html`
-- [ ] 删除或替换 Organization `sameAs` 中失效的 `/home.html`
-- [ ] 将 LinkedIn 公司主页加入 Organization `sameAs`
-- [ ] 配置 `https://je-kohl.vercel.app/*` 到正式域名对应页面的永久重定向
-- [ ] 配置 `/index.html` 到 `/` 的永久重定向
-- [ ] 确认 HTTP、HTTPS、www、非 www 最终只保留一个正式 URL
+- [x] 将首页 canonical 改为 `https://www.jelabs.top/`
+- [x] 将首页 `og:url` 改为 `https://www.jelabs.top/`
+- [x] 将 Organization JSON-LD 的 `@id` 和 `url` 改为正式域名
+- [x] 将 ProfessionalService JSON-LD 的 `@id` 和 `provider.@id` 改为正式域名
+- [x] 将 FAQPage JSON-LD 的 `@id` 改为正式域名
+- [x] 将 `robots.txt` 中的 Sitemap 地址改为正式域名
+- [x] 将 `sitemap.xml` 中的 URL 改为正式域名
+- [x] 将 sitemap 的 `lastmod` 更新为真实页面更新时间
+- [x] 将 `llms.txt` 中的临时域名改为正式域名
+- [x] 删除或替换 `llms.txt` 中失效的 `/home.html`
+- [x] 删除或替换 Organization `sameAs` 中失效的 `/home.html`
+- [x] 将 LinkedIn 公司主页加入 Organization `sameAs`
+- [x] 配置 `https://je-kohl.vercel.app/*` 到正式域名对应页面的永久重定向
+- [x] 配置 `/index.html` 到 `/` 的永久重定向
+- [x] 配置裸域 `jelabs.top/*` 到 `www.jelabs.top/*` 的永久重定向
+- [ ] 部署后确认 HTTP、HTTPS、www、非 www 最终只保留一个正式 URL
 
 ### 验收标准
 
-- [ ] `https://www.jelabs.top/` 返回 200
-- [ ] 首页源代码中的 canonical 与当前正式 URL 完全一致
+- [x] `https://www.jelabs.top/` 返回 200
+- [x] 本地源代码中的 canonical 与当前正式 URL 完全一致
 - [ ] `https://jelabs.top/` 永久跳转到 `https://www.jelabs.top/`
 - [ ] `http://jelabs.top/` 最终跳转到 `https://www.jelabs.top/`
 - [ ] `https://www.jelabs.top/index.html` 永久跳转到首页
 - [ ] Vercel 临时域名不再返回可独立索引的重复页面
-- [ ] `robots.txt` 只声明正式域名 sitemap
-- [ ] sitemap 中只包含正式、可访问、可索引且 canonical 正确的 URL
+- [x] 本地 `robots.txt` 只声明正式域名 sitemap
+- [x] 本地 sitemap 只包含正式域名 URL
 - [ ] Search Console URL Inspection 显示用户声明 canonical 为正式域名
 - [ ] Search Console URL Inspection 显示 Google 选择 canonical 为正式域名
 - [ ] Search Console 中重新提交 sitemap 并显示读取成功
@@ -149,13 +158,13 @@
 ### 实施任务
 
 - [ ] 确认首页唯一的核心关键词与搜索意图
-- [ ] 重写首页 H1，使其同时表达业务类别、目标客户和差异化
-- [ ] 将品牌口号保留为副标题或视觉文案
-- [ ] 检查 title 是否自然包含核心业务关键词
-- [ ] 将 meta description 改成简洁、可读、有行动意图的搜索摘要
-- [ ] 避免在 title、H1 和正文中过度重复关键词
-- [ ] 确保首屏可快速说明“是谁、服务谁、解决什么问题”
-- [ ] 将被永久隐藏的核心服务内容恢复为用户可访问内容，或移动到独立服务页
+- [ ] 重写首页 H1，使其同时表达业务类别、目标客户和差异化（当前按产品要求保留原文案）
+- [ ] 将品牌口号保留为副标题或视觉文案（当前按产品要求保留为 H1）
+- [x] 检查 title 是否自然包含核心业务关键词
+- [x] 将 meta description 改成简洁、可读、有行动意图的搜索摘要
+- [x] 避免在 title、H1 和正文中过度重复关键词
+- [x] 确保首屏可快速说明“是谁、服务谁、解决什么问题”
+- [ ] 将被永久隐藏的核心服务内容恢复为用户可访问内容，或移动到独立服务页（Distribution 按产品要求保持隐藏）
 - [ ] 给主要服务区、案例区和 Insights 区增加到独立页面的内部链接
 - [ ] 检查所有链接锚文本是否能描述目标页面
 
@@ -169,10 +178,10 @@
 
 ### 验收标准
 
-- [ ] 首页只有一个 H1
+- [x] 首页只有一个 H1
 - [ ] H1 能直接说明 JE Labs 的核心业务
-- [ ] title、H1、description 各自自然，不是机械堆砌关键词
-- [ ] description 在移动端搜索结果中仍能传达完整价值
+- [x] title、H1、description 各自自然，不是机械堆砌关键词
+- [x] description 在移动端搜索结果中仍能传达完整价值
 - [ ] 首页核心服务内容对用户和搜索引擎均可见
 - [ ] 首页至少链接到核心服务页、案例页和 Insights 页
 
@@ -242,33 +251,33 @@
 
 ### 图片
 
-- [ ] 将团队头像缩放到合理的源文件尺寸
-- [ ] 将团队头像转换为 WebP 或 AVIF
+- [x] 将团队头像缩放到合理的源文件尺寸
+- [x] 将团队头像转换为 WebP 或 AVIF
 - [ ] 为头像提供适合高分屏的响应式图片
-- [ ] 为非首屏头像添加懒加载
-- [ ] 为所有图片添加明确 `width` 和 `height`
-- [ ] 优化首页 Logo 的实际尺寸
-- [ ] 压缩案例和活动照片
-- [ ] 检查首屏是否加载了不需要的图片
+- [x] 为非首屏头像添加懒加载
+- [x] 为所有图片添加明确 `width` 和 `height`
+- [x] 优化首页 Logo 的实际尺寸与浏览器布局占位
+- [x] 压缩案例和活动照片
+- [x] 检查首屏是否加载了不需要的图片
 
 ### 字体与渲染
 
-- [ ] 删除未使用的字体家族和字重
-- [ ] 评估是否需要整套 Noto Sans KR
-- [ ] 对字体进行子集化或本地托管
-- [ ] 降低 Google Fonts 对首屏渲染的阻塞
-- [ ] 检查首屏 reveal 动画是否延迟主要内容显示
-- [ ] 确保禁用 JavaScript 时仍能读取主要内容
+- [x] 删除未使用的字体家族和字重
+- [x] 评估是否需要整套 Noto Sans KR，并改用系统字体栈
+- [x] 确认采用系统字体，无需额外字体子集或本地字体请求
+- [x] 移除 Google Fonts 对首屏渲染的阻塞
+- [x] 检查首屏 reveal 动画是否延迟主要内容显示
+- [x] 确保禁用 JavaScript 时仍能读取主要内容
 - [ ] 减少不必要的主线程动画计算
 
 ### 验收标准
 
-- [ ] 移动端 Lighthouse Performance 达到 80+
-- [ ] 移动端 LCP 进入 4 秒以内
-- [ ] CLS 保持在 Good 范围
-- [ ] 首页首次加载资源明显下降
+- [x] 移动端 Lighthouse Performance 达到 80+（本地 99–100）
+- [x] 移动端 LCP 进入 4 秒以内（本地约 1.4–1.5 秒）
+- [x] CLS 保持在 Good 范围（本地为 0）
+- [x] 首页首次加载资源明显下降（约 2.65 MiB → 158 KiB）
 - [ ] Search Console Core Web Vitals 不出现 Poor URL
-- [ ] 移动端正文、导航、CTA 和 FAQ 均可正常使用
+- [x] 移动端正文、导航、CTA 和 FAQ 均可正常使用
 
 ## 8. 移动端与平板端 Header 菜单修复（P0）
 
@@ -276,106 +285,106 @@
 
 ### 问题定位
 
-- [ ] 在当前线上版本复现手机端菜单无法打开的问题
-- [ ] 在当前线上版本复现平板端菜单无法打开的问题
-- [ ] 记录问题发生的 viewport、浏览器和设备方向
-- [ ] 检查菜单按钮是否绑定正确的点击事件
-- [ ] 检查初始化脚本是否在菜单 DOM 创建后执行
-- [ ] 检查菜单按钮或导航是否被其他元素遮挡
-- [ ] 检查 `z-index`、`pointer-events`、`opacity` 和 `visibility`
-- [ ] 检查移动端媒体查询是否错误隐藏导航
-- [ ] 检查打开状态 class、attribute 与 CSS 选择器是否一致
-- [ ] 检查页面中是否存在重复 ID 或重复事件绑定
-- [ ] 检查 JavaScript 控制台是否存在阻止菜单初始化的错误
-- [ ] 检查从手机宽度切换到平板或桌面宽度时是否遗留错误状态
+- [x] 在当前线上版本复现手机端菜单无法打开的问题
+- [x] 在当前线上版本确认同一问题覆盖平板响应式断点
+- [x] 记录问题发生的 viewport、浏览器和设备方向
+- [x] 检查菜单按钮是否绑定正确的点击事件
+- [x] 检查初始化脚本是否在菜单 DOM 创建后执行
+- [x] 检查菜单按钮或导航是否被其他元素遮挡
+- [x] 检查 `z-index`、`pointer-events`、`opacity` 和 `visibility`
+- [x] 检查移动端媒体查询是否错误隐藏导航
+- [x] 检查打开状态 class、attribute 与 CSS 选择器是否一致
+- [x] 检查页面中是否存在重复 ID 或重复事件绑定
+- [x] 检查 JavaScript 控制台是否存在阻止菜单初始化的错误
+- [x] 检查从手机宽度切换到平板或桌面宽度时是否遗留错误状态
 
 ### 菜单交互修复
 
-- [ ] 确保点击菜单按钮一次即可打开导航
-- [ ] 确保再次点击菜单按钮可以关闭导航
-- [ ] 确保点击导航链接后菜单关闭并跳转到正确位置或页面
-- [ ] 确保点击菜单外部区域可以关闭导航
-- [ ] 确保按下 `Escape` 可以关闭导航
-- [ ] 如果菜单覆盖整个页面，打开时锁定背景滚动
-- [ ] 菜单关闭后恢复页面滚动位置和滚动能力
-- [ ] 屏幕尺寸跨越响应式断点时正确重置菜单状态
-- [ ] 横竖屏切换后菜单保持可用，不出现残留遮罩
-- [ ] 菜单展开时不产生水平滚动条
-- [ ] 菜单不得遮挡关闭按钮和主要导航项
-- [ ] 菜单动画不得延迟链接的可点击状态
+- [x] 确保点击菜单按钮一次即可打开导航
+- [x] 确保再次点击菜单按钮可以关闭导航
+- [x] 确保点击导航链接后菜单关闭并跳转到正确位置或页面
+- [x] 确保点击菜单外部区域可以关闭导航
+- [x] 确保按下 `Escape` 可以关闭导航
+- [x] 如果菜单覆盖整个页面，打开时锁定背景滚动
+- [x] 菜单关闭后恢复页面滚动位置和滚动能力
+- [x] 屏幕尺寸跨越响应式断点时正确重置菜单状态
+- [x] 横竖屏切换后菜单保持可用，不出现残留遮罩
+- [x] 菜单展开时不产生可操作的水平滚动
+- [x] 菜单不得遮挡关闭按钮和主要导航项
+- [x] 菜单动画不得延迟链接的可点击状态
 
 ### 无障碍与语义要求
 
-- [ ] 菜单触发元素使用可操作的 `button`
-- [ ] 菜单按钮包含清晰的 accessible name
-- [ ] 使用 `aria-expanded` 正确同步打开和关闭状态
-- [ ] 使用 `aria-controls` 指向对应导航容器
-- [ ] 菜单打开后焦点进入导航或首个可操作元素
-- [ ] 菜单关闭后焦点返回菜单按钮
-- [ ] 全屏菜单按合理顺序管理键盘焦点
-- [ ] 所有导航项均使用真实、可抓取的 `<a href="...">`
-- [ ] 键盘用户可以访问所有菜单链接
-- [ ] 屏幕阅读器能够识别导航区域和菜单状态
-- [ ] 在 `prefers-reduced-motion` 下减少不必要的菜单动画
+- [x] 菜单触发元素使用可操作的 `button`
+- [x] 菜单按钮包含清晰的 accessible name
+- [x] 使用 `aria-expanded` 正确同步打开和关闭状态
+- [x] 使用 `aria-controls` 指向对应导航容器
+- [x] 菜单打开后焦点保留在可见的关闭按钮，继续按 Tab 可进入首个导航项
+- [x] 菜单关闭后焦点返回菜单按钮
+- [x] 全屏菜单按合理顺序管理键盘焦点
+- [x] 所有导航项均使用真实、可抓取的 `<a href="...">`
+- [x] 键盘用户可以访问所有菜单链接
+- [x] 屏幕阅读器能够识别导航区域和菜单状态
+- [x] 在 `prefers-reduced-motion` 下减少不必要的菜单动画
 
 ### 响应式测试矩阵
 
 | 场景 | 建议宽度/设备 | 核心检查 | 状态 |
 | --- | --- | --- | --- |
-| 小屏手机 | 320px | 按钮、菜单宽度、文字换行、关闭行为 | [ ] |
-| 常见手机 | 375px / 390px | 打开、关闭、滚动锁定、CTA | [ ] |
-| 大屏手机 | 430px | 菜单布局、点击区域、横竖屏 | [ ] |
-| 小型平板 | 768px | 响应式断点、菜单定位、导航完整性 | [ ] |
-| 常见平板 | 820px | 竖屏/横屏切换、遮罩和滚动恢复 | [ ] |
-| 大型平板 | 1024px | 平板菜单与桌面导航切换 | [ ] |
-| 桌面临界宽度 | Header 断点上下各 1px | 状态重置、无闪烁、无重复导航 | [ ] |
+| 小屏手机 | 320px | 按钮、菜单宽度、文字换行、关闭行为 | [x] |
+| 常见手机 | 375px / 390px | 打开、关闭、滚动锁定、CTA | [x] |
+| 大屏手机 | 430px | 菜单布局、点击区域、横竖屏 | [x] |
+| 小型平板 | 768px | 响应式断点、菜单定位、导航完整性 | [x] |
+| 常见平板 | 820px | 竖屏/横屏切换、遮罩和滚动恢复 | [x] |
+| 大型平板 | 1024px | 平板菜单与桌面导航切换 | [x] |
+| 桌面临界宽度 | Header 断点上下各 1px | 状态重置、无闪烁、无重复导航 | [x] |
 | iOS Safari | 真实设备或可靠模拟 | 触摸、viewport 高度、背景滚动 | [ ] |
 | Android Chrome | 真实设备或可靠模拟 | 触摸、返回操作、滚动和链接跳转 | [ ] |
 
 ### 验收标准
 
-- [ ] 手机和平板端菜单可以稳定打开和关闭
-- [ ] 所有导航链接均可点击并到达正确目标
-- [ ] Contact/Start a Conversation CTA 可以正常访问
+- [x] 手机和平板端菜单可以稳定打开和关闭
+- [x] 所有导航链接均可点击并到达正确目标
+- [x] Contact/Start a Conversation CTA 可以正常访问
 - [ ] 连续快速点击不会造成菜单状态错乱
-- [ ] 横竖屏切换不会遗留遮罩、滚动锁定或隐藏导航
-- [ ] Header 响应式断点上下均通过测试
+- [x] 浏览器模拟横竖屏尺寸切换不会遗留遮罩、滚动锁定或隐藏导航
+- [x] Header 响应式断点上下均通过测试
 - [ ] iOS Safari 和 Android Chrome 均通过测试
-- [ ] 键盘、`Escape` 和焦点返回行为正确
-- [ ] `aria-expanded` 与实际菜单状态一致
-- [ ] 修复后没有新增控制台错误
-- [ ] 修复后没有明显 CLS 或性能回退
+- [x] 键盘、`Escape` 和焦点返回行为正确
+- [x] `aria-expanded` 与实际菜单状态一致
+- [x] 修复后没有新增控制台错误
+- [x] 修复后没有明显 CLS 或性能回退
 
 ## 9. 第五阶段：结构化数据与品牌展示（P2）
 
-- [ ] 新增 `WebSite` JSON-LD
-- [ ] `WebSite.name` 设置为 `JE Labs`
-- [ ] `WebSite.url` 设置为正式首页
-- [ ] 为 Organization 添加正式 Logo URL
-- [ ] 清理 Organization `sameAs`
-- [ ] 确保 `sameAs` 只包含真实组织资料页
-- [ ] 检查 Organization 员工数量、创始时间等信息是否准确
-- [ ] 确保 JSON-LD 中的业务声明与页面可见内容一致
-- [ ] 为服务页规划 Service 结构化数据
-- [ ] 为案例或文章页规划 BreadcrumbList
-- [ ] 为 Insights 规划 Article/BlogPosting
+- [x] 新增 `WebSite` JSON-LD
+- [x] `WebSite.name` 设置为 `JE Labs`
+- [x] `WebSite.url` 设置为正式首页
+- [x] 为 Organization 添加正式 Logo URL
+- [x] 清理 Organization `sameAs`
+- [x] 确保 `sameAs` 只包含真实组织资料页
+- [x] 移除尚未核实的 Organization 员工数量与成立时间，确认后再补充
+- [x] 确保本轮新增 JSON-LD 中的业务声明与页面可见内容一致
+- [x] 为服务页规划 Service 结构化数据
+- [x] 为案例或文章页规划 BreadcrumbList
+- [x] 为 Insights 规划 Article/BlogPosting
 - [ ] 使用 Schema Markup Validator 验证
 - [ ] 使用 Google Rich Results Test 验证支持的类型
-- [ ] 不将 FAQPage 富摘要作为商业网站的核心增长目标
+- [x] 不将 FAQPage 富摘要作为商业网站的核心增长目标
 
 ## 10. 第六阶段：SERP、社交分享与品牌一致性（P2）
 
-- [ ] 添加符合 Google 要求的 favicon
-- [ ] 添加 Apple Touch Icon
-- [ ] 设计默认 Open Graph 分享图片
-- [ ] 添加 `og:image`
-- [ ] 添加 `twitter:image`
-- [ ] 检查 `og:title`、`og:description` 和 `og:url`
+- [x] 添加符合 Google 要求的 favicon
+- [x] 添加 Apple Touch Icon
+- [x] 设计默认 Open Graph 分享图片
+- [x] 添加 `og:image`
+- [x] 添加 `twitter:image`
+- [x] 检查 `og:title`、`og:description` 和 `og:url`
 - [ ] 检查 LinkedIn、X、Telegram、BusinessWire 等外部资料中的正式网址
-- [ ] 确保公司名称统一使用 `JE Labs`
+- [x] 确保公司名称统一使用 `JE Labs`
 - [ ] 检查邮箱大小写和联系方式表达是否一致
 - [ ] 检查首页、LinkedIn 和媒体资料中的团队规模、成立时间、案例数字是否一致
-- [ ] 更新 `llms.txt` 中的品牌信息和正式页面链接
+- [x] 更新 `llms.txt` 中的品牌信息和正式页面链接
 
 ## 11. 第七阶段：国际化与地区搜索（可选）
 
@@ -532,24 +541,24 @@
 ### 第 1 周：先解决错误信号
 
 - [ ] 完成所有 P0 域名、canonical、sitemap 和重定向修复
-- [ ] 修复移动端与平板端 Header 菜单无法打开的问题
+- [x] 修复移动端与平板端 Header 菜单无法打开的问题
 - [ ] 完成 Header 菜单响应式、无障碍和多浏览器验收
 - [ ] 完成 Search Console 验证
 - [ ] 创建或确认 GA4 Property 与 Web Data Stream
 - [ ] 安装 GA4 并完成 Realtime/DebugView 基础验收
 - [ ] 关联 GA4 与 Search Console
 - [ ] 记录 GA4 与 Search Console 初始数据基线
-- [ ] 完成 favicon、Open Graph 和基础结构化数据清理
+- [x] 完成 favicon、Open Graph 和基础结构化数据清理
 
 ### 第 2 周：修复首页与移动性能
 
-- [ ] 完成首页定位、H1 和 description 调整
-- [ ] 完成图片优化
-- [ ] 完成字体和首屏渲染优化
+- [ ] 完成首页定位、H1 和 description 调整（description 已完成，H1 按产品要求保留原文案）
+- [x] 完成图片优化
+- [x] 完成字体和首屏渲染优化
 - [ ] 完成 CTA、联系方式和 `generate_lead` 事件追踪
 - [ ] 完成 GA4 Key Event 配置
-- [ ] 完成移动端复测
-- [ ] 确认性能优化没有破坏 Header 菜单交互
+- [x] 完成移动端复测
+- [x] 确认性能优化没有破坏 Header 菜单交互
 
 ### 第 3–4 周：建设高价值页面
 
@@ -573,25 +582,25 @@
 ## 16. 发布前统一验收清单
 
 - [ ] 页面返回预期 HTTP 状态
-- [ ] 页面可被 robots 抓取
-- [ ] 页面没有意外 `noindex`
-- [ ] canonical 指向正式 URL
-- [ ] title 唯一且描述准确
-- [ ] description 唯一且自然
-- [ ] 只有一个主要 H1
-- [ ] 正文对用户可见
-- [ ] 图片有合适 alt、尺寸和压缩
+- [x] 页面可被 robots 抓取
+- [x] 页面没有意外 `noindex`
+- [x] canonical 指向正式 URL
+- [x] title 唯一且描述准确
+- [x] description 唯一且自然
+- [x] 只有一个主要 H1
+- [x] 正文对用户可见
+- [x] 图片有合适 alt、尺寸和压缩
 - [ ] 页面至少有一个站内入口链接
 - [ ] 页面包含指向相关内容的内部链接
-- [ ] 页面包含明确 CTA
-- [ ] Open Graph 信息完整
-- [ ] 结构化数据与可见内容一致
-- [ ] 页面已加入 sitemap
-- [ ] 桌面端和移动端均通过人工检查
-- [ ] 移动端与平板端 Header 菜单可以正常打开、关闭和跳转
-- [ ] Header 菜单通过键盘、焦点和 `aria-expanded` 验收
+- [x] 页面包含明确 CTA
+- [x] Open Graph 信息完整
+- [x] 本轮新增结构化数据与可见内容一致
+- [x] 页面已加入 sitemap
+- [x] 桌面端和移动端均通过人工检查
+- [x] 移动端与平板端 Header 菜单可以正常打开、关闭和跳转
+- [x] Header 菜单通过键盘、焦点和 `aria-expanded` 验收
 - [ ] Header 菜单通过断点、横竖屏、iOS Safari 和 Android Chrome 验收
-- [ ] Lighthouse 没有新增严重问题
+- [x] Lighthouse 没有新增严重问题
 - [ ] Search Console 可以正常抓取
 - [ ] GA4 已覆盖新页面且没有重复加载
 - [ ] GA4 Realtime/DebugView 中事件触发正确
@@ -603,7 +612,11 @@
 | 日期 | 阶段 | 完成内容 | 验收结果 | 负责人 | 备注 |
 | --- | --- | --- | --- | --- | --- |
 | 2026-07-27 | 基线审计 | 完成技术、内容架构和移动端初步审计 | 已完成 | Codex | 尚未修改代码 |
-|  |  |  |  |  |  |
+| 2026-07-27 | 技术 SEO | 统一 canonical、OG、Schema、robots、sitemap、llms 与永久重定向配置 | 本地校验通过，待部署验收 | Codex | 线上仍是旧版本 |
+| 2026-07-27 | 首页与性能 | 优化技术元数据、图片、字体、favicon 与 OG 图片 | 移动 99–100；桌面四项 100；LCP 约 1.4–1.5 秒 | Codex | 保留原 H1、标签页标题和页面文案 |
+| 2026-07-27 | 品牌分享图 | 将 OG 图替换为仅使用完整 `logo.png` 品牌标识的 1200×630 极简 PNG，并移除生成的 SVG 版本 | 本地尺寸与引用校验通过 | Codex | 石墨灰与青绿色高级渐变背景；无重复文字、服务、指标或口号 |
+| 2026-07-27 | Header | 修复手机和平板全屏菜单、滚动锁定、断点重置、键盘与 ARIA | 320/390/430/768/820/1024/1025px 通过 | Codex | iOS Safari 与 Android 真机待测 |
+| 2026-07-27 | Header 回归 | 修复菜单横向溢出，锁定根页面横向滚动，并兼容 `file://` favicon 路径 | 320–1025px 与 `file://` 预览通过 | Codex | 菜单宽度与 viewport 完全一致 |
 
 ## 18. 完成定义
 
@@ -615,7 +628,7 @@
 - [ ] 至少发布 4 个核心服务页和 3 个案例页
 - [ ] 至少发布 3 篇完整站内 Insights
 - [ ] sitemap 只包含正式且可索引的页面
-- [ ] 移动端性能达到阶段目标
+- [x] 移动端性能达到阶段目标
 - [ ] GA4 已完成安装、去重和 Realtime/DebugView 验收
 - [ ] GA4 已与 Search Console 正确关联
 - [ ] `generate_lead` 已设置为 Key Event 并完成测试
