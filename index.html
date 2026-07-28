@@ -13,8 +13,10 @@
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
   <meta name="theme-color" content="#0a0a0f" />
   <link rel="canonical" href="https://www.jelabs.top/" />
-  <link rel="icon" href="assets/favicon.jpg" sizes="400x400" type="image/jpeg" />
-  <link rel="apple-touch-icon" href="assets/favicon.jpg" sizes="400x400" />
+  <link rel="icon" href="/favicon.ico" sizes="48x48" />
+  <link rel="icon" href="/assets/favicon-48x48.png" sizes="48x48" type="image/png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
+  <link rel="manifest" href="/site.webmanifest" />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
@@ -45,7 +47,8 @@
     "url": "https://www.jelabs.top/",
     "name": "JE Labs",
     "alternateName": ["JELabs", "jelabs.top"],
-    "inLanguage": "en"
+    "inLanguage": "en",
+    "publisher": { "@id": "https://www.jelabs.top/#organization" }
   }
   </script>
 
@@ -56,13 +59,15 @@
     "@type": "Organization",
     "@id": "https://www.jelabs.top/#organization",
     "name": "JE Labs",
+    "alternateName": "JELabs",
     "url": "https://www.jelabs.top/",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://www.jelabs.top/assets/logo.png",
-      "width": 1093,
+      "url": "https://www.jelabs.top/assets/logo-square-512.png",
+      "width": 512,
       "height": 512
     },
+    "image": "https://www.jelabs.top/assets/og-image.png",
     "description": "JE Labs is a strategic growth studio that helps frontier AI and tech companies sharpen positioning, expand global visibility, and build ecosystems that sustain long-term growth.",
     "founder": {
       "@type": "Person",
