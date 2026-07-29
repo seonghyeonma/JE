@@ -2,6 +2,17 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "redirects": [
     {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "jelabs.top"
+        }
+      ],
+      "destination": "https://www.jelabs.top/",
+      "permanent": true
+    },
+    {
       "source": "/:path*",
       "has": [
         {
@@ -10,6 +21,17 @@
         }
       ],
       "destination": "https://www.jelabs.top/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "je-kohl.vercel.app"
+        }
+      ],
+      "destination": "https://www.jelabs.top/",
       "permanent": true
     },
     {
@@ -43,6 +65,26 @@
       "source": "/home.html",
       "destination": "/",
       "permanent": true
+    }
+  ],
+  "headers": [
+    {
+      "source": "/assets/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/(favicon.ico|apple-touch-icon.png|site.webmanifest)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=604800"
+        }
+      ]
     }
   ]
 }
