@@ -241,6 +241,88 @@ Linear 和 Vercel 都是**一套 token 打通营销站和产品**，差异只出
 
 ---
 
+## 2.5 导航策略：单页滚动还是独立页面
+
+### 同行实测
+
+| 站 | 导航形态 | 实测 |
+|---|---|---|
+| **NoGood** | 全部独立页面 | Services（下拉 13 个服务页）/ Expertise（6 个行业页）/ **Results** / Studio（4 个）/ About us / Blog / Careers / Contact us |
+| **Work & Co** | 无顶部导航 | logo 即菜单按钮，指向 `/grid` 独立页；7 个链接在页脚 |
+| **DEPT** | 独立页面 | 首屏零媒体，纯排版 |
+| **jelabs.top 现状** | 单页 8 锚点 | 全站只有一个 URL |
+
+**结论：同行全部是独立页面。** 但他们的内容量也完全不同 —— NoGood 有 13 个服务页撑得起 13 个入口，你们现在有 3 个案例。
+
+### 我的建议：分两期，不要一步到位
+
+**这是这次改版里唯一一处我认为「SEO 比视觉更重要」的地方。**
+
+现在整站一个 URL、一个 title 标签，意味着**你们只能排一个词**。一家把「From SEO to GEO」当洞察发出去的营销机构，自己的站却只有一页可索引，这个信号很伤。但反过来，用 3 个案例去铺 10 个空页面更伤。
+
+**第一期（跟本次改版一起上）**
+
+保持首页单页滚动，但拆出三类已经有内容支撑的真实页面：
+
+| 页面 | 为什么现在就能拆 |
+|---|---|
+| `/work/publicai`、`/work/moss-ai`、`/work/surf-ai` | 首页现在只放摘要 + 三个数字，详情本来就需要落地页。每页可以独立排「AI 出海营销案例」这类词 |
+| `/insights` | 已经有 5 篇，够撑一个列表页 + 后续每篇独立页 |
+| `/contact` | 独立页转化和埋点都比锚点干净 |
+
+首页内部的 Approach / Results / Services 继续用锚点滚动。
+
+**第二期（等内容长出来）**
+
+`/services/strategy`、`/services/kol-marketing`、`/services/media`、`/services/community` 各一页，一页打一个关键词；`/studio` 独立成 About 页。**每页至少 600 词真实内容再上，不到就别拆。**
+
+### 导航栏放哪五项
+
+单页滚动时，导航就是目录。建议：
+
+```
+Results    Services    Studio    Insights    Contact        [Start a conversation]
+```
+
+- **Work 改叫 Results**：区块标题是 Results，第二 CTA 是 "See our results"，三处必须一致。NoGood 导航里也是 Results。
+- **Approach 不进导航**：它是第二屏，用户自然滚就到了。导航位置很贵，要留给「需要跳过去」的目的地。
+- **FAQ 不进导航**：在页脚，结构化数据保留。
+
+### 标题用词：三个候选的判断
+
+| 候选 | 判断 |
+|---|---|
+| `我们的工作方式 / How we work` | 准确，但每家机构都有这句，零差异 |
+| `我们的服务 / Our services` | **错位**。这是后面 Services 区块的词，用在四步流程上会和它打架 |
+| `Why JE Labs?` | **不建议做成区块标题**。「为什么选我们」应该由案例和数字回答，而不是自己开一个区块问一遍。NoGood 对应的区块叫 "Expert-led. No slop. Proven results." —— 是**断言**，不是**提问** |
+
+### 一个必须先解决的结构问题
+
+按你给的新四步文案：
+
+1. 进入策略、叙事设计
+2. 1,000+ KOL 营销
+3. 30+ 渠道全球媒体分发
+4. 产品与社区反馈跟进
+
+**这四步和现在的 Services 三支柱（Strategy and narrative / Distribution / Ecosystem）讲的是同一批事**：第 1 步 = 支柱 1，第 2-3 步 = 支柱 2，第 4 步 = 支柱 3。
+
+同一页里说两遍，是现在这版最后一处结构冗余。建议**把 Approach 和 Services 合并成一个区块**：四步各配一张图，左侧固定导轨 + 右侧滚动。这样：
+
+- 满足你说的「每一步都有图片，图文并茂」
+- 页面少一个区块，从 9 个降到 8 个
+- 「工作方式」和「服务」的用词之争自动消失，因为它就是一个区块
+
+合并后的标题建议（三选一）：
+
+```
+What we do          →  Four moves, run in order.
+How we work         →  One system, four moves.
+The system          →  Strategy, creators, media, community.
+```
+
+---
+
 ## 3. 第一屏 Hero
 
 ![Hero](img/02-hero.png)
@@ -456,21 +538,21 @@ B2B 买家的判断顺序是固定的两步：**先看"这家懂不懂我的问�
 
 **改成什么**
 
-四个阶段，但**不做成四张等大卡片**（那正是原站的毛病）。用**一条贯穿的水平线 + 四个节点**：
+四个阶段按真实执行顺序展开，**不再横向摞成四列**。桌面端采用大厂常见的 sticky storytelling：左侧步骤随滚动逐项进入主状态，右侧视觉区固定，并只展示当前步骤对应的图片；移动端则让图片直接跟在各自步骤下方：
 
-- 线从主色渐变到中性灰，视觉上就是"一个系统在往前推"，呼应你们自己的文案 "composed as a living system"
-- 第一个节点用主色实心，其余中性
-- 每个阶段 = 序号（等宽）+ 标题 + **一句话**，不超过 18 词
-- 底部一句话把方法论和下一屏的案例连起来：`The four phases below produced the numbers in the next section.` 再挂一个 `See our results` 文字链
+- 每一步都有独立图片资产，分别表现策略制定、KOL 协作、全球媒体分发和发布后反馈
+- IntersectionObserver 只负责切换当前步骤和图片，不监听每一帧滚动；动画遵守 reduced-motion
+- 未激活步骤降低视觉权重，当前步骤标签切换为品牌绿，让先后关系比四列总览更明确
+- 底部用 `15+ global markets` 收束，再挂一个 `See our results` 文字链把方法论连接到下一屏案例
 
-**文案沿用你们原有的四阶段**，只做压缩：
+**标题与文案改为可验证的动作和规模**：
 
 | 阶段 | 原文案 | 压缩后 |
 |---|---|---|
-| 01 Designing the moat | Identify the unique technical advantage, data leverage, and narrative territory worth building the brand around. | Identify the technical advantage, data leverage, and narrative territory worth owning. |
-| 02 Leveraging the ecosystem | Build credibility with researchers, developer communities, and operators who can validate the signal early. | Build credibility with researchers, developer communities, and 1,000+ technical advocates. |
-| 03 Creating the surge | Launch narrative-driven campaigns that make the company feel like the inevitable leader in its sector. | Launch narrative-driven campaigns tuned for regional relevance, market by market. |
-| 04 Sustaining the flywheel | Use live product and community feedback to keep the story sharper, stronger, and more self-reinforcing over time. | Use live product and community feedback to keep the signal compounding after launch. |
+| Market entry / Define the moat | Identify the unique technical advantage, data leverage, and narrative territory worth building the brand around. | Build the market-entry strategy, positioning, and narrative that turn technical advantage into an ownable category position. |
+| Creator network / Mobilize 1,000+ KOLs | Build credibility with researchers, developer communities, and operators who can validate the signal early. | Use our network of top creators and domain experts to place the story with the voices each market already trusts. |
+| Media distribution / Distribute through 30+ channels | Launch narrative-driven campaigns that make the company feel like the inevitable leader in its sector. | Coordinate global media campaigns across the channels and publications that shape each target market. |
+| Feedback loop / Compound growth after launch | Use live product and community feedback to keep the story sharper, stronger, and more self-reinforcing over time. | Use live product performance and community feedback to track growth, sharpen execution, and keep momentum compounding. |
 
 原文那句 "make the company feel like the inevitable leader in its sector" 属于自我评价，换成了可验证的动作描述。
 

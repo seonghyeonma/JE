@@ -19,19 +19,69 @@ APPENDIX = [("00-system", "设计系统基线"),
             ("01-header", "Header 现状与提案对照"),
             ("10-mobile", "移动端 390px")]
 
-RULE = re.compile(r"([^{}]+)\{([^{}]*)\}", re.S)
-
-
 def scope_css(css: str, scope: str) -> str:
-    """Prefix every selector in `css` with `#scope`. No at-rules present."""
+    """Prefix selectors with `#scope`, preserving nested conditional at-rules."""
     out = []
-    for m in RULE.finditer(css):
-        sels, body = m.group(1).strip(), m.group(2)
-        if not sels or sels.startswith("@"):
-            out.append(m.group(0))
-            continue
-        scoped = ", ".join(f"#{scope} {s.strip()}" for s in sels.split(",") if s.strip())
-        out.append(f"{scoped} {{{body}}}")
+    cursor = 0
+
+    while cursor < len(css):
+        opening = css.find("{", cursor)
+        if opening == -1:
+            if css[cursor:].strip():
+                out.append(css[cursor:].strip())
+            break
+
+        prelude = css[cursor:opening].strip()
+        depth = 1
+        quote = None
+        comment = False
+        i = opening + 1
+
+        while i < len(css) and depth:
+            pair = css[i:i + 2]
+            char = css[i]
+            if comment:
+                if pair == "*/":
+                    comment = False
+                    i += 2
+                    continue
+            elif quote:
+                if char == "\\":
+                    i += 2
+                    continue
+                if char == quote:
+                    quote = None
+            elif pair == "/*":
+                comment = True
+                i += 2
+                continue
+            elif char in {'"', "'"}:
+                quote = char
+            elif char == "{":
+                depth += 1
+            elif char == "}":
+                depth -= 1
+            i += 1
+
+        body = css[opening + 1:i - 1]
+        clean_prelude = re.sub(r"^(?:\s|/\*.*?\*/)*", "", prelude, flags=re.S)
+
+        if clean_prelude.startswith(("@media", "@supports", "@container", "@layer")):
+            lead = prelude[:prelude.find(clean_prelude)]
+            nested = scope_css(body, scope)
+            out.append(f"{lead}{clean_prelude} {{\n{nested}\n}}")
+        elif clean_prelude.startswith("@"):
+            out.append(f"{prelude} {{{body}}}")
+        elif prelude:
+            scoped = ", ".join(
+                f"#{scope} {selector.strip()}"
+                for selector in prelude.split(",")
+                if selector.strip()
+            )
+            out.append(f"{scoped} {{{body}}}")
+
+        cursor = i
+
     return "\n".join(out)
 
 

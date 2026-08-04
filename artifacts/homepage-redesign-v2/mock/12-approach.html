@@ -1,69 +1,111 @@
 <meta charset="utf-8" />
 <link rel="stylesheet" href="base.css" />
 <style>
+  .frame {
+    overflow: visible;
+  }
   .head {
-    max-width: 62ch;
+    max-width: 66ch;
   }
-  .track {
-    position: relative;
-    margin-top: 66px;
+  .sequence {
+    margin-top: 76px;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 34px;
-  }
-  /* one continuous line through all four phases: the section is a system,
-     not four separate cards */
-  .track::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 5px;
-    height: 1px;
-    background: linear-gradient(90deg, var(--accent) 0%, var(--s700) 34%, var(--s800) 100%);
+    grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+    gap: 96px;
+    align-items: start;
   }
   .ph {
     position: relative;
-    padding-top: 34px;
+    min-height: 430px;
+    display: flex;
+    align-items: center;
+    border-top: 1px solid var(--line);
+    opacity: 0.58;
+    transition: opacity 420ms cubic-bezier(0.16, 1, 0.3, 1);
   }
-  .ph::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 11px;
-    height: 11px;
-    border-radius: 3px;
-    background: var(--s700);
+  .ph:last-child {
+    border-bottom: 1px solid var(--line);
   }
-  .ph:first-child::before {
-    background: var(--accent);
+  .ph.is-active {
+    opacity: 1;
   }
-  .ph .n {
+  .ph-inner {
+    max-width: 410px;
+    padding: 72px 24px 72px 0;
+  }
+  .ph .scope {
     font-family: var(--mono);
     font-size: 12px;
-    letter-spacing: 0.1em;
+    line-height: 1.4;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
     color: var(--text-3);
-    margin: 0 0 14px;
+    margin: 0 0 18px;
+    transition: color 420ms cubic-bezier(0.16, 1, 0.3, 1);
   }
-  .ph:first-child .n {
+  .ph.is-active .scope {
     color: var(--accent);
   }
   .ph h3 {
-    font-size: 23px;
-    line-height: 1.2;
-    letter-spacing: -0.02em;
+    font-size: 34px;
+    line-height: 1.12;
+    letter-spacing: -0.025em;
     font-weight: 600;
-    margin: 0 0 12px;
+    margin: 0 0 20px;
   }
   .ph p {
-    font-size: 14.5px;
+    font-size: 16px;
     line-height: 1.6;
     color: var(--text-2);
     margin: 0;
   }
+  .ph-media {
+    display: none;
+  }
+  .visual-stage {
+    position: sticky;
+    top: 82px;
+    width: min(100%, 560px);
+    height: 650px;
+    margin-left: auto;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: var(--r-surface);
+    background: var(--ink-raise);
+  }
+  .visual-frame {
+    position: absolute;
+    inset: 0;
+    margin: 0;
+    opacity: 0;
+    transform: scale(1.035);
+    transition: opacity 520ms cubic-bezier(0.16, 1, 0.3, 1),
+      transform 760ms cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: none;
+  }
+  .visual-frame.is-active {
+    opacity: 1;
+    transform: scale(1);
+    pointer-events: auto;
+  }
+  .visual-frame img,
+  .ph-media img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: saturate(0.58) contrast(1.08) brightness(0.78);
+  }
+  .visual-frame::after,
+  .ph-media::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 60%, rgba(10, 10, 10, 0.18));
+    pointer-events: none;
+  }
   .foot {
-    margin-top: 62px;
+    margin-top: 72px;
     padding-top: 26px;
     border-top: 1px solid var(--line);
     display: flex;
@@ -81,62 +123,225 @@
     color: var(--text);
     font-weight: 600;
   }
+  @media (max-width: 767px) {
+    .sequence {
+      margin-top: 48px;
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+    .ph {
+      min-height: 0;
+      display: block;
+      padding: 48px 0;
+      opacity: 1;
+    }
+    .ph + .ph {
+      border-top: 1px solid var(--line);
+    }
+    .ph-inner {
+      max-width: none;
+      padding: 0;
+    }
+    .ph h3 {
+      font-size: 29px;
+    }
+    .ph-media {
+      position: relative;
+      display: block;
+      height: 420px;
+      margin: 28px 0 0;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: var(--r-surface);
+      background: var(--ink-raise);
+    }
+    .visual-stage {
+      display: none;
+    }
+    .foot {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .ph,
+    .ph .scope,
+    .visual-frame {
+      transition: none;
+    }
+  }
 </style>
 <div class="frame">
-  <div class="caption">Approach / 方法论（第二屏：先说怎么做，再给案例）</div>
+  <div class="caption">Approach / 四步顺序滚动叙事（每一步独立图片）</div>
   <div class="wrap" style="padding-top: 76px; padding-bottom: 80px">
     <div class="head">
       <p class="label">How we work</p>
-      <h2 class="d2" style="margin: 18px 0 0; max-width: 17ch">
-        Momentum, composed as a system.
+      <h2 class="d2" style="margin: 18px 0 0; max-width: 18ch">
+        Turn strategy into market momentum.
       </h2>
-      <p class="lead" style="margin-top: 22px; max-width: 58ch">
-        Each phase builds the conditions for the next one, so growth reads as one
-        narrative instead of disconnected tactics.
+      <p class="lead" style="margin-top: 22px; max-width: 62ch">
+        One integrated engagement connects market-entry strategy and narrative design
+        with KOL influence, global media distribution, and post-launch growth.
       </p>
     </div>
 
-    <div class="track">
-      <div class="ph">
-        <p class="n">01</p>
-        <h3>Designing the moat</h3>
-        <p>
-          Identify the technical advantage, data leverage, and narrative territory worth
-          owning.
-        </p>
+    <div class="sequence" data-how-we-work>
+      <div class="steps">
+        <div id="how-step-market-entry" class="ph is-active" data-step="0" aria-current="step">
+          <div class="ph-inner">
+            <p class="scope">Market entry</p>
+            <h3>Define the moat</h3>
+            <p>
+              Build the market-entry strategy, positioning, and narrative that turn
+              technical advantage into an ownable category position.
+            </p>
+            <figure class="ph-media">
+              <img
+                src="../img/assets/how-we-work-01-market-entry.webp"
+                alt="Strategists developing market-entry positioning around a working table"
+                loading="lazy"
+                decoding="async"
+              />
+            </figure>
+          </div>
+        </div>
+        <div id="how-step-creator-network" class="ph" data-step="1">
+          <div class="ph-inner">
+            <p class="scope">Creator network</p>
+            <h3>Mobilize 1,000+ KOLs</h3>
+            <p>
+              Use our network of top creators and domain experts to place the story with
+              the voices each market already trusts.
+            </p>
+            <figure class="ph-media">
+              <img
+                src="../img/assets/how-we-work-02-creator-network.webp"
+                alt="Technology creators and a founder planning a KOL collaboration"
+                loading="lazy"
+                decoding="async"
+              />
+            </figure>
+          </div>
+        </div>
+        <div id="how-step-media-distribution" class="ph" data-step="2">
+          <div class="ph-inner">
+            <p class="scope">Media distribution</p>
+            <h3>Distribute through 30+ channels</h3>
+            <p>
+              Coordinate global media campaigns across the channels and publications
+              that shape each target market.
+            </p>
+            <figure class="ph-media">
+              <img
+                src="../img/assets/how-we-work-03-media-distribution.webp"
+                alt="A global media team coordinating coverage from a newsroom"
+                loading="lazy"
+                decoding="async"
+              />
+            </figure>
+          </div>
+        </div>
+        <div id="how-step-feedback-loop" class="ph" data-step="3">
+          <div class="ph-inner">
+            <p class="scope">Feedback loop</p>
+            <h3>Compound growth after launch</h3>
+            <p>
+              Use live product performance and community feedback to track growth,
+              sharpen execution, and keep momentum compounding.
+            </p>
+            <figure class="ph-media">
+              <img
+                src="../img/assets/how-we-work-04-feedback-loop.webp"
+                alt="A product team reviewing post-launch performance and community feedback"
+                loading="lazy"
+                decoding="async"
+              />
+            </figure>
+          </div>
+        </div>
       </div>
-      <div class="ph">
-        <p class="n">02</p>
-        <h3>Leveraging the ecosystem</h3>
-        <p>
-          Build credibility with researchers, developer communities, and 1,000+ technical
-          advocates.
-        </p>
-      </div>
-      <div class="ph">
-        <p class="n">03</p>
-        <h3>Creating the surge</h3>
-        <p>
-          Launch narrative-driven campaigns tuned for regional relevance, market by
-          market.
-        </p>
-      </div>
-      <div class="ph">
-        <p class="n">04</p>
-        <h3>Sustaining the flywheel</h3>
-        <p>
-          Use live product and community feedback to keep the signal compounding after
-          launch.
-        </p>
+
+      <div class="visual-stage" aria-hidden="true">
+        <figure class="visual-frame is-active" data-visual="0">
+          <img
+            src="../img/assets/how-we-work-01-market-entry.webp"
+            alt="Strategists developing market-entry positioning around a working table"
+            loading="lazy"
+            decoding="async"
+          />
+        </figure>
+        <figure class="visual-frame" data-visual="1">
+          <img
+            src="../img/assets/how-we-work-02-creator-network.webp"
+            alt="Technology creators and a founder planning a KOL collaboration"
+            loading="lazy"
+            decoding="async"
+          />
+        </figure>
+        <figure class="visual-frame" data-visual="2">
+          <img
+            src="../img/assets/how-we-work-03-media-distribution.webp"
+            alt="A global media team coordinating coverage from a newsroom"
+            loading="lazy"
+            decoding="async"
+          />
+        </figure>
+        <figure class="visual-frame" data-visual="3">
+          <img
+            src="../img/assets/how-we-work-04-feedback-loop.webp"
+            alt="A product team reviewing post-launch performance and community feedback"
+            loading="lazy"
+            decoding="async"
+          />
+        </figure>
       </div>
     </div>
 
     <div class="foot">
       <p>
-        From <b>thesis architecture</b> to <b>sustained community motion</b>. The four
-        phases below produced the numbers in the next section.
+        One operating system, delivered across <b>15+ global markets</b>. See what it has
+        produced in the next section.
       </p>
       <a class="btn btn--text" style="white-space: nowrap">See our results</a>
     </div>
   </div>
+
+  <script>
+    (() => {
+      const host = document.currentScript.closest(".pagesec, .frame");
+      const root = host && host.querySelector("[data-how-we-work]");
+      if (!root) return;
+      const steps = Array.from(root.querySelectorAll("[data-step]"));
+      const visuals = Array.from(root.querySelectorAll("[data-visual]"));
+
+      const activate = (index) => {
+        steps.forEach((step, stepIndex) => {
+          const active = stepIndex === index;
+          step.classList.toggle("is-active", active);
+          if (active) step.setAttribute("aria-current", "step");
+          else step.removeAttribute("aria-current");
+        });
+        visuals.forEach((visual, visualIndex) => {
+          visual.classList.toggle("is-active", visualIndex === index);
+        });
+      };
+
+      if (!("IntersectionObserver" in window)) return;
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          const current = entries
+            .filter((entry) => entry.isIntersecting)
+            .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+          if (current) activate(Number(current.target.dataset.step));
+        },
+        {
+          rootMargin: "-28% 0px -44% 0px",
+          threshold: [0, 0.2, 0.5, 0.8],
+        }
+      );
+
+      steps.forEach((step) => observer.observe(step));
+    })();
+  </script>
 </div>
