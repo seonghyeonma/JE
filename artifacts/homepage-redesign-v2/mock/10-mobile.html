@@ -1,0 +1,209 @@
+<meta charset="utf-8" />
+<link rel="stylesheet" href="base.css" />
+<style>
+  .row {
+    display: flex;
+    gap: 46px;
+    justify-content: center;
+    padding: 56px 0 60px;
+  }
+  .ph {
+    width: 390px;
+    height: 720px;
+    border: 1px solid var(--line-strong);
+    border-radius: 26px;
+    overflow: hidden;
+    position: relative;
+    background: var(--ink);
+  }
+  .phcap {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-3);
+    text-align: center;
+    margin-top: 14px;
+  }
+  .mbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 54px;
+    padding: 0 20px;
+    border-bottom: 1px solid var(--line);
+  }
+  .mbrand {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+  }
+  .mdot {
+    width: 14px;
+    height: 14px;
+    border-radius: 4px;
+    background: var(--accent);
+  }
+  .burger {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: var(--text-2);
+  }
+  .mpad {
+    padding: 0 20px;
+  }
+  .mmedia {
+    height: 216px;
+    margin: 0 0 0 20px;
+    border-radius: 14px 0 0 14px;
+    overflow: hidden;
+    position: relative;
+  }
+  .mmedia img {
+    position: absolute;
+    width: 128%;
+    height: 128%;
+    left: -14%;
+    top: -1%;
+    object-fit: cover;
+    object-position: 55% 38%;
+    filter: saturate(0.42) brightness(0.6);
+  }
+  .mrow {
+    padding: 18px 0;
+    border-top: 1px solid var(--line);
+  }
+  .mrow:last-child {
+    border-bottom: 1px solid var(--line);
+  }
+  .mname {
+    font-size: 25px;
+    letter-spacing: -0.025em;
+    font-weight: 500;
+  }
+  .mshot {
+    height: 104px;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-top: 12px;
+  }
+  .mshot img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: saturate(0.5) brightness(0.85);
+  }
+  .mval {
+    font-family: var(--mono);
+    font-size: 19px;
+    margin-top: 10px;
+  }
+  .acc {
+    padding: 20px 0;
+    border-top: 1px solid var(--line);
+  }
+  .acc:last-child {
+    border-bottom: 1px solid var(--line);
+  }
+  .acch {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 21px;
+    letter-spacing: -0.02em;
+    font-weight: 500;
+  }
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    margin-top: 14px;
+  }
+</style>
+<div class="frame">
+  <div class="caption">Mobile / 移动端 390px (单列，无横向滚动)</div>
+  <div class="row">
+    <div>
+      <div class="ph">
+        <div class="mbar">
+          <div class="mbrand"><span class="mdot"></span>JE Labs</div>
+          <span class="burger">MENU</span>
+        </div>
+        <div class="mmedia">
+          <img src="../img/assets/developer-activation-1200.webp" alt="" />
+        </div>
+        <div class="mpad" style="padding-top: 30px">
+          <p class="label" style="color: var(--accent); font-size: 12px">
+            Strategic growth partner
+          </p>
+          <h1 style="font-size: 38px; line-height: 1.05; letter-spacing: -0.03em; font-weight: 700; margin: 16px 0 0">
+            Make the market want what you built.
+          </h1>
+          <p style="font-size: 15px; line-height: 1.55; color: var(--text-2); margin: 18px 0 0">
+            Market entry, global media, and KOL marketing for AI, crypto, and technology
+            companies.
+          </p>
+          <a class="btn btn--primary" style="margin-top: 26px; width: 100%; justify-content: center"
+            >Start a conversation</a
+          >
+        </div>
+      </div>
+      <p class="phcap">Hero</p>
+    </div>
+
+    <div>
+      <div class="ph">
+        <div class="mpad" style="padding-top: 34px">
+          <h2 style="font-size: 32px; letter-spacing: -0.03em; font-weight: 500; margin: 0 0 26px">
+            Selected engagements.
+          </h2>
+          <div class="mrow">
+            <span class="mname">PublicAI</span>
+            <div class="mshot"><img src="../img/assets/openclaw-stage-1200.webp" alt="" /></div>
+            <p class="mval">15 <span style="font-family: var(--sans); font-size: 12.5px; color: var(--text-3)">markets entered</span></p>
+          </div>
+          <div class="mrow">
+            <span class="mname">MOSS AI</span>
+            <div class="mshot"><img src="../img/assets/developer-activation-1200.webp" alt="" /></div>
+            <p class="mval">350% <span style="font-family: var(--sans); font-size: 12.5px; color: var(--text-3)">campaign ROI</span></p>
+          </div>
+        </div>
+      </div>
+      <p class="phcap">Work (hover 变成常驻缩略图)</p>
+    </div>
+
+    <div>
+      <div class="ph">
+        <div class="mpad" style="padding-top: 34px">
+          <p class="label" style="font-size: 10.5px">What we run</p>
+          <h2 style="font-size: 31px; letter-spacing: -0.03em; font-weight: 500; margin: 16px 0 28px">
+            Decide what the market remembers.
+          </h2>
+          <div class="acc">
+            <div class="acch"><span>Strategy and narrative</span><span class="accent">-</span></div>
+            <p style="font-size: 14.5px; line-height: 1.55; color: var(--text-2); margin: 12px 0 0">
+              Market mapping, positioning, and the message architecture everything
+              downstream inherits.
+            </p>
+            <div class="chips">
+              <span class="chip" style="height: 27px; font-size: 12px">Industry mapping</span
+              ><span class="chip" style="height: 27px; font-size: 12px">Positioning</span
+              ><span class="chip" style="height: 27px; font-size: 12px">Audience profiling</span>
+            </div>
+          </div>
+          <div class="acc">
+            <div class="acch"><span>Distribution</span><span style="color: var(--text-3)">+</span></div>
+          </div>
+          <div class="acc">
+            <div class="acch"><span>Ecosystem</span><span style="color: var(--text-3)">+</span></div>
+          </div>
+        </div>
+      </div>
+      <p class="phcap">Services (导轨降级为手风琴)</p>
+    </div>
+  </div>
+</div>

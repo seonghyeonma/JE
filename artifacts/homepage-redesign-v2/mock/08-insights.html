@@ -1,0 +1,101 @@
+<meta charset="utf-8" />
+<link rel="stylesheet" href="base.css" />
+<style>
+  .head {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 44px;
+  }
+  .bento {
+    display: grid;
+    grid-template-columns: 1.35fr 1fr;
+    gap: 20px;
+    height: 388px;
+  }
+  .feat {
+    position: relative;
+    border-radius: var(--r-surface);
+    border: 1px solid var(--line);
+    overflow: hidden;
+    background:
+      radial-gradient(120% 90% at 88% 8%, rgba(6, 245, 183, 0.15), transparent 58%),
+      linear-gradient(160deg, #14181c, #0b0d10);
+    padding: 34px 36px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .feat .big {
+    position: absolute;
+    right: 26px;
+    bottom: -22px;
+    font-family: var(--mono);
+    font-size: 132px;
+    line-height: 1;
+    color: rgba(6, 245, 183, 0.13);
+    letter-spacing: -0.04em;
+  }
+  .stack {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    gap: 20px;
+  }
+  .item {
+    border-top: 1px solid var(--line);
+    padding: 22px 4px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .meta {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+    color: var(--text-3);
+  }
+</style>
+<div class="frame">
+  <div class="caption">Insights / 洞察 (5 条压到 3 条)</div>
+  <div class="wrap" style="padding-top: 72px; padding-bottom: 78px">
+    <div class="head">
+      <h2 class="d2">What we publish.</h2>
+      <a class="btn btn--text" style="margin-bottom: 10px">All insights</a>
+    </div>
+
+    <div class="bento">
+      <article class="feat">
+        <span class="big">2026</span>
+        <div class="meta">Playbook / Seoul</div>
+        <div style="position: relative">
+          <h3 style="font-size: 33px; line-height: 1.14; letter-spacing: -0.028em; font-weight: 500; margin: 0; max-width: 15ch">
+            The 2026 AI marketing playbook for the Seoul ecosystem.
+          </h3>
+          <p class="body" style="margin-top: 16px; max-width: 40ch">
+            Localized narrative systems, community integration, and how foreign AI teams
+            actually get read in Korea.
+          </p>
+        </div>
+      </article>
+
+      <div class="stack">
+        <article class="item">
+          <div class="meta">Search / GEO</div>
+          <h3 class="h3" style="max-width: 24ch; margin-top: 14px">
+            From SEO to GEO: occupying model mindshare.
+          </h3>
+        </article>
+        <article class="item">
+          <div class="meta">APAC / Go-to-market</div>
+          <h3 class="h3" style="max-width: 24ch; margin-top: 14px">
+            Five strategies that survive an APAC launch.
+          </h3>
+        </article>
+      </div>
+    </div>
+  </div>
+</div>

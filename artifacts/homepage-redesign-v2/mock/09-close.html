@@ -1,0 +1,140 @@
+<meta charset="utf-8" />
+<link rel="stylesheet" href="base.css" />
+<style>
+  .close {
+    position: relative;
+    padding: 118px 0 122px;
+    text-align: center;
+    overflow: hidden;
+  }
+  .glow {
+    position: absolute;
+    width: 900px;
+    height: 620px;
+    left: 50%;
+    top: 40px;
+    margin-left: -450px;
+    background: radial-gradient(ellipse at center, rgba(6, 245, 183, 0.13), transparent 62%);
+    pointer-events: none;
+  }
+  .close h2 {
+    position: relative;
+    font-size: 60px;
+    line-height: 1.05;
+    letter-spacing: -0.035em;
+    font-weight: 500;
+    margin: 0 auto;
+    max-width: 17ch;
+  }
+  .ways {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 40px;
+    font-size: 15px;
+    color: var(--text-2);
+  }
+  .ways b {
+    color: var(--text);
+    font-weight: 400;
+  }
+
+  footer {
+    border-top: 1px solid var(--line);
+    padding: 54px 0 44px;
+  }
+  .fgrid {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr 1fr 1fr;
+    gap: 40px;
+  }
+  .fgrid h4 {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--text-3);
+    margin: 0 0 16px;
+    font-weight: 400;
+  }
+  .fgrid a {
+    display: block;
+    font-size: 14.5px;
+    color: var(--text-2);
+    text-decoration: none;
+    padding: 5px 0;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    font-size: 17px;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+  }
+  .dot {
+    width: 17px;
+    height: 17px;
+    border-radius: 5px;
+    background: var(--accent);
+  }
+  .fbot {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 52px;
+    padding-top: 22px;
+    border-top: 1px solid var(--line);
+    font-size: 13px;
+    color: var(--text-3);
+  }
+</style>
+<div class="frame">
+  <div class="caption">Closing CTA + footer / 结尾与页脚</div>
+
+  <div class="close">
+    <div class="glow"></div>
+    <h2>Tell us the market you have not won yet.</h2>
+    <div style="position: relative; margin-top: 46px">
+      <a class="btn btn--primary" style="height: 54px; padding: 0 32px; font-size: 16px"
+        >Start a conversation</a
+      >
+    </div>
+    <div class="ways">
+      <span>evie@jelabs.xyz</span>
+      <span>Telegram <b>@0xEvieYa</b></span>
+      <span>Reply time <b>under 24h</b></span>
+    </div>
+  </div>
+
+  <footer>
+    <div class="wrap">
+      <div class="fgrid">
+        <div>
+          <div class="brand"><span class="dot"></span>JE Labs</div>
+          <p class="small" style="margin-top: 16px; max-width: 30ch">
+            Strategic growth partner for frontier tech builders. Seoul, Singapore, San
+            Francisco.
+          </p>
+        </div>
+        <div>
+          <h4>Company</h4>
+          <a>Work</a><a>Services</a><a>Studio</a><a>Insights</a>
+        </div>
+        <div>
+          <h4>Answers</h4>
+          <a>What JE Labs does</a><a>Results to date</a><a>Markets we cover</a
+          ><a>How we work</a>
+        </div>
+        <div>
+          <h4>Elsewhere</h4>
+          <a>X</a><a>LinkedIn</a><a>Telegram</a>
+        </div>
+      </div>
+      <div class="fbot">
+        <span>2026 JE Labs</span>
+        <span>jelabs.top</span>
+      </div>
+    </div>
+  </footer>
+</div>

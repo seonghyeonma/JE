@@ -1,0 +1,142 @@
+<meta charset="utf-8" />
+<link rel="stylesheet" href="base.css" />
+<style>
+  .head {
+    max-width: 62ch;
+  }
+  .track {
+    position: relative;
+    margin-top: 66px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 34px;
+  }
+  /* one continuous line through all four phases: the section is a system,
+     not four separate cards */
+  .track::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 5px;
+    height: 1px;
+    background: linear-gradient(90deg, var(--accent) 0%, var(--s700) 34%, var(--s800) 100%);
+  }
+  .ph {
+    position: relative;
+    padding-top: 34px;
+  }
+  .ph::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 11px;
+    height: 11px;
+    border-radius: 3px;
+    background: var(--s700);
+  }
+  .ph:first-child::before {
+    background: var(--accent);
+  }
+  .ph .n {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    color: var(--text-3);
+    margin: 0 0 14px;
+  }
+  .ph:first-child .n {
+    color: var(--accent);
+  }
+  .ph h3 {
+    font-size: 23px;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    font-weight: 600;
+    margin: 0 0 12px;
+  }
+  .ph p {
+    font-size: 14.5px;
+    line-height: 1.6;
+    color: var(--text-2);
+    margin: 0;
+  }
+  .foot {
+    margin-top: 62px;
+    padding-top: 26px;
+    border-top: 1px solid var(--line);
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 40px;
+  }
+  .foot p {
+    margin: 0;
+    font-size: 16px;
+    color: var(--text-2);
+    max-width: 62ch;
+  }
+  .foot b {
+    color: var(--text);
+    font-weight: 600;
+  }
+</style>
+<div class="frame">
+  <div class="caption">Approach / 方法论（第二屏：先说怎么做，再给案例）</div>
+  <div class="wrap" style="padding-top: 76px; padding-bottom: 80px">
+    <div class="head">
+      <p class="label">How we work</p>
+      <h2 class="d2" style="margin: 18px 0 0; max-width: 17ch">
+        Momentum, composed as a system.
+      </h2>
+      <p class="lead" style="margin-top: 22px; max-width: 58ch">
+        Each phase builds the conditions for the next one, so growth reads as one
+        narrative instead of disconnected tactics.
+      </p>
+    </div>
+
+    <div class="track">
+      <div class="ph">
+        <p class="n">01</p>
+        <h3>Designing the moat</h3>
+        <p>
+          Identify the technical advantage, data leverage, and narrative territory worth
+          owning.
+        </p>
+      </div>
+      <div class="ph">
+        <p class="n">02</p>
+        <h3>Leveraging the ecosystem</h3>
+        <p>
+          Build credibility with researchers, developer communities, and 1,000+ technical
+          advocates.
+        </p>
+      </div>
+      <div class="ph">
+        <p class="n">03</p>
+        <h3>Creating the surge</h3>
+        <p>
+          Launch narrative-driven campaigns tuned for regional relevance, market by
+          market.
+        </p>
+      </div>
+      <div class="ph">
+        <p class="n">04</p>
+        <h3>Sustaining the flywheel</h3>
+        <p>
+          Use live product and community feedback to keep the signal compounding after
+          launch.
+        </p>
+      </div>
+    </div>
+
+    <div class="foot">
+      <p>
+        From <b>thesis architecture</b> to <b>sustained community motion</b>. The four
+        phases below produced the numbers in the next section.
+      </p>
+      <a class="btn btn--text" style="white-space: nowrap">See our results</a>
+    </div>
+  </div>
+</div>

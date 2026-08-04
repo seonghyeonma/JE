@@ -1,0 +1,199 @@
+<meta charset="utf-8" />
+<link rel="stylesheet" href="base.css" />
+<style>
+  .band {
+    padding: 26px 48px 30px;
+    border-bottom: 1px solid var(--line);
+  }
+  .band:last-child {
+    border-bottom: 0;
+  }
+  .tagn {
+    display: inline-flex;
+    align-items: center;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    padding: 3px 8px;
+    border-radius: var(--r-chip);
+    background: var(--s800);
+    color: var(--text-3);
+    margin-right: 12px;
+  }
+  .tagn.win {
+    background: var(--accent-wash);
+    color: var(--accent);
+  }
+  .tagn.bad {
+    background: rgba(248, 113, 113, 0.12);
+    color: #f87171;
+  }
+  .cols {
+    display: grid;
+    grid-template-columns: 760px 1fr;
+    gap: 60px;
+    align-items: start;
+    margin-top: 16px;
+  }
+  .hl {
+    font-size: 58px;
+    line-height: 1.03;
+    letter-spacing: -0.035em;
+    font-weight: 700;
+    margin: 0;
+  }
+  .note {
+    font-size: 14.5px;
+    line-height: 1.6;
+    color: var(--text-2);
+    margin: 0;
+  }
+  .note b {
+    color: var(--text);
+    font-weight: 600;
+  }
+  .eb {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 12px;
+  }
+  .ebrow {
+    display: grid;
+    grid-template-columns: 760px 1fr;
+    gap: 60px;
+    padding: 18px 0;
+    border-top: 1px solid var(--line);
+    align-items: baseline;
+  }
+  .sec {
+    padding: 22px 48px 6px;
+    background: var(--ink-sunk);
+    border-bottom: 1px solid var(--line);
+  }
+  .ctarow {
+    display: grid;
+    grid-template-columns: 760px 1fr;
+    gap: 60px;
+    padding: 20px 0;
+    border-top: 1px solid var(--line);
+    align-items: center;
+  }
+</style>
+
+<div class="frame">
+  <div class="caption">首屏文案选项对比</div>
+
+  <!-- ============ 主标题 ============ -->
+  <div class="sec"><p class="label">1 / 主标题（都不以 We 开头）</p></div>
+
+  <div class="band">
+    <div class="cols">
+      <div>
+        <p class="eb">Strategic growth partner for frontier tech builders</p>
+        <p class="hl">Make the market want<br />what you built.</p>
+      </div>
+      <p class="note">
+        <span class="tagn win">推荐</span><br /><br />
+        <b>不是我编的</b>：你们现在线上的 manifesto 区块原句就是 "We turn technical
+        credibility into <b>market desire</b>"。这条只是把它变成一句能当标题的话。<br /><br />
+        "what you built" 是<b>直接称呼读者</b>，正好实现你想要的"你的"那种感觉，而且比放在小标签里更自然。<br /><br />
+        它说中的是买家真实的痛：<b>东西做出来了，市场不认。</b>
+      </p>
+    </div>
+  </div>
+
+  <div class="band">
+    <div class="cols">
+      <div>
+        <p class="eb">Strategic growth partner for frontier tech builders</p>
+        <p class="hl">Great technology does<br />not market itself.</p>
+      </div>
+      <p class="note">
+        <span class="tagn">备选 A</span><br /><br />
+        问题式开场，最有底气的一种写法。先承认"你的技术很好"，再点出"但这不够"。<br /><br />
+        缺点：<b>整句是否定式</b>，首屏第一眼是一个"不"字。气质偏冷，适合更咨询向的定位。
+      </p>
+    </div>
+  </div>
+
+  <div class="band">
+    <div class="cols">
+      <div>
+        <p class="eb">Strategic growth partner for frontier tech builders</p>
+        <p class="hl">Global users for<br />frontier technology.</p>
+      </div>
+      <p class="note">
+        <span class="tagn">备选 B</span><br /><br />
+        纯结果，名词短语，最短。把"全球"和"用户"两个关键词一次给到。<br /><br />
+        缺点：<b>没有动词，读起来像一句标语而不是一个承诺</b>。而且 frontier 和小标签重复。
+      </p>
+    </div>
+  </div>
+
+  <div class="band">
+    <div class="cols">
+      <div>
+        <p class="eb">Strategic growth partner for frontier tech builders</p>
+        <p class="hl">Turning technical<br />products into users.</p>
+      </div>
+      <p class="note">
+        <span class="tagn bad">现版本</span><br /><br />
+        你觉得怪是对的，<b>问题在语义</b>：产品不会"变成"用户。X turns into Y 要求 X 和 Y
+        是同一个东西的两种状态，产品和用户不是。<br /><br />
+        所以读起来总差一点，不是语气问题，是逻辑不成立。
+      </p>
+    </div>
+  </div>
+
+  <!-- ============ 小标签 ============ -->
+  <div class="sec"><p class="label">2 / 绿色小标签</p></div>
+  <div class="band">
+    <div class="ebrow">
+      <p class="eb" style="margin: 0">Strategic growth partner for frontier tech builders</p>
+      <p class="note"><span class="tagn win">建议保留</span> 带客户限定词，替你筛人。也是你们现在的 title 标签原句，SEO 连续性最好。</p>
+    </div>
+    <div class="ebrow">
+      <p class="eb" style="margin: 0">Your strategic growth partner</p>
+      <p class="note">
+        <span class="tagn bad">不建议</span> 丢了"frontier tech builders"这个限定词，任何行业都能用这句，<b>失去筛选功能</b>。而且访客还是陌生人，"你的伙伴"是一个尚未成立的关系。
+      </p>
+    </div>
+    <div class="ebrow">
+      <p class="eb" style="margin: 0">Just Empower the Ambitious</p>
+      <p class="note"><span class="tagn">可选</span> 你们 X bio 的原话，解释 JE 这两个字母。和副标题零重复。</p>
+    </div>
+  </div>
+
+  <!-- ============ CTA ============ -->
+  <div class="sec"><p class="label">3 / 第二 CTA</p></div>
+  <div class="band" style="padding-bottom: 34px">
+    <div class="ctarow">
+      <div style="display: flex; align-items: center; gap: 24px">
+        <a class="btn btn--primary">Start a conversation</a>
+        <a class="btn btn--text">See our results</a>
+      </div>
+      <p class="note">
+        <span class="tagn win">推荐</span> 增长机构卖的是<b>结果</b>，不是作品集。NoGood 首屏第二 CTA 实测就是 "See Our Results"，导航里也有 Results 一级入口。改成句首大写以对齐全站文案规则。
+      </p>
+    </div>
+    <div class="ctarow">
+      <div style="display: flex; align-items: center; gap: 24px">
+        <a class="btn btn--primary">Start a conversation</a>
+        <a class="btn btn--text">See the work</a>
+      </div>
+      <p class="note"><span class="tagn">中性</span> 设计机构的标准说法。安全，但"work"指向作品，不指向数字。</p>
+    </div>
+    <div class="ctarow">
+      <div style="display: flex; align-items: center; gap: 24px">
+        <a class="btn btn--primary">Start a conversation</a>
+        <a class="btn btn--text">View all work</a>
+      </div>
+      <p class="note">
+        <span class="tagn bad">不建议放首屏</span> "all" 暗示后面有一大批案例，<b>你们目前只有 3 个</b>，点进去会落差。这个标签留给 Work 区块右上角更合适（那里有上下文）。
+      </p>
+    </div>
+  </div>
+</div>

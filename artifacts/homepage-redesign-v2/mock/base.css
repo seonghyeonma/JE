@@ -1,0 +1,231 @@
+/* JE Labs homepage redesign - mockup design tokens
+   Rendering-only stylesheet. Not production code.
+
+   Tokens below are the SHARED BRAND CORE, taken from WeLike's shipped values
+   (apps/web/tailwind.config.ts + globals.css, verified against welike-alpha.xyz).
+   Anything marked "marketing layer" is a deliberate, documented divergence. */
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+
+:root {
+  /* ---- shared: surface ramp (= WeLike surface-*, = Tailwind neutral) ---- */
+  --s950: #0a0a0a; /* page background */
+  --s900: #171717; /* card / input background */
+  --s800: #262626; /* dividers, borders, hover bg */
+  --s700: #404040; /* input edges, structural borders */
+  --s500: #737373; /* decorative only, NEVER text */
+  --s400: #a3a3a3; /* tertiary text floor */
+  --s300: #d4d4d4; /* body text floor */
+
+  --ink: var(--s950);
+  --ink-sunk: #000000;
+  --ink-raise: var(--s900);
+  --ink-raise-2: var(--s800);
+
+  --line: var(--s800);
+  --line-strong: var(--s700);
+
+  /* ---- shared: text (contrast floors are a hard rule, not a preference) ---- */
+  --text: #ffffff; /* headings, emphasis */
+  --text-2: var(--s300); /* body, never darker */
+  --text-3: var(--s400); /* captions and labels, never darker */
+
+  /* ---- shared: brand. One accent, no glow, always black text on fills ---- */
+  --accent: #06f5b7;
+  --accent-hover: #1affb5;
+  --accent-press: #05c492;
+  --accent-wash: rgba(6, 245, 183, 0.1);
+  --on-accent: #000000;
+
+  /* ---- shared: shape ---- */
+  --r-surface: 12px; /* cards, media (rounded-xl) */
+  --r-control: 8px; /* buttons, inputs (rounded-lg) */
+  --r-chip: 6px; /* tags (rounded-md) */
+
+  /* ---- shared: type families ---- */
+  --sans: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--ink);
+  color: var(--text);
+  font-family: var(--sans);
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.wrap {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 48px;
+}
+
+/* ---------- type scale (marketing layer: same families, bigger range) ---------- */
+.d1 {
+  font-size: 74px;
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  font-weight: 700;
+  margin: 0;
+}
+.d2 {
+  font-size: 50px;
+  line-height: 1.06;
+  letter-spacing: -0.03em;
+  font-weight: 700;
+  margin: 0;
+}
+.h3 {
+  font-size: 27px;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  font-weight: 600;
+  margin: 0;
+}
+.h4 {
+  font-size: 19px;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  font-weight: 600;
+  margin: 0;
+}
+.lead {
+  font-size: 19px;
+  line-height: 1.55;
+  color: var(--text-2);
+  margin: 0;
+  max-width: 46ch;
+}
+.body {
+  font-size: 15.5px;
+  line-height: 1.6;
+  color: var(--text-2);
+  margin: 0;
+  max-width: 58ch;
+}
+.small {
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: var(--text-3);
+  margin: 0;
+}
+/* 12px is the hard floor. No 10px / 11px anywhere. */
+.label {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  margin: 0;
+}
+.metric {
+  font-family: var(--mono);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  font-size: 54px;
+  line-height: 1;
+  margin: 0;
+}
+.accent {
+  color: var(--accent);
+}
+
+/* ---------- controls ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  height: 48px;
+  padding: 0 24px;
+  border-radius: var(--r-control);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+  white-space: nowrap;
+  border: 1px solid transparent;
+}
+.btn--primary {
+  background: var(--accent);
+  color: var(--on-accent);
+}
+.btn--ghost {
+  color: var(--text-2);
+  border-color: var(--line-strong);
+  font-weight: 500;
+}
+.btn--text {
+  color: var(--text);
+  padding: 0;
+  height: auto;
+  border-bottom: 1px solid var(--line-strong);
+  border-radius: 0;
+  padding-bottom: 3px;
+  font-weight: 500;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  height: 30px;
+  padding: 0 12px;
+  border-radius: var(--r-chip);
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.02);
+  font-size: 13px;
+  color: var(--text-2);
+}
+
+/* depth comes from borders, never shadows */
+.surface {
+  background: var(--ink-raise);
+  border: 1px solid var(--line);
+  border-radius: var(--r-surface);
+}
+
+.rule {
+  height: 1px;
+  background: var(--line);
+  border: 0;
+  margin: 0;
+}
+
+/* ---------- mock chrome (not part of the design) ---------- */
+.frame {
+  width: 1440px;
+  overflow: hidden;
+  position: relative;
+}
+.caption {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  padding: 14px 48px;
+  border-bottom: 1px solid var(--line);
+  background: var(--ink-sunk);
+}
+.tag {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  padding: 3px 7px;
+  border-radius: var(--r-chip);
+  background: var(--accent-wash);
+  color: var(--accent);
+  vertical-align: middle;
+  margin-left: 10px;
+}
+.tag--bad {
+  background: rgba(248, 113, 113, 0.12);
+  color: #f87171;
+}

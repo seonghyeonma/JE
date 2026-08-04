@@ -1,0 +1,117 @@
+<meta charset="utf-8" />
+<link rel="stylesheet" href="base.css" />
+<style>
+  .bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 48px;
+    height: 64px;
+    border-bottom: 1px solid var(--line);
+    position: relative;
+    z-index: 4;
+  }
+  .nav {
+    display: flex;
+    gap: 34px;
+    font-size: 14.5px;
+    color: var(--text-2);
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    font-size: 17px;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+  }
+  .dot {
+    width: 17px;
+    height: 17px;
+    border-radius: 5px;
+    background: var(--accent);
+  }
+  .hero {
+    position: relative;
+    height: 772px;
+  }
+  /* the panel runs past the fold and is masked to transparent at the bottom,
+     so there is no edge to see. No border radius: a rounded corner is what
+     makes it read as a floating card instead of a bleed. */
+  .media {
+    position: absolute;
+    right: 0;
+    top: -64px;
+    width: 660px;
+    height: 1000px;
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 58%, rgba(0, 0, 0, 0.35) 82%, transparent 97%);
+    mask-image: linear-gradient(180deg, #000 0%, #000 58%, rgba(0, 0, 0, 0.35) 82%, transparent 97%);
+  }
+  .media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 46% 34%;
+    filter: saturate(0.3) contrast(1.05) brightness(0.55);
+  }
+  /* left edge fades into the page instead of cutting on a vertical seam */
+  .media::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(94deg, #0a0a0a 0%, rgba(10, 10, 10, 0.72) 26%, rgba(10, 10, 10, 0.12) 68%, transparent 100%);
+  }
+  .glow {
+    position: absolute;
+    width: 700px;
+    height: 700px;
+    left: 130px;
+    top: 150px;
+    background: radial-gradient(circle, rgba(6, 245, 183, 0.1), transparent 62%);
+  }
+  .copy {
+    position: absolute;
+    left: 80px;
+    top: 190px;
+    width: 700px;
+    z-index: 3;
+  }
+  .cta {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    margin-top: 44px;
+  }
+</style>
+<div class="frame">
+  <div class="bar">
+    <div class="brand"><span class="dot"></span>JE Labs</div>
+    <div class="nav">
+      <span style="color: var(--text)">Work</span><span>Services</span><span>Insights</span
+      ><span>Studio</span><span>Contact</span>
+    </div>
+    <a class="btn btn--primary" style="height: 40px; font-size: 14px; padding: 0 20px"
+      >Start a conversation</a
+    >
+  </div>
+
+  <div class="hero">
+    <div class="media"><img src="../img/assets/hero-western-audience.jpg" alt="" /></div>
+    <div class="glow"></div>
+    <div class="copy">
+      <p class="label" style="color: var(--accent)">Strategic growth partner for frontier tech builders</p>
+      <h1 class="d1" style="font-size: 70px; margin-top: 28px">
+        Make the market want what you built.
+      </h1>
+      <p class="lead" style="margin-top: 30px; max-width: 44ch">
+        We run market entry, narrative, global media, and KOL marketing for AI, crypto,
+        and technology companies.
+      </p>
+      <div class="cta">
+        <a class="btn btn--primary">Start a conversation</a>
+        <a class="btn btn--text">See our results</a>
+      </div>
+    </div>
+  </div>
+</div>

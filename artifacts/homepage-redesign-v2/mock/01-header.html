@@ -1,0 +1,123 @@
+<meta charset="utf-8" />
+<link rel="stylesheet" href="base.css" />
+<style>
+  .bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 48px;
+    border-bottom: 1px solid var(--line);
+  }
+  .nav {
+    display: flex;
+    gap: 34px;
+    font-size: 14.5px;
+    color: var(--text-2);
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    font-size: 17px;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+  }
+  .dot {
+    width: 17px;
+    height: 17px;
+    border-radius: 5px;
+    background: var(--accent);
+  }
+  .band {
+    padding: 28px 48px 8px;
+  }
+  .old .nav {
+    gap: 26px;
+    font-size: 13.5px;
+    color: #7f8c88;
+  }
+  .oldbtn {
+    height: 44px;
+    padding: 0 22px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 999px;
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: #d6dbd9;
+  }
+  .note {
+    display: flex;
+    gap: 8px;
+    align-items: baseline;
+    padding: 14px 48px 30px;
+    font-size: 13.5px;
+    color: var(--text-3);
+  }
+  .scrolled {
+    margin: 22px 48px 0;
+    height: 56px;
+    border: 1px solid var(--line);
+    border-radius: var(--r-control);
+    background: rgba(23, 23, 23, 0.72);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 12px 0 22px;
+  }
+</style>
+<div class="frame">
+  <div class="caption">Header / 导航</div>
+
+  <div class="band"><p class="label">Now <span class="tag tag--bad">8 links + duplicate CTA</span></p></div>
+  <div class="bar old" style="height: 84px">
+    <div class="brand" style="color: var(--accent); font-family: var(--mono); font-size: 15px">
+      JE Labs
+    </div>
+    <div class="nav">
+      <span>Studio</span><span>Approach</span><span>Leadership</span><span>Services</span
+      ><span>Proof</span><span>Insights</span><span>FAQ</span><span>Contact</span>
+    </div>
+    <div class="oldbtn">Start a Conversation</div>
+  </div>
+  <div class="note">
+    <span style="color: #ff9d9d">/</span>
+    <span
+      >84px tall, eight destinations for a page with three real things to sell, and the
+      header CTA repeats the hero CTA word for word.</span
+    >
+  </div>
+
+  <hr class="rule" />
+
+  <div class="band"><p class="label">Proposed <span class="tag">5 links / 64px / one CTA</span></p></div>
+  <div class="bar" style="height: 64px">
+    <div class="brand"><span class="dot"></span>JE Labs</div>
+    <div class="nav" style="color: var(--text)">
+      <span>Work</span><span>Services</span><span>Insights</span><span>Studio</span
+      ><span>Contact</span>
+    </div>
+    <a class="btn btn--primary" style="height: 40px; font-size: 14px; padding: 0 20px"
+      >Start a conversation</a
+    >
+  </div>
+
+  <div class="scrolled">
+    <div class="brand" style="font-size: 15px"><span class="dot" style="width: 15px; height: 15px"></span>JE Labs</div>
+    <div class="nav" style="font-size: 13.5px; gap: 26px">
+      <span style="color: var(--accent)">Work</span><span>Services</span><span>Insights</span
+      ><span>Studio</span>
+    </div>
+    <a class="btn btn--primary" style="height: 36px; font-size: 13.5px; padding: 0 18px"
+      >Start a conversation</a
+    >
+  </div>
+  <div class="note" style="padding-bottom: 34px">
+    <span class="accent">/</span>
+    <span
+      >On scroll the bar condenses into a 56px floating capsule with backdrop blur and an
+      active-section marker. Studio absorbs Approach and Leadership. Proof becomes Work.
+      FAQ moves to the footer, schema markup intact.</span
+    >
+  </div>
+</div>

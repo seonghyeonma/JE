@@ -1,0 +1,125 @@
+<meta charset="utf-8" />
+<link rel="stylesheet" href="base.css" />
+<style>
+  .split {
+    display: grid;
+    grid-template-columns: 400px 1fr;
+    gap: 90px;
+    align-items: start;
+  }
+  .rail {
+    position: sticky;
+    top: 120px;
+  }
+  .rail li {
+    list-style: none;
+    font-size: 33px;
+    letter-spacing: -0.025em;
+    font-weight: 500;
+    color: #525252;
+    padding: 15px 0 15px 22px;
+    border-left: 2px solid transparent;
+  }
+  .rail li.on {
+    color: var(--text);
+    border-left-color: var(--accent);
+  }
+  .rail ul {
+    margin: 26px 0 0;
+    padding: 0;
+  }
+  .panelrow {
+    display: grid;
+    gap: 18px;
+    padding: 30px 0;
+    border-top: 1px solid var(--line);
+  }
+  .panelrow:last-child {
+    border-bottom: 1px solid var(--line);
+  }
+  .prow-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 30px;
+  }
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .stat {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--accent);
+    white-space: nowrap;
+  }
+  .shot {
+    margin-top: 34px;
+    height: 196px;
+    border-radius: var(--r-surface);
+    overflow: hidden;
+    border: 1px solid var(--line);
+  }
+  .shot img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: saturate(0.45) brightness(0.75);
+  }
+</style>
+<div class="frame">
+  <div class="caption">Services / 服务 (左侧固定导轨 + 右侧滚动)</div>
+  <div class="wrap" style="padding-top: 74px; padding-bottom: 80px">
+    <div class="split">
+      <div class="rail">
+        <p class="label">What we run</p>
+        <ul>
+          <li class="on">Strategy<br />and narrative</li>
+          <li>Distribution</li>
+          <li>Ecosystem</li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="d2" style="max-width: 15ch; font-size: 46px">
+          Decide what the market remembers.
+        </h2>
+
+        <div style="margin-top: 44px">
+          <div class="panelrow">
+            <div class="prow-top">
+              <h3 class="h3">Go-to-market strategy</h3>
+              <span class="stat">100+ engagements</span>
+            </div>
+            <p class="body">
+              Market mapping, competitive positioning, and the message architecture that
+              everything downstream inherits.
+            </p>
+            <div class="chips">
+              <span class="chip">Industry mapping</span><span class="chip">Competitive analysis</span
+              ><span class="chip">Audience profiling</span><span class="chip">Brand positioning</span>
+            </div>
+          </div>
+
+          <div class="panelrow">
+            <div class="prow-top">
+              <h3 class="h3">Founder storytelling</h3>
+              <span class="stat">500K+ views, one interview</span>
+            </div>
+            <p class="body">
+              We turn the founder's thesis into the version of the story the category
+              starts quoting back.
+            </p>
+            <div class="chips">
+              <span class="chip">Founder profiles</span><span class="chip">Long-form narrative</span
+              ><span class="chip">Interview production</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="shot"><img src="../img/assets/openclaw-stage-1200.webp" alt="" /></div>
+      </div>
+    </div>
+  </div>
+</div>

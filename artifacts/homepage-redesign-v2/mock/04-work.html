@@ -1,0 +1,244 @@
+<meta charset="utf-8" />
+<link rel="stylesheet" href="base.css" />
+<style>
+  .head {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    padding-bottom: 46px;
+  }
+  .case {
+    display: grid;
+    grid-template-columns: 356px 1fr;
+    gap: 52px;
+    padding: 44px 0;
+    border-top: 1px solid var(--line);
+    align-items: start;
+    transition: opacity 260ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .cases .case:last-child {
+    border-bottom: 1px solid var(--line);
+  }
+  .cases:hover .case {
+    opacity: 0.4;
+  }
+  .cases .case:hover {
+    opacity: 1;
+  }
+  .shot {
+    position: relative;
+    height: 232px;
+    border-radius: var(--r-surface);
+    overflow: hidden;
+    background: var(--s900);
+  }
+  .shot img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: saturate(0.32) brightness(0.62);
+    transition: transform 620ms cubic-bezier(0.16, 1, 0.3, 1), filter 400ms;
+  }
+  .case:hover .shot img {
+    transform: scale(1.04);
+    filter: saturate(0.5) brightness(0.8);
+  }
+  /* the source photo carries a watermark in the lower right; crop it out */
+  .shot--crop img {
+    position: absolute;
+    width: 128%;
+    height: 128%;
+    left: -14%;
+    top: -2%;
+  }
+  .idx {
+    position: absolute;
+    left: 14px;
+    top: 12px;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    color: rgba(255, 255, 255, 0.66);
+  }
+  .name {
+    font-size: 34px;
+    letter-spacing: -0.028em;
+    font-weight: 700;
+    margin: 0;
+    line-height: 1;
+  }
+  .what {
+    font-size: 17px;
+    line-height: 1.5;
+    color: var(--text-2);
+    margin: 14px 0 0;
+    max-width: 56ch;
+  }
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 20px;
+  }
+  /* the three numbers are the point of the section */
+  .nums {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    margin-top: 30px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+  }
+  .nums div strong {
+    display: block;
+    font-family: var(--mono);
+    font-weight: 500;
+    font-size: 38px;
+    line-height: 1;
+    letter-spacing: -0.025em;
+    color: var(--accent);
+  }
+  /* not a number, so it does not get the number treatment */
+  .nums div.qual strong {
+    font-family: var(--sans);
+    font-size: 25px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--text-2);
+  }
+  /* the aggregate row summarises the three cases above it */
+  .total {
+    margin-top: 56px;
+    padding-top: 34px;
+    border-top: 1px solid var(--line-strong);
+  }
+  .total .row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 34px;
+    margin-top: 24px;
+  }
+  .total .row div strong {
+    display: block;
+    font-family: var(--mono);
+    font-weight: 500;
+    font-size: 44px;
+    line-height: 1;
+    letter-spacing: -0.025em;
+    color: var(--text);
+  }
+  .total .row div span {
+    display: block;
+    font-size: 13.5px;
+    line-height: 1.45;
+    color: var(--text-3);
+    margin-top: 11px;
+    max-width: 22ch;
+  }
+  .nums div span {
+    display: block;
+    font-size: 13px;
+    line-height: 1.45;
+    color: var(--text-3);
+    margin-top: 9px;
+    max-width: 20ch;
+  }
+</style>
+<div class="frame">
+  <div class="caption">Work / 案例（每个都带三个数字，紧跟方法论之后）</div>
+  <div class="wrap" style="padding-top: 76px; padding-bottom: 84px">
+    <div class="head">
+      <div>
+        <p class="label">Results</p>
+        <h2 class="d2" style="margin: 18px 0 0">What the system produced.</h2>
+      </div>
+      <a class="btn btn--text" style="margin-bottom: 8px">All case studies</a>
+    </div>
+
+    <div class="cases">
+      <article class="case">
+        <div class="shot">
+          <img src="../img/assets/hero-western-audience.jpg" alt="" />
+          <span class="idx">01 / PUBLICAI</span>
+        </div>
+        <div>
+          <h3 class="name">PublicAI</h3>
+          <p class="what">
+            Moved from regional relevance to global market credibility while keeping one
+            coherent brand narrative.
+          </p>
+          <div class="chips">
+            <span class="chip">Region-specific positioning</span
+            ><span class="chip">Localized media mix, NA / EU / APAC</span
+            ><span class="chip">KOL activation</span>
+          </div>
+          <div class="nums">
+            <div><strong>15+</strong><span>global markets penetrated</span></div>
+            <div><strong>300%</strong><span>increase in local media exposure</span></div>
+            <div class="qual">
+              <strong>Expanded</strong><span>regional pipeline and lead generation</span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="case">
+        <div class="shot shot--crop">
+          <img src="../img/assets/developer-activation-1200.webp" alt="" />
+          <span class="idx">02 / MOSS AI</span>
+        </div>
+        <div>
+          <h3 class="name">MOSS AI</h3>
+          <p class="what">
+            Turned technical interest into deeper usage with developer-focused narratives
+            and practical growth mechanics.
+          </p>
+          <div class="chips">
+            <span class="chip">Segment-specific messaging</span
+            ><span class="chip">Meetups and hackathon support</span
+            ><span class="chip">Product-led content and ABM</span>
+          </div>
+          <div class="nums">
+            <div><strong>350%</strong><span>campaign ROI generated</span></div>
+            <div><strong>85%</strong><span>target developer participation</span></div>
+            <div><strong>10K+</strong><span>community contributions</span></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="case">
+        <div class="shot">
+          <img src="../img/assets/openclaw-stage-1200.webp" alt="" />
+          <span class="idx">03 / SURF AI</span>
+        </div>
+        <div>
+          <h3 class="name">SURF AI</h3>
+          <p class="what">
+            Broke through a saturated consumer AI market with narrative repositioning,
+            influencer seeding, and community activation.
+          </p>
+          <div class="chips">
+            <span class="chip">Consumer-first repositioning</span
+            ><span class="chip">Multi-tier KOL activation</span
+            ><span class="chip">Referral loops and ambassadors</span>
+          </div>
+          <div class="nums">
+            <div><strong>+350%</strong><span>DAU growth achieved</span></div>
+            <div><strong>2.5x</strong><span>engagement rate increase</span></div>
+            <div><strong>500K+</strong><span>new user signups</span></div>
+          </div>
+        </div>
+      </article>
+    </div>
+
+      <div class="total">
+        <p class="label">Across every engagement to date</p>
+        <div class="row">
+          <div><strong>100+</strong><span>high-tech engagements delivered</span></div>
+          <div><strong>100M+</strong><span>technical impressions generated</span></div>
+          <div><strong>1,000+</strong><span>creators and domain experts activated</span></div>
+          <div><strong>15</strong><span>markets entered across NA, EU and APAC</span></div>
+        </div>
+      </div>
+  </div>
+</div>
