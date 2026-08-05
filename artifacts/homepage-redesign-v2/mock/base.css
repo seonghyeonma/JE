@@ -42,6 +42,9 @@
   --r-control: 8px; /* buttons, inputs (rounded-lg) */
   --r-chip: 6px; /* tags (rounded-md) */
 
+  /* ---- marketing layout ---- */
+  --content-max: 1440px;
+
   /* ---- shared: type families ---- */
   --sans: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
   --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
@@ -62,7 +65,7 @@ body {
 }
 
 .wrap {
-  max-width: 1280px;
+  max-width: var(--content-max);
   margin: 0 auto;
   padding: 0 48px;
 }

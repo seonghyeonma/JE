@@ -1,5 +1,6 @@
 <!doctype html>
 <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>JE Labs homepage redesign v2 / full page</title>
 <link rel="stylesheet" href="base.css" />
 <style>
@@ -48,7 +49,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: min(1280px, calc(100% - 96px));
+    width: min(var(--content-max), calc(100% - 96px));
     height: 100%;
     margin: 0 auto;
   }
@@ -378,168 +379,332 @@
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
-    padding-bottom: 46px;
+    padding-bottom: 26px;
   }
-#work .case {
+#work .work-scope {
+    margin: 24px 0 0;
+    font-size: 17px;
+    line-height: 1.5;
+    color: var(--text-2);
+  }
+#work .cases {
+    margin-top: 96px;
+  }
+#work .case--featured {
     display: grid;
-    grid-template-columns: 356px 1fr;
-    gap: 52px;
-    padding: 44px 0;
-    border-top: 1px solid var(--line);
-    align-items: start;
-    transition: opacity 260ms cubic-bezier(0.16, 1, 0.3, 1);
-  }
-#work .cases .case:last-child {
+    grid-template-columns: minmax(0, 1.25fr) minmax(360px, 0.75fr);
+    gap: 62px;
+    align-items: stretch;
+    padding-bottom: 94px;
     border-bottom: 1px solid var(--line);
   }
-#work .cases:hover .case {
-    opacity: 0.4;
+#work .case-pair {
+    display: grid;
+    grid-template-columns: minmax(0, 1.12fr) minmax(0, 0.88fr);
+    gap: 34px;
+    align-items: start;
+    margin-top: 86px;
   }
-#work .cases .case:hover {
-    opacity: 1;
+#work .case--secondary:last-child {
+    margin-top: 136px;
   }
-#work .shot {
+#work .case-media {
     position: relative;
-    height: 232px;
     border-radius: var(--r-surface);
     overflow: hidden;
     background: var(--s900);
   }
-#work .shot img {
+#work .case--featured .case-media {
+    min-height: 560px;
+  }
+#work .case--secondary:first-child .case-media {
+    height: 414px;
+  }
+#work .case--secondary:last-child .case-media {
+    height: 326px;
+  }
+#work .case-media img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: saturate(0.32) brightness(0.62);
+    filter: saturate(0.5) brightness(0.74);
     transition: transform 620ms cubic-bezier(0.16, 1, 0.3, 1), filter 400ms;
   }
-#work .case:hover .shot img {
-    transform: scale(1.04);
-    filter: saturate(0.5) brightness(0.8);
+#work .case:hover .case-media img {
+    transform: scale(1.025);
+    filter: saturate(0.64) brightness(0.86);
   }
 #work /* the source photo carries a watermark in the lower right; crop it out */
-  .shot--crop img {
+  .case-media--crop img {
     position: absolute;
     width: 128%;
     height: 128%;
     left: -14%;
     top: -2%;
   }
-#work .idx {
-    position: absolute;
-    left: 14px;
-    top: 12px;
-    font-family: var(--mono);
-    font-size: 12px;
-    letter-spacing: 0.1em;
-    color: rgba(255, 255, 255, 0.66);
+#work .case-story {
+    min-width: 0;
+  }
+#work .case--featured .case-story {
+    display: flex;
+    flex-direction: column;
+    padding: 12px 0 4px;
+  }
+#work .case--secondary .case-story {
+    padding-top: 26px;
   }
 #work .name {
-    font-size: 34px;
+    font-size: 46px;
     letter-spacing: -0.028em;
     font-weight: 700;
     margin: 0;
     line-height: 1;
   }
+#work .case--secondary .name {
+    font-size: 34px;
+  }
 #work .what {
     font-size: 17px;
     line-height: 1.5;
     color: var(--text-2);
-    margin: 14px 0 0;
-    max-width: 56ch;
+    margin: 18px 0 0;
+    max-width: 48ch;
   }
-#work .chips {
+#work .case--secondary .what {
+    margin-top: 14px;
+    max-width: 50ch;
+  }
+#work .case-scope {
+    list-style: none;
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
-    margin-top: 20px;
+    gap: 8px 0;
+    margin: 24px 0 0;
+    padding: 0;
+    font-size: 13px;
+    line-height: 1.45;
+    color: var(--text-3);
   }
-#work /* the three numbers are the point of the section */
-  .nums {
+#work .case-scope li + li::before {
+    content: "/";
+    color: var(--s700);
+    margin: 0 10px;
+  }
+#work .case-metrics {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 28px;
-    margin-top: 30px;
-    padding-top: 24px;
+  }
+#work .case--featured .case-metrics {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    margin-top: auto;
+    padding-top: 34px;
     border-top: 1px solid var(--line);
   }
-#work .nums div strong {
+#work .case--featured .case-metric {
+    display: grid;
+    grid-template-columns: minmax(132px, 0.72fr) minmax(0, 1fr);
+    gap: 20px;
+    align-items: baseline;
+  }
+#work .case--secondary .case-metrics {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+    margin-top: 26px;
+    padding-top: 22px;
+    border-top: 1px solid var(--line);
+  }
+#work .case-metric strong {
     display: block;
     font-family: var(--mono);
     font-weight: 500;
-    font-size: 38px;
+    font-size: 40px;
     line-height: 1;
     letter-spacing: -0.025em;
     color: var(--accent);
   }
+#work .case--secondary .case-metric strong {
+    font-size: 33px;
+  }
 #work /* not a number, #work so it does not get the number treatment */
-  .nums div.qual strong {
+  .case-metric.qual strong {
     font-family: var(--sans);
-    font-size: 25px;
+    font-size: 27px;
     font-weight: 600;
     letter-spacing: -0.02em;
     color: var(--text-2);
   }
-#work /* the aggregate row summarises the three cases above it */
-  .total {
-    display: grid;
-    grid-template-columns: 240px 1fr;
-    gap: 64px;
-    margin-top: 72px;
-    padding: 46px 48px 48px;
-    border: 1px solid var(--line);
-    border-radius: var(--r-surface);
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.012));
+#work .case--secondary .case-metric.qual strong {
+    font-size: 23px;
   }
-#work .total h3 {
-    max-width: 10ch;
-    margin: 0;
-    font-size: 27px;
-    line-height: 1.18;
-    letter-spacing: -0.025em;
-    font-weight: 500;
-    color: var(--text-2);
+#work /* aggregate impact opens Work; it is not a separate section */
+  .total {
+    position: relative;
+    overflow: hidden;
+    margin-top: 0;
+  }
+#work .total-visual {
+    position: relative;
+    height: 336px;
+    margin: 0 -34px -38px;
+    pointer-events: none;
+  }
+#work .total-visual img {
+    position: relative;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    object-position: center;
+    opacity: 0.72;
+    transform: scale(1.005);
+    transition: opacity 620ms cubic-bezier(0.16, 1, 0.3, 1),
+      transform 900ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+#work .total-flow-canvas {
+    position: absolute;
+    z-index: 1;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    opacity: 0.94;
+    mix-blend-mode: screen;
+  }
+#work .total:hover .total-visual img {
+    opacity: 0.86;
+    transform: scale(1.018);
   }
 #work .total .row {
+    position: relative;
+    z-index: 2;
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    column-gap: 64px;
-    row-gap: 42px;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 34px;
+    padding: 30px 0 42px;
+    border-top: 1px solid var(--line);
   }
 #work .total .row div strong {
     display: block;
     font-family: var(--mono);
     font-weight: 500;
-    font-size: 48px;
+    font-size: 62px;
     line-height: 1;
-    letter-spacing: -0.025em;
-    color: var(--text);
+    letter-spacing: -0.045em;
+    color: var(--accent);
   }
 #work .total .row div span {
     display: block;
-    font-size: 13.5px;
+    font-size: 14px;
     line-height: 1.45;
-    color: var(--text-3);
-    margin-top: 11px;
-    max-width: 22ch;
+    color: var(--text-2);
+    margin-top: 13px;
+    max-width: 21ch;
   }
-#work .nums div span {
+#work .case-metric span {
     display: block;
     font-size: 13px;
     line-height: 1.45;
     color: var(--text-3);
-    margin-top: 9px;
-    max-width: 20ch;
+    margin-top: 8px;
+    max-width: 22ch;
   }
+#work .case--featured .case-metric span {
+    margin-top: 0;
+  }
+@media (prefers-reduced-motion: reduce) {
+#work .total-flow-canvas {
+      display: none;
+    }
+#work .case-media img {
+      transition: none;
+    }
+}
 @media (max-width: 800px) {
-#work .case, #work .total {
+#work .frame {
+      width: 100%;
+    }
+#work .caption {
+      display: none;
+    }
+#work .wrap {
+      padding-left: 24px;
+      padding-right: 24px;
+    }
+#work .d2 {
+      font-size: 38px;
+    }
+#work .case--featured {
       grid-template-columns: 1fr;
+      gap: 34px;
+      padding-bottom: 68px;
+    }
+#work .case--featured .case-media {
+      min-height: 390px;
+    }
+#work .case--featured .case-story {
+      padding-top: 0;
+    }
+#work .case--featured .case-metrics {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 32px;
+      padding-top: 24px;
+    }
+#work .case--featured .case-metric {
+      display: block;
+    }
+#work .case--featured .case-metric span {
+      margin-top: 8px;
+    }
+#work .case-pair {
+      grid-template-columns: 1fr;
+      gap: 64px;
+      margin-top: 68px;
+    }
+#work .case--secondary:last-child {
+      margin-top: 0;
+    }
+#work .case--secondary:first-child .case-media, #work .case--secondary:last-child .case-media {
+      height: 286px;
+    }
+#work .head {
+      padding-bottom: 18px;
+    }
+#work .work-scope {
+      margin-top: 18px;
+      font-size: 15px;
+    }
+#work .cases {
+      margin-top: 68px;
     }
 #work .total {
-      gap: 36px;
-      padding: 32px;
+      margin-top: 0;
     }
-#work .total h3 {
-      max-width: 18ch;
+#work .total-visual {
+      height: 210px;
+      margin: 0 -20px -20px;
+    }
+#work .total .row {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      column-gap: 24px;
+      row-gap: 36px;
+      padding-bottom: 28px;
+    }
+#work .total .row div strong {
+      font-size: 46px;
+    }
+#work .name, #work .case--secondary .name {
+      font-size: 32px;
+    }
+#work .case--featured .case-metric strong, #work .case--secondary .case-metric strong {
+      font-size: 29px;
+    }
+#work .case--featured .case-metric.qual strong, #work .case--secondary .case-metric.qual strong {
+      font-size: 21px;
+    }
+#work .case-metric span {
+      font-size: 12px;
     }
 }
 /* ---- 07-studio ---- */
@@ -811,53 +976,151 @@
     margin-left: 9px;
   }
 /* ---- 08-insights ---- */
+#insights .wrap {
+    padding-top: 136px;
+    padding-bottom: 132px;
+  }
 #insights .head {
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    margin-bottom: 44px;
+    margin-bottom: 48px;
+  }
+#insights .kicker {
+    margin-bottom: 18px;
   }
 #insights .bento {
     display: grid;
-    grid-template-columns: 1.35fr 1fr;
-    gap: 20px;
-    height: 388px;
+    grid-template-columns: minmax(0, 1.42fr) minmax(360px, 1fr);
+    gap: 24px;
+    min-height: 440px;
   }
 #insights .feat {
     position: relative;
+    color: var(--text);
+    text-decoration: none;
     border-radius: var(--r-surface);
     border: 1px solid var(--line);
     overflow: hidden;
-    background:
-      radial-gradient(120% 90% at 88% 8%, rgba(6, 245, 183, 0.15), transparent 58%),
-      linear-gradient(160deg, #14181c, #0b0d10);
-    padding: 34px 36px;
+    background: linear-gradient(150deg, #151919 0%, #101313 62%, #0b1311 100%);
+    padding: 38px 40px 36px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    isolation: isolate;
+    transition: transform 320ms cubic-bezier(0.16, 1, 0.3, 1), border-color 320ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+#insights .feat::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(110deg, transparent 32%, rgba(6, 245, 183, 0.09) 100%);
+    opacity: 0;
+    transition: opacity 320ms cubic-bezier(0.16, 1, 0.3, 1);
   }
 #insights .feat .big {
     position: absolute;
-    right: 26px;
-    bottom: -22px;
+    right: 24px;
+    bottom: -30px;
     font-family: var(--mono);
-    font-size: 132px;
+    font-size: clamp(112px, 10vw, 156px);
     line-height: 1;
-    color: rgba(6, 245, 183, 0.13);
+    color: rgba(6, 245, 183, 0.1);
     letter-spacing: -0.04em;
+    transition: transform 420ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+#insights .feat-copy { position: relative; z-index: 1; }
+#insights .feat h3 {
+    font-size: clamp(30px, 2.6vw, 38px);
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    font-weight: 500;
+    margin: 0;
+    max-width: 15ch;
+  }
+#insights .feat .body { margin-top: 18px; max-width: 43ch; }
+#insights .read {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 28px;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-2);
+  }
+#insights .arrow {
+    display: inline-block;
+    font-size: 16px;
+    line-height: 1;
+    transition: color 280ms ease, transform 280ms cubic-bezier(0.16, 1, 0.3, 1);
   }
 #insights .stack {
     display: grid;
     grid-template-rows: 1fr 1fr;
-    gap: 20px;
+    gap: 0;
+    border-top: 1px solid var(--line);
   }
 #insights .item {
-    border-top: 1px solid var(--line);
-    padding: 22px 4px 0;
+    position: relative;
+    color: var(--text);
+    text-decoration: none;
+    padding: 30px 4px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    overflow: hidden;
   }
+#insights .item + .item { border-top: 1px solid var(--line); }
+#insights .item::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, rgba(6, 245, 183, 0.08), rgba(6, 245, 183, 0));
+    opacity: 0;
+    transform: translateX(-12px);
+    transition: opacity 280ms ease, transform 320ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+#insights .item-top, #insights .item-bottom { position: relative; z-index: 1; }
+#insights .item-top { display: flex; align-items: flex-start; gap: 24px; }
+#insights .item-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 24px;
+    transition: transform 320ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+#insights .item .h3 { max-width: 23ch; }
+@media (hover: hover) {
+#insights .feat:hover { transform: translateY(-4px); border-color: rgba(6, 245, 183, 0.42); }
+#insights .feat:hover::after { opacity: 1; }
+#insights .feat:hover .big { transform: translate(-8px, -8px); }
+#insights .feat:hover .arrow, #insights .item:hover .arrow { color: var(--accent); transform: translate(4px, -4px); }
+#insights .item:hover::before { opacity: 1; transform: translateX(0); }
+#insights .item:hover .item-bottom { transform: translateX(10px); }
+}
+#insights .feat:focus-visible, #insights .item:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+@media (max-width: 900px) {
+#insights .frame { width: 100%; }
+#insights .bento { grid-template-columns: 1fr; min-height: 0; }
+#insights .feat { min-height: 430px; }
+#insights .stack { min-height: 360px; }
+}
+@media (max-width: 560px) {
+#insights .wrap { padding: 92px 24px 88px; }
+#insights .head { margin-bottom: 32px; }
+#insights .d2 { font-size: 40px; }
+#insights .kicker { margin-bottom: 14px; }
+#insights .feat { min-height: 410px; padding: 28px 24px 26px; }
+#insights .feat h3 { font-size: 29px; }
+#insights .feat .body { max-width: 34ch; }
+#insights .feat .big { right: 12px; font-size: 104px; }
+#insights .item { padding: 26px 4px; }
+#insights .item-bottom { gap: 16px; }
+#insights .item .h3 { font-size: 23px; }
+}
+@media (prefers-reduced-motion: reduce) {
+#insights .feat, #insights .feat::after, #insights .feat .big, #insights .item::before, #insights .item-bottom, #insights .arrow { transition: none; }
+}
 #insights .meta {
     display: flex;
     gap: 16px;
@@ -1448,100 +1711,279 @@
 
 
 
+
   <div class="wrap" style="padding-top: 76px; padding-bottom: 84px">
     <div class="head">
       <div>
         <p class="label">Work</p>
         <h2 class="d2" style="margin: 18px 0 0">What the system produced</h2>
+        <p class="work-scope">Across every engagement to date</p>
+      </div>
+    </div>
+
+    <div class="total">
+      <div class="total-visual" aria-hidden="true">
+        <img
+          src="../img/assets/aggregate-impact-flow-v1.webp"
+          alt=""
+          loading="lazy"
+          decoding="async"
+        />
+        <canvas class="total-flow-canvas" data-impact-flow></canvas>
+      </div>
+      <div class="row">
+        <div><strong>100+</strong><span>high-tech engagements delivered</span></div>
+        <div><strong>100M+</strong><span>technical impressions generated</span></div>
+        <div><strong>1,000+</strong><span>creators and domain experts activated</span></div>
+        <div><strong>15</strong><span>markets entered across NA, EU and APAC</span></div>
       </div>
     </div>
 
     <div class="cases">
-      <article class="case">
-        <div class="shot">
-          <img src="../img/assets/hero-western-audience.jpg" alt="" />
-          <span class="idx">01 / PUBLICAI</span>
+      <article class="case case--featured">
+        <div class="case-media">
+          <img
+            src="../img/assets/hero-western-audience.jpg"
+            alt="Audience at a global technology event"
+            loading="lazy"
+            decoding="async"
+          />
         </div>
-        <div>
+        <div class="case-story">
           <h3 class="name">PublicAI</h3>
           <p class="what">
             Moved from regional relevance to global market credibility while keeping one
             coherent brand narrative.
           </p>
-          <div class="chips">
-            <span class="chip">Region-specific positioning</span
-            ><span class="chip">Localized media mix, NA / EU / APAC</span
-            ><span class="chip">KOL activation</span>
-          </div>
-          <div class="nums">
-            <div><strong>15+</strong><span>global markets penetrated</span></div>
-            <div><strong>300%</strong><span>increase in local media exposure</span></div>
-            <div class="qual">
+          <ul class="case-scope" aria-label="PublicAI engagement scope">
+            <li>Region-specific positioning</li>
+            <li>Localized media across NA, EU and APAC</li>
+            <li>KOL activation</li>
+          </ul>
+          <div class="case-metrics">
+            <div class="case-metric">
+              <strong>15+</strong><span>global markets penetrated</span>
+            </div>
+            <div class="case-metric">
+              <strong>300%</strong><span>increase in local media exposure</span>
+            </div>
+            <div class="case-metric qual">
               <strong>Expanded</strong><span>regional pipeline and lead generation</span>
             </div>
           </div>
         </div>
       </article>
 
-      <article class="case">
-        <div class="shot shot--crop">
-          <img src="../img/assets/developer-activation-1200.webp" alt="" />
-          <span class="idx">02 / MOSS AI</span>
-        </div>
-        <div>
-          <h3 class="name">MOSS AI</h3>
-          <p class="what">
-            Turned technical interest into deeper usage with developer-focused narratives
-            and practical growth mechanics.
-          </p>
-          <div class="chips">
-            <span class="chip">Segment-specific messaging</span
-            ><span class="chip">Meetups and hackathon support</span
-            ><span class="chip">Product-led content and ABM</span>
+      <div class="case-pair">
+        <article class="case case--secondary">
+          <div class="case-media case-media--crop">
+            <img
+              src="../img/assets/developer-activation-1200.webp"
+              alt="Developers at a community activation event"
+              loading="lazy"
+              decoding="async"
+            />
           </div>
-          <div class="nums">
-            <div><strong>350%</strong><span>campaign ROI generated</span></div>
-            <div><strong>85%</strong><span>target developer participation</span></div>
-            <div><strong>10K+</strong><span>community contributions</span></div>
+          <div class="case-story">
+            <h3 class="name">MOSS AI</h3>
+            <p class="what">
+              Turned technical interest into deeper usage with developer-focused narratives
+              and practical growth mechanics.
+            </p>
+            <ul class="case-scope" aria-label="MOSS AI engagement scope">
+              <li>Segment-specific messaging</li>
+              <li>Meetups and hackathons</li>
+              <li>Product-led content and ABM</li>
+            </ul>
+            <div class="case-metrics">
+              <div class="case-metric">
+                <strong>350%</strong><span>campaign ROI generated</span>
+              </div>
+              <div class="case-metric">
+                <strong>85%</strong><span>target developer participation</span>
+              </div>
+              <div class="case-metric">
+                <strong>10K+</strong><span>community contributions</span>
+              </div>
+            </div>
           </div>
-        </div>
-      </article>
+        </article>
 
-      <article class="case">
-        <div class="shot">
-          <img src="../img/assets/openclaw-stage-1200.webp" alt="" />
-          <span class="idx">03 / SURF AI</span>
-        </div>
-        <div>
-          <h3 class="name">SURF AI</h3>
-          <p class="what">
-            Broke through a saturated consumer AI market with narrative repositioning,
-            influencer seeding, and community activation.
-          </p>
-          <div class="chips">
-            <span class="chip">Consumer-first repositioning</span
-            ><span class="chip">Multi-tier KOL activation</span
-            ><span class="chip">Referral loops and ambassadors</span>
+        <article class="case case--secondary">
+          <div class="case-media">
+            <img
+              src="../img/assets/openclaw-stage-1200.webp"
+              alt="SURF AI launch event"
+              loading="lazy"
+              decoding="async"
+            />
           </div>
-          <div class="nums">
-            <div><strong>+350%</strong><span>DAU growth achieved</span></div>
-            <div><strong>2.5x</strong><span>engagement rate increase</span></div>
-            <div><strong>500K+</strong><span>new user signups</span></div>
+          <div class="case-story">
+            <h3 class="name">SURF AI</h3>
+            <p class="what">
+              Broke through a saturated consumer AI market with narrative repositioning,
+              influencer seeding, and community activation.
+            </p>
+            <ul class="case-scope" aria-label="SURF AI engagement scope">
+              <li>Consumer-first repositioning</li>
+              <li>Multi-tier KOL activation</li>
+              <li>Referral loops and ambassadors</li>
+            </ul>
+            <div class="case-metrics">
+              <div class="case-metric"><strong>+350%</strong><span>DAU growth achieved</span></div>
+              <div class="case-metric">
+                <strong>2.5x</strong><span>engagement rate increase</span>
+              </div>
+              <div class="case-metric"><strong>500K+</strong><span>new user signups</span></div>
+            </div>
           </div>
-        </div>
-      </article>
-    </div>
-
-      <div class="total">
-        <h3>Across every engagement to date</h3>
-        <div class="row">
-          <div><strong>100+</strong><span>high-tech engagements delivered</span></div>
-          <div><strong>100M+</strong><span>technical impressions generated</span></div>
-          <div><strong>1,000+</strong><span>creators and domain experts activated</span></div>
-          <div><strong>15</strong><span>markets entered across NA, EU and APAC</span></div>
-        </div>
+        </article>
       </div>
+    </div>
   </div>
+  <script>
+    (() => {
+      const canvas = document.querySelector("[data-impact-flow]");
+      if (!canvas || !canvas.getContext) return;
+
+      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+      if (reduceMotion.matches) return;
+
+      const context = canvas.getContext("2d");
+      const streamCount = 58;
+      let width = 0;
+      let height = 0;
+      let frame = 0;
+      let visible = true;
+
+      const fract = (value) => value - Math.floor(value);
+      const random = (index, salt) =>
+        fract(Math.sin(index * 12.9898 + salt * 78.233) * 43758.5453);
+
+      const streams = Array.from({ length: streamCount }, (_, index) => ({
+        lane: index / (streamCount - 1),
+        phase: random(index, 1),
+        speed: 0.055 + random(index, 2) * 0.045,
+        bend: random(index, 3) - 0.5,
+        centerOffset: random(index, 4) - 0.5
+      }));
+
+      const cubic = (a, b, c, d, t) => {
+        const inverse = 1 - t;
+        return (
+          inverse * inverse * inverse * a +
+          3 * inverse * inverse * t * b +
+          3 * inverse * t * t * c +
+          t * t * t * d
+        );
+      };
+
+      const pointOnStream = (stream, progress) => {
+        const centerX = width * 0.515;
+        const centerY = height * (0.535 + stream.centerOffset * 0.025);
+        const startY = height * (0.31 + stream.lane * 0.38 + stream.bend * 0.018);
+        const endY = height * (0.08 + stream.lane * 0.84 + stream.bend * 0.045);
+
+        if (progress <= 0.52) {
+          const t = progress / 0.52;
+          return {
+            x: cubic(-width * 0.04, width * 0.22, width * 0.42, centerX, t),
+            y: cubic(
+              startY,
+              startY + stream.bend * height * 0.08,
+              centerY + stream.bend * height * 0.018,
+              centerY,
+              t
+            )
+          };
+        }
+
+        const t = (progress - 0.52) / 0.48;
+        return {
+          x: cubic(centerX, width * 0.62, width * 0.78, width * 1.04, t),
+          y: cubic(
+            centerY,
+            centerY + stream.bend * height * 0.035,
+            endY - stream.bend * height * 0.05,
+            endY,
+            t
+          )
+        };
+      };
+
+      const resize = () => {
+        const bounds = canvas.getBoundingClientRect();
+        const pixelRatio = Math.min(window.devicePixelRatio || 1, 2);
+        width = bounds.width;
+        height = bounds.height;
+        canvas.width = Math.max(1, Math.round(width * pixelRatio));
+        canvas.height = Math.max(1, Math.round(height * pixelRatio));
+        context.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
+      };
+
+      const draw = (time) => {
+        context.clearRect(0, 0, width, height);
+        context.lineCap = "round";
+
+        streams.forEach((stream, index) => {
+          const progress = (time * 0.001 * stream.speed + stream.phase) % 1;
+          const expansion = Math.max(0, (progress - 0.5) / 0.5);
+          const trailSteps = 7;
+
+          for (let step = trailSteps; step > 0; step -= 1) {
+            const fromProgress = progress - step * 0.0042;
+            const toProgress = progress - (step - 1) * 0.0042;
+            if (fromProgress < 0 || toProgress > 1) continue;
+
+            const from = pointOnStream(stream, fromProgress);
+            const to = pointOnStream(stream, toProgress);
+            const fade = (trailSteps - step + 1) / trailSteps;
+            const alpha = (0.08 + expansion * 0.62) * fade;
+
+            context.beginPath();
+            context.moveTo(from.x, from.y);
+            context.lineTo(to.x, to.y);
+            context.lineWidth = 0.7 + expansion * 1.35;
+            context.strokeStyle =
+              index % 7 === 0
+                ? `rgba(244, 255, 252, ${alpha})`
+                : `rgba(6, 245, 183, ${alpha})`;
+            context.stroke();
+          }
+
+          const point = pointOnStream(stream, progress);
+          context.beginPath();
+          context.arc(point.x, point.y, 0.8 + expansion * 1.45, 0, Math.PI * 2);
+          context.fillStyle = `rgba(190, 255, 237, ${0.26 + expansion * 0.7})`;
+          context.fill();
+        });
+
+        if (visible) frame = window.requestAnimationFrame(draw);
+      };
+
+      resize();
+
+      const resizeObserver = new ResizeObserver(resize);
+      resizeObserver.observe(canvas);
+
+      const visibilityObserver = new IntersectionObserver(
+        ([entry]) => {
+          const nextVisible = entry.isIntersecting;
+          if (nextVisible && !visible) {
+            visible = true;
+            frame = window.requestAnimationFrame(draw);
+          } else if (!nextVisible && visible) {
+            visible = false;
+            window.cancelAnimationFrame(frame);
+          }
+        },
+        { rootMargin: "180px 0px" }
+      );
+      visibilityObserver.observe(canvas);
+
+      frame = window.requestAnimationFrame(draw);
+    })();
+  </script>
 
 </div>
 <div id="team" class="pagesec">
@@ -1674,40 +2116,35 @@
 
 
 
-  <div class="wrap" style="padding-top: 72px; padding-bottom: 78px">
+  <div class="wrap">
     <div class="head">
+      <p class="label kicker">Insights</p>
       <h2 class="d2">What we publish</h2>
-      <a class="btn btn--text" style="margin-bottom: 10px">All insights</a>
     </div>
 
     <div class="bento">
-      <article class="feat">
+      <a class="feat" href="#insights" aria-label="Read The 2026 AI marketing playbook for the Seoul ecosystem">
         <span class="big">2026</span>
         <div class="meta">Playbook / Seoul</div>
-        <div style="position: relative">
-          <h3 style="font-size: 33px; line-height: 1.14; letter-spacing: -0.028em; font-weight: 500; margin: 0; max-width: 15ch">
-            The 2026 AI marketing playbook for the Seoul ecosystem
-          </h3>
-          <p class="body" style="margin-top: 16px; max-width: 40ch">
+        <div class="feat-copy">
+          <h3>The 2026 AI marketing playbook for the Seoul ecosystem</h3>
+          <p class="body">
             Localized narrative systems, community integration, and how foreign AI teams
             actually get read in Korea.
           </p>
+          <span class="read">Read insight <span class="arrow" aria-hidden="true">&#8599;</span></span>
         </div>
-      </article>
+      </a>
 
       <div class="stack">
-        <article class="item">
-          <div class="meta">Search / GEO</div>
-          <h3 class="h3" style="max-width: 24ch; margin-top: 14px">
-            From SEO to GEO: occupying model mindshare
-          </h3>
-        </article>
-        <article class="item">
-          <div class="meta">APAC / Go-to-market</div>
-          <h3 class="h3" style="max-width: 24ch; margin-top: 14px">
-            Five strategies that survive an APAC launch
-          </h3>
-        </article>
+        <a class="item" href="#insights" aria-label="Read From SEO to GEO: occupying model mindshare">
+          <div class="item-top"><div class="meta">Search / GEO</div></div>
+          <div class="item-bottom"><h3 class="h3">From SEO to GEO: occupying model mindshare</h3><span class="arrow" aria-hidden="true">&#8599;</span></div>
+        </a>
+        <a class="item" href="#insights" aria-label="Read Five strategies that survive an APAC launch">
+          <div class="item-top"><div class="meta">APAC / Go-to-market</div></div>
+          <div class="item-bottom"><h3 class="h3">Five strategies that survive an APAC launch</h3><span class="arrow" aria-hidden="true">&#8599;</span></div>
+        </a>
       </div>
     </div>
   </div>
@@ -1862,7 +2299,7 @@
             Rhythm and motion <span class="src--own src">marketing layer</span>
           </p>
           <div style="margin-top: 14px">
-            <div class="kv"><span>Container</span><b>1280 / 12 col / 24</b></div>
+            <div class="kv"><span>Container</span><b>1440 / 12 col / 24</b></div>
             <div class="kv"><span>Section padding</span><b>160 / 96 / 72</b></div>
             <div class="kv"><span>Reveal</span><b>620ms (.16,1,.3,1)</b></div>
             <div class="kv"><span>Stagger</span><b>60ms, once</b></div>

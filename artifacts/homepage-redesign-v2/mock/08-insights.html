@@ -1,52 +1,150 @@
 <meta charset="utf-8" />
 <link rel="stylesheet" href="base.css" />
 <style>
+  .wrap {
+    padding-top: 136px;
+    padding-bottom: 132px;
+  }
   .head {
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    margin-bottom: 44px;
+    margin-bottom: 48px;
+  }
+  .kicker {
+    margin-bottom: 18px;
   }
   .bento {
     display: grid;
-    grid-template-columns: 1.35fr 1fr;
-    gap: 20px;
-    height: 388px;
+    grid-template-columns: minmax(0, 1.42fr) minmax(360px, 1fr);
+    gap: 24px;
+    min-height: 440px;
   }
   .feat {
     position: relative;
+    color: var(--text);
+    text-decoration: none;
     border-radius: var(--r-surface);
     border: 1px solid var(--line);
     overflow: hidden;
-    background:
-      radial-gradient(120% 90% at 88% 8%, rgba(6, 245, 183, 0.15), transparent 58%),
-      linear-gradient(160deg, #14181c, #0b0d10);
-    padding: 34px 36px;
+    background: linear-gradient(150deg, #151919 0%, #101313 62%, #0b1311 100%);
+    padding: 38px 40px 36px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    isolation: isolate;
+    transition: transform 320ms cubic-bezier(0.16, 1, 0.3, 1), border-color 320ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .feat::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(110deg, transparent 32%, rgba(6, 245, 183, 0.09) 100%);
+    opacity: 0;
+    transition: opacity 320ms cubic-bezier(0.16, 1, 0.3, 1);
   }
   .feat .big {
     position: absolute;
-    right: 26px;
-    bottom: -22px;
+    right: 24px;
+    bottom: -30px;
     font-family: var(--mono);
-    font-size: 132px;
+    font-size: clamp(112px, 10vw, 156px);
     line-height: 1;
-    color: rgba(6, 245, 183, 0.13);
+    color: rgba(6, 245, 183, 0.1);
     letter-spacing: -0.04em;
+    transition: transform 420ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .feat-copy { position: relative; z-index: 1; }
+  .feat h3 {
+    font-size: clamp(30px, 2.6vw, 38px);
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    font-weight: 500;
+    margin: 0;
+    max-width: 15ch;
+  }
+  .feat .body { margin-top: 18px; max-width: 43ch; }
+  .read {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 28px;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-2);
+  }
+  .arrow {
+    display: inline-block;
+    font-size: 16px;
+    line-height: 1;
+    transition: color 280ms ease, transform 280ms cubic-bezier(0.16, 1, 0.3, 1);
   }
   .stack {
     display: grid;
     grid-template-rows: 1fr 1fr;
-    gap: 20px;
+    gap: 0;
+    border-top: 1px solid var(--line);
   }
   .item {
-    border-top: 1px solid var(--line);
-    padding: 22px 4px 0;
+    position: relative;
+    color: var(--text);
+    text-decoration: none;
+    padding: 30px 4px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    overflow: hidden;
+  }
+  .item + .item { border-top: 1px solid var(--line); }
+  .item::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, rgba(6, 245, 183, 0.08), rgba(6, 245, 183, 0));
+    opacity: 0;
+    transform: translateX(-12px);
+    transition: opacity 280ms ease, transform 320ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .item-top, .item-bottom { position: relative; z-index: 1; }
+  .item-top { display: flex; align-items: flex-start; gap: 24px; }
+  .item-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 24px;
+    transition: transform 320ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .item .h3 { max-width: 23ch; }
+  @media (hover: hover) {
+    .feat:hover { transform: translateY(-4px); border-color: rgba(6, 245, 183, 0.42); }
+    .feat:hover::after { opacity: 1; }
+    .feat:hover .big { transform: translate(-8px, -8px); }
+    .feat:hover .arrow, .item:hover .arrow { color: var(--accent); transform: translate(4px, -4px); }
+    .item:hover::before { opacity: 1; transform: translateX(0); }
+    .item:hover .item-bottom { transform: translateX(10px); }
+  }
+  .feat:focus-visible, .item:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+  @media (max-width: 900px) {
+    .frame { width: 100%; }
+    .bento { grid-template-columns: 1fr; min-height: 0; }
+    .feat { min-height: 430px; }
+    .stack { min-height: 360px; }
+  }
+  @media (max-width: 560px) {
+    .wrap { padding: 92px 24px 88px; }
+    .head { margin-bottom: 32px; }
+    .d2 { font-size: 40px; }
+    .kicker { margin-bottom: 14px; }
+    .feat { min-height: 410px; padding: 28px 24px 26px; }
+    .feat h3 { font-size: 29px; }
+    .feat .body { max-width: 34ch; }
+    .feat .big { right: 12px; font-size: 104px; }
+    .item { padding: 26px 4px; }
+    .item-bottom { gap: 16px; }
+    .item .h3 { font-size: 23px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .feat, .feat::after, .feat .big, .item::before, .item-bottom, .arrow { transition: none; }
   }
   .meta {
     display: flex;
@@ -60,41 +158,36 @@
   }
 </style>
 <div class="frame">
-  <div class="caption">Insights / 洞察 (5 条压到 3 条)</div>
-  <div class="wrap" style="padding-top: 72px; padding-bottom: 78px">
+  <div class="caption">Insights / 洞察 (3 条编辑式布局)</div>
+  <div class="wrap">
     <div class="head">
+      <p class="label kicker">Insights</p>
       <h2 class="d2">What we publish</h2>
-      <a class="btn btn--text" style="margin-bottom: 10px">All insights</a>
     </div>
 
     <div class="bento">
-      <article class="feat">
+      <a class="feat" href="#insights" aria-label="Read The 2026 AI marketing playbook for the Seoul ecosystem">
         <span class="big">2026</span>
         <div class="meta">Playbook / Seoul</div>
-        <div style="position: relative">
-          <h3 style="font-size: 33px; line-height: 1.14; letter-spacing: -0.028em; font-weight: 500; margin: 0; max-width: 15ch">
-            The 2026 AI marketing playbook for the Seoul ecosystem
-          </h3>
-          <p class="body" style="margin-top: 16px; max-width: 40ch">
+        <div class="feat-copy">
+          <h3>The 2026 AI marketing playbook for the Seoul ecosystem</h3>
+          <p class="body">
             Localized narrative systems, community integration, and how foreign AI teams
             actually get read in Korea.
           </p>
+          <span class="read">Read insight <span class="arrow" aria-hidden="true">&#8599;</span></span>
         </div>
-      </article>
+      </a>
 
       <div class="stack">
-        <article class="item">
-          <div class="meta">Search / GEO</div>
-          <h3 class="h3" style="max-width: 24ch; margin-top: 14px">
-            From SEO to GEO: occupying model mindshare
-          </h3>
-        </article>
-        <article class="item">
-          <div class="meta">APAC / Go-to-market</div>
-          <h3 class="h3" style="max-width: 24ch; margin-top: 14px">
-            Five strategies that survive an APAC launch
-          </h3>
-        </article>
+        <a class="item" href="#insights" aria-label="Read From SEO to GEO: occupying model mindshare">
+          <div class="item-top"><div class="meta">Search / GEO</div></div>
+          <div class="item-bottom"><h3 class="h3">From SEO to GEO: occupying model mindshare</h3><span class="arrow" aria-hidden="true">&#8599;</span></div>
+        </a>
+        <a class="item" href="#insights" aria-label="Read Five strategies that survive an APAC launch">
+          <div class="item-top"><div class="meta">APAC / Go-to-market</div></div>
+          <div class="item-bottom"><h3 class="h3">Five strategies that survive an APAC launch</h3><span class="arrow" aria-hidden="true">&#8599;</span></div>
+        </a>
       </div>
     </div>
   </div>

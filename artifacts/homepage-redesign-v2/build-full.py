@@ -126,6 +126,7 @@ for name, label in APPENDIX:
 
 html = f"""<!doctype html>
 <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>JE Labs homepage redesign v2 / full page</title>
 <link rel="stylesheet" href="base.css" />
 <style>
