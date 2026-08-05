@@ -14,6 +14,11 @@
     font-size: 14.5px;
     color: var(--text-2);
   }
+  .nav a,
+  .brand {
+    color: inherit;
+    text-decoration: none;
+  }
   .brand {
     display: flex;
     align-items: center;
@@ -90,25 +95,25 @@
 
   <hr class="rule" />
 
-  <div class="band"><p class="label">Proposed <span class="tag">5 links / 64px / one CTA</span></p></div>
+  <div class="band"><p class="label">Proposed <span class="tag">4 links / 64px / one CTA</span></p></div>
   <div class="bar" style="height: 64px">
-    <div class="brand"><span class="dot"></span>JE Labs</div>
-    <div class="nav" style="color: var(--text)">
-      <span>Work</span><span>Services</span><span>Insights</span><span>Studio</span
-      ><span>Contact</span>
-    </div>
-    <a class="btn btn--primary" style="height: 40px; font-size: 14px; padding: 0 20px"
+    <a class="brand" href="#top"><span class="dot"></span>JE Labs</a>
+    <nav class="nav" style="color: var(--text)" aria-label="Primary">
+      <a href="#approach">Approach</a><a href="#work">Work</a
+      ><a href="#team">Team</a><a href="#insights">Insights</a>
+    </nav>
+    <a class="btn btn--primary" href="#contact" style="height: 40px; font-size: 14px; padding: 0 20px"
       >Start a conversation</a
     >
   </div>
 
   <div class="scrolled">
-    <div class="brand" style="font-size: 15px"><span class="dot" style="width: 15px; height: 15px"></span>JE Labs</div>
-    <div class="nav" style="font-size: 13.5px; gap: 26px">
-      <span style="color: var(--accent)">Work</span><span>Services</span><span>Insights</span
-      ><span>Studio</span>
-    </div>
-    <a class="btn btn--primary" style="height: 36px; font-size: 13.5px; padding: 0 18px"
+    <a class="brand" href="#top" style="font-size: 15px"><span class="dot" style="width: 15px; height: 15px"></span>JE Labs</a>
+    <nav class="nav" style="font-size: 13.5px; gap: 26px" aria-label="Primary compact">
+      <a href="#approach" style="color: var(--accent)">Approach</a><a href="#work">Work</a
+      ><a href="#team">Team</a><a href="#insights">Insights</a>
+    </nav>
+    <a class="btn btn--primary" href="#contact" style="height: 36px; font-size: 13.5px; padding: 0 18px"
       >Start a conversation</a
     >
   </div>
@@ -116,8 +121,8 @@
     <span class="accent">/</span>
     <span
       >On scroll the bar condenses into a 56px floating capsule with backdrop blur and an
-      active-section marker. Studio absorbs Approach and Leadership. Proof becomes Work.
-      FAQ moves to the footer, schema markup intact.</span
+      active-section marker. The order mirrors the page: Approach, Work, Team,
+      and Insights. FAQ stays in the footer.</span
     >
   </div>
 </div>

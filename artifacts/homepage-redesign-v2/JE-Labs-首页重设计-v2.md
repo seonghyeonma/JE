@@ -216,16 +216,20 @@ Linear 和 Vercel 都是**一套 token 打通营销站和产品**，差异只出
 
 **改成什么**
 
-- 高度 64px，5 个入口：**Work / Services / Insights / Studio / Contact**。
-  - Studio 吸收 Approach 和 Leadership
-  - Proof 改名 Work（对买家来说这是"案例"，不是"证据"）
-  - FAQ 下沉到页脚（结构化数据原样保留）
+- 高度 64px，4 个文字入口：**Approach / Work / Team / Insights**。
+  - `Approach` → `#approach`：进入四步执行系统；一个单词即可表达 How we work
+  - `Work` → `#work`：直接进入案例与结果，不再使用含义更模糊的 Proof / Results
+  - `Team` → `#team`：进入创始人与团队，不再使用容易被理解为公司/空间的 Studio
+  - `Insights` → `#insights`：进入观点内容
+  - Contact 不占导航位，右侧 CTA `Start a conversation` → `#contact`
 - 右侧按钮改为实心主色，全站唯一的主 CTA 样式。
 - 滚动后收成 56px 的浮动条（8px 圆角，与 WeLike 按钮同一档），带背景模糊和当前区块高亮。
 
 **为什么**
 
-导航项数量是信息架构的体检表。8 项说明内容没有被组织过，只是被罗列了。5 项之后，每一项背后都有真内容支撑。
+导航项数量是信息架构的体检表。8 项说明内容没有被组织过，只是被罗列了。4 项之后，每一项都对应页面里一个肉眼可见、内容足够完整的区块。
+
+`Approach` 和 `Work` 并不重复：前者回答“你们如何做到”，后者回答“你们做出了什么”。因为当前导航是单页目录，顺序必须镜像实际页面，不能让 Work 在导航里领先、落地后却发现 Approach 在页面上方。避免使用 `How we work`，是为了让整组导航都保持单词级、同一语言节奏。
 
 高度从 84 降到 64，首屏可用高度多出 20px，在 900px 高的笔记本上这是实打实的。
 
@@ -235,9 +239,9 @@ Linear 和 Vercel 都是**一套 token 打通营销站和产品**，差异只出
 >
 > **这个模式 JE Labs 现在学不了，别学。** Work & Co 敢砍掉导航，是因为它有 40 个 Apple / IKEA 级别的案例，网格本身就是提案。你们只有 3 个案例，logo 后面没东西可放。
 >
-> 但它反过来印证了一条更重要的判断：**导航项的数量应该由"你有多少真内容"决定，不是由模板决定。** 你们现在 8 项对应 3 件真事，所以砍到 5 项；等案例攒到 15 个以上，再考虑把 Work 做成独立的索引页。
+> 但它反过来印证了一条更重要的判断：**导航项的数量应该由“你有多少真内容”决定，不是由模板决定。** 你们当前真正需要让访客定向抵达的是案例、方法、团队和洞察，所以保留 4 项；等案例攒到 15 个以上，再考虑把 Work 做成独立索引页。
 
-**⚠ SEO 红线**：锚点 ID（`#studio` `#approach` `#leadership` `#capabilities` `#proof` `#insights` `#faq` `#contact`）**全部保留**，即使导航不再直接指向它们。改名只改 label，不改 href 的 hash。
+**⚠ SEO 红线**：新导航使用稳定锚点 `#work` `#approach` `#team` `#insights` `#contact`。上线改生产代码时，为旧锚点 `#proof` `#studio` `#leadership` `#capabilities` `#faq` 保留兼容定位，避免外部旧链接失效。
 
 ---
 
@@ -254,39 +258,20 @@ Linear 和 Vercel 都是**一套 token 打通营销站和产品**，差异只出
 
 **结论：同行全部是独立页面。** 但他们的内容量也完全不同 —— NoGood 有 13 个服务页撑得起 13 个入口，你们现在有 3 个案例。
 
-### 我的建议：分两期，不要一步到位
+### 当前决定：只做单页锚点，不拆独立页
 
-**这是这次改版里唯一一处我认为「SEO 比视觉更重要」的地方。**
-
-现在整站一个 URL、一个 title 标签，意味着**你们只能排一个词**。一家把「From SEO to GEO」当洞察发出去的营销机构，自己的站却只有一页可索引，这个信号很伤。但反过来，用 3 个案例去铺 10 个空页面更伤。
-
-**第一期（跟本次改版一起上）**
-
-保持首页单页滚动，但拆出三类已经有内容支撑的真实页面：
-
-| 页面 | 为什么现在就能拆 |
-|---|---|
-| `/work/publicai`、`/work/moss-ai`、`/work/surf-ai` | 首页现在只放摘要 + 三个数字，详情本来就需要落地页。每页可以独立排「AI 出海营销案例」这类词 |
-| `/insights` | 已经有 5 篇，够撑一个列表页 + 后续每篇独立页 |
-| `/contact` | 独立页转化和埋点都比锚点干净 |
-
-首页内部的 Approach / Results / Services 继续用锚点滚动。
-
-**第二期（等内容长出来）**
-
-`/services/strategy`、`/services/kol-marketing`、`/services/media`、`/services/community` 各一页，一页打一个关键词；`/studio` 独立成 About 页。**每页至少 600 词真实内容再上，不到就别拆。**
-
-### 导航栏放哪五项
-
-单页滚动时，导航就是目录。建议：
+现阶段内容量还不足以支撑 Services / Studio / Contact 等独立页面。首页导航就是页内目录，不制造空页面，也不让按钮跳向尚不存在的路由。
 
 ```
-Results    Services    Studio    Insights    Contact        [Start a conversation]
+Approach    Work    Team    Insights        [Start a conversation]
 ```
 
-- **Work 改叫 Results**：区块标题是 Results，第二 CTA 是 "See our results"，三处必须一致。NoGood 导航里也是 Results。
-- **Approach 不进导航**：它是第二屏，用户自然滚就到了。导航位置很贵，要留给「需要跳过去」的目的地。
-- **FAQ 不进导航**：在页脚，结构化数据保留。
+- **Approach**：四步执行系统，跳转 `#approach`；用一个词替代 `How we work`。
+- **Work**：案例与结果，跳转 `#work`。
+- **Team**：创始人与团队，跳转 `#team`；不再使用 Studio，也不单列 About。
+- **Insights**：观点内容，跳转 `#insights`。
+- **Start a conversation**：承担 Contact 的功能，跳转 `#contact`。
+- FAQ 保留在页脚和结构化数据中，不占一级导航。
 
 ### 标题用词：三个候选的判断
 
@@ -296,7 +281,7 @@ Results    Services    Studio    Insights    Contact        [Start a conversatio
 | `我们的服务 / Our services` | **错位**。这是后面 Services 区块的词，用在四步流程上会和它打架 |
 | `Why JE Labs?` | **不建议做成区块标题**。「为什么选我们」应该由案例和数字回答，而不是自己开一个区块问一遍。NoGood 对应的区块叫 "Expert-led. No slop. Proven results." —— 是**断言**，不是**提问** |
 
-### 一个必须先解决的结构问题
+### Approach 与 Services 的结构合并
 
 按你给的新四步文案：
 
@@ -307,19 +292,12 @@ Results    Services    Studio    Insights    Contact        [Start a conversatio
 
 **这四步和现在的 Services 三支柱（Strategy and narrative / Distribution / Ecosystem）讲的是同一批事**：第 1 步 = 支柱 1，第 2-3 步 = 支柱 2，第 4 步 = 支柱 3。
 
-同一页里说两遍，是现在这版最后一处结构冗余。建议**把 Approach 和 Services 合并成一个区块**：四步各配一张图，左侧固定导轨 + 右侧滚动。这样：
+同一页里说两遍，是结构冗余。当前决定是**删除 `What we run` 独立整屏，把必要的能力信息吸收到 Approach 四步里**。四步各配一张图，左侧固定导轨 + 右侧滚动。这样：
 
 - 满足你说的「每一步都有图片，图文并茂」
 - 页面少一个区块，从 9 个降到 8 个
-- 「工作方式」和「服务」的用词之争自动消失，因为它就是一个区块
-
-合并后的标题建议（三选一）：
-
-```
-What we do          →  Four moves, run in order.
-How we work         →  One system, four moves.
-The system          →  Strategy, creators, media, community.
-```
+- 导航和区块统一使用单词标签 `Approach`
+- `Strategy and narrative / Distribution / Ecosystem` 不再重复做三个平级服务卡；其有效内容分别落入四步的策略、创作者、媒体、反馈阶段
 
 ---
 
@@ -337,13 +315,14 @@ The system          →  Strategy, creators, media, community.
 
 ```
 Strategic growth partner for frontier tech builders   ← 等宽小标签，沿用你们原有的这句
-Make the market want what you built.                  ← 70px，2 行，结果
+Make the market want what you built                   ← 70px，2 行，结果
 We run market entry, narrative, global media, and     ← 我们做什么
 KOL marketing for AI, crypto, and technology companies.
-[Start a conversation]   See our results              ← 一主一次
+[Start a conversation]   See our work                 ← 一主一次
 ```
 
-- 右侧 622px 媒体柱**满高出血到视口右缘**，只保留左侧圆角。用你们自己的开发者活动实拍照片，降饱和到 0.42、压亮度到 0.62，左侧压一层渐变遮罩让文字始终可读。
+- 背景图改为**全浏览器宽度 full-bleed**，不再收在 1280px 内容框里。Header 和文案仍锁在 1280px 内容网格内，避免文字随超宽屏漂向两端。
+- 图片从 Header 下方铺满第一屏，使用暗部遮罩保证居中文字始终可读。这样保留沉浸感，也不会把导航和正文网格一起拉散。
 - 删掉幽灵大字、删掉 "SCROLL TO BEGIN"、删掉按钮外发光。
 - 光标跟随的薄荷色光晕在这一屏生效（见第 13 节）。
 
@@ -352,7 +331,7 @@ KOL marketing for AI, crypto, and technology companies.
 | 元素 | 任务 | 来源 |
 |---|---|---|
 | `Strategic growth partner for frontier tech builders` | **身份**。谁在说话 | 你们线上原句，未改 |
-| `Make the market want what you built.` | **结果**。直接称呼读者 | 改写自你们线上 manifesto 原句 |
+| `Make the market want what you built` | **结果**。直接称呼读者 | 改写自你们线上 manifesto 原句 |
 | `We run market entry, narrative, global media, and KOL marketing for AI, crypto, and technology companies.` | **做什么 + 给谁做** | 直接来自你们 FAQ 的服务清单 |
 
 三段不重复主语：小标签是名词短语，主标题是动名词，副标题才用 "We"。上一版主标题和副标题都以 We 开头，读起来是两句同structure的话叠在一起。
@@ -388,7 +367,7 @@ KOL marketing for AI, crypto, and technology companies.
 
 | 版本 | 说明 |
 |---|---|
-| `Make the market want what you built.` | **已采用**。改写自你们线上 manifesto 原句 "We turn technical credibility into **market desire**"。`what you built` 直接称呼读者，说中的是"东西做出来了，市场不认"这个真实的痛 |
+| `Make the market want what you built` | **已采用**。改写自你们线上 manifesto 原句 "We turn technical credibility into **market desire**"。`what you built` 直接称呼读者，说中的是"东西做出来了，市场不认"这个真实的痛 |
 | `Great technology does not market itself.` | 问题式开场，最有底气。缺点是整句否定式，首屏第一眼是个"不"字 |
 | `Global users for frontier technology.` | 最短，纯结果。缺点是没有动词，像标语不像承诺，且 frontier 与小标签重复 |
 | ~~`Turning technical products into users.`~~ | **已废弃**。语义不成立：`X turns into Y` 要求 X 和 Y 是同一个东西的两种状态，产品不会"变成"用户 |
@@ -418,7 +397,7 @@ We solve complex problems through design & technology      ← 主张（自己�
 等第 6 节的证言到位，副标题可以升级成这个结构：
 
 ```
-Make the market want what you built.
+Make the market want what you built
 "[客户高管或媒体原句，含具体结果]"
         姓名, 职位, 公司
 ```
@@ -543,13 +522,13 @@ B2B 买家的判断顺序是固定的两步：**先看"这家懂不懂我的问�
 - 每一步都有独立图片资产，分别表现策略制定、KOL 协作、全球媒体分发和发布后反馈
 - IntersectionObserver 只负责切换当前步骤和图片，不监听每一帧滚动；动画遵守 reduced-motion
 - 未激活步骤降低视觉权重，当前步骤标签切换为品牌绿，让先后关系比四列总览更明确
-- 底部用 `15+ global markets` 收束，再挂一个 `See our results` 文字链把方法论连接到下一屏案例
+- 底部用 `15+ global markets` 收束，再挂一个 `See our work` 文字链把方法论连接到下一屏案例
 
 **标题与文案改为可验证的动作和规模**：
 
 | 阶段 | 原文案 | 压缩后 |
 |---|---|---|
-| Market entry / Define the moat | Identify the unique technical advantage, data leverage, and narrative territory worth building the brand around. | Build the market-entry strategy, positioning, and narrative that turn technical advantage into an ownable category position. |
+| Market entry / Decide what the market remembers | Identify the unique technical advantage, data leverage, and narrative territory worth building the brand around. | Build the market-entry strategy, positioning, and narrative that turn technical advantage into an ownable category position. |
 | Creator network / Mobilize 1,000+ KOLs | Build credibility with researchers, developer communities, and operators who can validate the signal early. | Use our network of top creators and domain experts to place the story with the voices each market already trusts. |
 | Media distribution / Distribute through 30+ channels | Launch narrative-driven campaigns that make the company feel like the inevitable leader in its sector. | Coordinate global media campaigns across the channels and publications that shape each target market. |
 | Feedback loop / Compound growth after launch | Use live product and community feedback to keep the story sharper, stronger, and more self-reinforcing over time. | Use live product performance and community feedback to track growth, sharpen execution, and keep momentum compounding. |
@@ -601,22 +580,24 @@ B2B 买家的判断顺序是固定的两步：**先看"这家懂不懂我的问�
 
 信息还在，视觉成本降到五分之一。
 
-**区块收尾：聚合数字行**
+**区块收尾：聚合数字面板**
 
-三个案例之后，用一条较粗的分隔线隔开，接一行 4 个聚合数字（`100+` / `100M+` / `1,000+` / `15`），小标签写 `Across every engagement to date`。
+聚合数字继续放在三个案例之后，而不是 PublicAI 之前。原因很直接：它们是跨案例的总结，先展示会变成没有证据支撑的品牌自述；三个案例读完再出现，才是结论。
+
+视觉上不再只接一条扁平数字行，而是做成独立的 Work 收尾面板：左侧使用 `Across every engagement to date`，右侧把 `100+` / `100M+` / `1,000+` / `15` 排成 2×2。增加面板高度和边界，让它明确属于 Work，不再像漂在 Team 上方的一排数字。
 
 视觉上必须和案例数字**分层**：
 
 | | 字号 | 颜色 | 含义 |
 |---|---|---|---|
 | 案例数字 | 38px 等宽 | **主色** | 具体成果，是这一屏的主角 |
-| 聚合数字 | 44px 等宽 | **白色** | 总量，是收尾不是主角 |
+| 聚合数字 | 48px 等宽 | **白色** | 总量，是收尾不是主角 |
 
 字号更大但颜色更弱，读起来是"总结"而不是又一组要逐个消化的数据。
 
 **参考**：**NoGood**（每张案例卡都被一个巨大的增长数字压住）、**Attentive**（左图右数据，数字比描述大得多）、Locomotive（hover 时其余项降透明度）。
 
-**区块标题改成 `What the system produced.`**，小标签是 `Results` 而不是 `Work`。这一句直接承接上一屏的方法论：上面讲系统，这里讲系统产出了什么。
+**区块标题改成 `What the system produced`**，小标签统一使用 `Work`。这样 Header、区块标签和 `#work` 锚点三者完全一致；主标题继续负责承接上一屏的方法论。
 
 **⚠ 素材缺口（P0）**：**3 张案例图**，每个客户一张，1600×1000。示例图里 PublicAI 用的是图库照片、MOSS 和 SURF 用的是你们现有的活动照顶替，都不是真实案例素材。
 
@@ -633,68 +614,25 @@ B2B 买家的判断顺序是固定的两步：**先看"这家懂不懂我的问�
 你们 X 的置顶推文 "Voice of Trust" 里就有现成的客户反馈，需要的只是书面授权。
 
 
-## 7. Services 服务
+## 7. `What we run`：删除独立整屏
 
-![Services](img/05-services.png)
+**决定**：这一屏从首页完整稿和导航中删除，不再展示 `Strategy and narrative / Distribution / Ecosystem` 三个平级服务支柱。
 
-**现在的问题**
+原因不是这些能力不重要，而是它们已经被 Approach 四步覆盖：
 
-这是整页密度最失控的地方：**437 词**，6 个服务块，每块 = 一段 blockquote 引言 + 3 个 pillar 卡片，每个 pillar 里再嵌 3-4 条 bullet。一共 22 条 bullet、7 个 `detail-list`。
+| 原服务支柱 | 现在落到哪里 |
+|---|---|
+| Strategy and narrative | Approach 第 1 步：市场进入、定位与叙事 |
+| Distribution | Approach 第 2–3 步：KOL 网络与全球媒体分发 |
+| Ecosystem | Approach 第 4 步：产品、社区反馈与持续增长 |
 
-这是一份 PPT 被原样贴进了网页。
-
-**改成什么**
-
-**左轨 + 右滚动**（sticky rail）：
-
-- 左侧 400px 固定：三个服务支柱 **Strategy and narrative / Distribution / Ecosystem**，33px，当前项亮起并带主色左边线，跟随右侧滚动切换。
-- 右侧：当前支柱下的 2 个子服务，每个 = 标题 + **一句话**（不超过 22 词）+ 一行 chip 能力标签 + 右上角一个等宽字证据点（如 `100+ engagements`、`500K+ views, one interview`）。
-- 底部接一张真实活动图收尾。
-- 总词数从 437 压到 **约 140**。
-
-**为什么**
-
-- **6 个平级服务块 = 没有服务重点。** 收成 3 个支柱后，访客能记住的东西从 0 个变成 3 个。
-- **bullet 列表是最懒的信息组织方式。** 22 条 bullet 没人会读。chip 标签能承载同样的关键词（对 SEO 也一样有效），但视觉成本只有五分之一。
-- **左轨解决的是"深度"和"简洁"的矛盾**：内容还在，但一次只暴露一屏的量。这正是 Stripe 处理复杂产品线的做法。
-- 每个子服务右上角挂一个真实数字，让服务描述不再是空承诺。
-
-**参考**：**Stripe**（复杂服务的渐进披露：左轨 + 右滚动）、**NoGood**（六项服务各配一句话 + 一个 CTA，绝不展开成 PPT）、**Superside**（用交付物本身当视觉素材）。
+独立整屏会让访客连续两次阅读同一套能力，只是换了一组名词。删除后，`Approach` 负责解释怎么做，`Work` 负责证明做出了什么，职责更清楚。
 
 ---
 
-## 8. Global Reach 全球版图
+## 8. Team 团队
 
-![Global Reach](img/06-map.png)
-
-**现在的问题**（这是你们文档里点名要改的）
-
-![现状地图](img/before-map.png)
-
-现在是一个 canvas 画的绿点连线图：对比度极低（在正常亮度屏幕上几乎看不见）、连线是纯装饰、下面挂一排图例（Hub offices / Active markets / Network links）。**它是一张为了有地图而存在的地图。**
-
-**改成什么**
-
-参考你们指定的 shopify.com/jp，核心不是"画一张更好看的地图"，而是 **在地图上叠真实业务对象**：
-
-- 底图换成**点阵世界地图**（世界地图 SVG 做 mask，7.5px 点距的径向渐变做填充），中性灰 34% 不透明度。
-- **只有 3 个 hub 用主色**：San Francisco / Seoul / Singapore，带 5px 主色光环。
-- 叠 **2 张证据卡**，锚定在对应区域：一张媒体投放（`"The infrastructure layer nobody was watching" / 30+ outlets`），一张创作者活动（`Technical explainer series, 42 creators briefed / 100M+ impressions`）。这就是 Shopify 在地图上叠结账 UI 的同一手法。
-- 底部图例改成**可交互的市场 chip 行**，hover 时高亮地图对应区域。
-
-**为什么**
-
-- 一张没有信息的地图只是装饰。**Shopify 那张地图之所以有说服力，是因为上面有真实的商品卡、货币和结账流程**，地图只是舞台。
-- 3 个 hub 用主色、其余全中性，是让"全球覆盖"这件事在 0.5 秒内可读的唯一方法。现状里绿点绿线满屏，等于没有重点。
-- 用 CSS mask 做点阵，比 canvas 逐帧绘制**省掉一整个 requestAnimationFrame 循环**，移动端不掉帧。
-
-**参考**：shopify.com/jp（地图叠真实业务对象，你们自己的参考）、Stripe global、Cloudflare network map。
-
----
-
-## 9. Studio 团队
-
-![Studio](img/07-studio.png)
+![Team](img/07-studio.png)
 
 **现在的问题**
 
@@ -702,20 +640,53 @@ B2B 买家的判断顺序是固定的两步：**先看"这家懂不懂我的问�
 
 **改成什么**
 
-- 左侧：一句 40px 的**主张式引言**（`Complex technology only wins when the market can repeat the story back.`），署名 `Evie / Founder, JE Labs`，下面一行等宽字压缩全部履历：`NUS / DELOITTE CONSULTING / OKX WALLET`。
-- 右侧：**创始人肖像**（示例图中标注为待补素材，含拍摄规格）。
-- 底部一行：4 位团队成员的头像 + 姓名 + 职位，竖线分栏，hover 出社交链接。
-- 删掉 3 个创始人数据块（10M+ / 20+ / 1M+）。它们和第 4 节的信任带重复。
+- 增加与 Approach / Work 一致的 `TEAM` 文字标签。
+- 区块标题使用 `One team, close to every engagement`，桌面端保持一行且不使用结尾标点；删除标题下方的解释段落。
+- Founder 成为独立的全宽主区域：左侧使用已提供的 Evie 真人照片，右侧展示姓名、职位、职责说明和 3 条履历（NUS / Deloitte Consulting / OKX Wallet）；履历项只展示对应机构的官方标识，不在图标后重复机构名称。
+- Core team 下沉为 Founder 下方的一条横向成员带，4 位成员在桌面端一行展示，不再占据 Founder 右侧整块空间。
+- 成员卡只保留头像、姓名和职位，作为 Founder 主区域之后的辅助团队证明。
+- 不再增加 About 区块。首屏和方法论已经把“我们是谁、做什么、怎么做”说清楚；这里专注回答“是谁在做”。
 
 **为什么**
 
-- **人比履历表有说服力。** 三个学历块的信息量，一行等宽小字就装得下，省下来的空间给一张真人照片，可信度是净增的。
-- 引言从"营销话术"（`Transforming complex technologies into market-dominating narratives`）改成一句**有观点的判断**，这是机构站建立专业感的标准做法。
+- 原来的 `Complex technology only wins...` 是品牌观点，不是团队介绍。它放在 Team 区块会让访客再次读到方法论，却仍不知道团队如何协作。
+- Founder 是最重要的信任主体，因此照片和履历必须拥有独立区域，不能与普通成员卡使用同一视觉权重。
+- Core team 的任务只是说明执行团队构成。一行展示既能保留所有人，也不会削弱 Founder 的层级。
 - 数据不要在页面上出现两次。
 
-**⚠ 素材缺口**：**创始人肖像照，1200×1500，自然光，低饱和，不要影棚背景纸。** 这是整个改版里优先级最高的一张素材。
-
 **参考**：**Instrument**（人物影像的处理方式）、**DEPT**（Webby 2024/2025 年度网络，大机构如何用少量人物撑起专业感）、Work & Co 的团队页。
+
+---
+
+## 9. Global Reach 全球版图
+
+![Global Reach](img/06-map.png)
+
+**顺序调整**
+
+团队先于运营范围出现。先让访客知道是谁在负责这些市场，再展示覆盖范围，叙事会从“人和能力”自然推进到“全球执行网络”；地图不再抢在信任主体之前出现。
+
+**现在的问题**
+
+![现状地图](img/before-map.png)
+
+现在是一个 canvas 画的绿点连线图：对比度极低、连线是纯装饰、下面挂一排图例（Hub offices / Active markets / Network links）。**它是一张为了有地图而存在的地图。**
+
+**改成什么**
+
+- 小标签使用 `Where we operate`，不再做成看起来可点击但没有去向的文字链接。
+- 标题改为 `Three hubs. Active across 15+ markets`，让 hub 数和市场覆盖的关系更准确。
+- 底图换成点阵世界地图；只有 San Francisco / Seoul / Singapore 三个 hub 用主色。
+- 叠两张真实执行证据卡，把全球覆盖从装饰地图变成业务证明。
+- 底部市场 chip 在 hover 时高亮对应区域。
+
+**为什么**
+
+- 一张没有信息的地图只是装饰。真实的媒体、创作者和市场对象才是地图上的证据。
+- 3 个 hub 用主色、其余全中性，让“团队坐标”和“运营覆盖”在 0.5 秒内可读。
+- 用 CSS mask 做点阵，比 canvas 逐帧绘制少一个持续动画循环，移动端更稳。
+
+**参考**：shopify.com/jp（地图叠真实业务对象）、Stripe global、Cloudflare network map。
 
 ---
 
@@ -732,7 +703,7 @@ B2B 买家的判断顺序是固定的两步：**先看"这家懂不懂我的问�
 - **5 条压到 3 条**，右上角 `All insights` 链接兜住其余。
 - 左侧 featured 占 1.35 份宽度，用**巨型半透明数字 `2026` 做版式底纹**（不是图片，是排版元素），标题 + 两行摘要。
 - 右侧两条走**极简列表**：等宽分类标签 + 标题，只用 1px 细线分隔，没有卡片、没有摘要。
-- 标题重写得更短更有观点（`From SEO to GEO: occupying model mindshare.`）。
+- 标题重写得更短更有观点（`From SEO to GEO: occupying model mindshare`）。
 
 **为什么**
 
@@ -754,7 +725,7 @@ B2B 买家的判断顺序是固定的两步：**先看"这家懂不懂我的问�
 
 **改成什么**
 
-- **结尾 CTA 满宽居中**：一句 62px 的收束句 `Tell us the market you have not won yet.`（回扣首屏文案，形成闭环）+ 唯一主 CTA + 一行联系方式（邮箱 / Telegram / **回复时效 under 24h**）。光标光晕在这一屏再次生效。
+- **结尾 CTA 满宽居中**：一句 62px 的收束句 `Tell us the market you have not won yet`（回扣首屏文案，形成闭环）+ 唯一主 CTA + 一行联系方式（邮箱 / Telegram / **回复时效 under 24h**）。光标光晕在这一屏再次生效。
 - **真页脚**：4 栏（品牌简介 / Company / Answers / Elsewhere）。**Answers 一栏就是原来的 FAQ**，5 个问题变成 5 个页脚链接，`schema.org/FAQPage` 标记原样保留在折叠区里。
 
 **为什么**
@@ -780,7 +751,7 @@ B2B 买家的判断顺序是固定的两步：**先看"这家懂不懂我的问�
 | ------------- | ---------------------------------- |
 | 首屏左右分栏        | 图在上（216px 高）+ 文在下，标题降到 37px，CTA 满宽 |
 | Work hover 揭图 | hover 不存在，缩略图**常驻**在每行标题下          |
-| Services 左轨   | 降级为手风琴，默认展开第一项                     |
+| Approach sticky 叙事 | 四步纵向排列，图片跟随各自步骤常驻                  |
 | 地图 + 证据卡      | 地图横向可拖，证据卡改成地图下方的堆叠卡               |
 | 团队 4 栏        | 2×2 网格                             |
 
@@ -822,42 +793,36 @@ B2B 买家的判断顺序是固定的两步：**先看"这家懂不懂我的问�
 | Hero           | 27（5 段）   | **30（4 段）** | 段落数 -20%      |
 | 信任带            | 40        | **20**      | -50%          |
 | Work 案例        | 195       | **40**      | **-79%**      |
-| 证言 + 媒体覆盖      | 0         | **55**      | 新增区块          |
-| Services       | 437       | **140**     | **-68%**      |
-| Studio / 团队    | 87+120    | **35**      | **-83%**      |
+| Approach（含原 Services 有效信息） | 549 | **140** | **-74%** |
+| Team           | 87+120    | **35**      | **-83%**      |
 | 全球版图           | 13        | **40**      | +（现在太少，需要证据卡） |
 | Insights       | 144       | **60**      | -58%          |
 | 结尾 CTA         | 48        | **25**      | -48%          |
 | FAQ            | 324       | **324（不动）** | SEO 资产        |
-| **合计（不含 FAQ）** | **1,287** | **约 445**   | **-65%**      |
+| **合计（不含 FAQ）** | **1,287** | **约 390**   | **-70%**      |
 
 
-页面高度：**14,272px → 7,572px（-47%）**。后一个数字不是估算，是把 `mock/full-page.html` 拼起来量出来的。
+页面从 12 个内容区块收成 **8 个内容区块**。最终生产页高度以真实素材和响应式实现完成后的实测为准，不再用旧 Services 整屏版本的高度作为目标。
 
 ---
 
 ## 15. 信息架构对照
 
 
-| #   | 现状顺序               | 新顺序                   | 变动                   |
-| --- | ------------------ | --------------------- | -------------------- |
-| 1   | Hero               | Hero                  | 重写                   |
-| 2   | Stats strip        | 客户 logo 墙 + 数字        | 加 logo 墙             |
-| 3   | Studio / manifesto | **Work 案例索引**         | **从第 9 位前移**         |
-| 4   | Approach（4 步）      | Services（3 支柱）        | Approach 并入 Services |
-| 5   | Leadership         | Global Reach          |                      |
-| 6   | Services（6 块）      | Studio（含 Approach 观点） | 合并                   |
-| 7   | 两张配图               | Insights              | 配图并入各区块              |
-| 8   | Global Reach       | FAQ（页脚折叠）             | 下沉                   |
-| 9   | **Proof（案例）**      | 结尾 CTA + 页脚           |                      |
-| 10  | Insights           |                       |                      |
-| 11  | FAQ                |                       |                      |
-| 12  | Contact            |                       |                      |
+| # | 新顺序 | 导航/锚点 | 任务 |
+|---|---|---|---|
+| 1 | Hero | `#top` | 身份、主张、CTA |
+| 2 | 客户 logo 墙 | — | 快速资格证明 |
+| 3 | Approach | `#approach` | 四步方法，同时承接原 Services 的有效能力信息 |
+| 4 | Work | `#work` | 案例、结果与聚合数字 |
+| 5 | Team | `#team` | 先介绍实际执行这些工作的团队 |
+| 6 | Global Reach | `#locations` | 再展示三大 hub 与 15+ 市场覆盖 |
+| 7 | Insights | `#insights` | 展示判断力与观点 |
+| 8 | 结尾 CTA + Footer | `#contact` | 转化与 FAQ/站内链接 |
 
+12 个区块 → **8 个**。新顺序：Hero → logo 墙 → Approach → Work → **Team → Global Reach** → Insights → 结尾。
 
-12 个区块 → **9 个**。新顺序：Hero → **logo 墙** → **方法论** → **案例 + 聚合数字** → Services → 全球版图 → Studio → Insights → 结尾。
-
-先说身份，再说怎么做，再给做出来的数字，最后才展开具体能力。
+这条顺序先回答“我们是谁、怎么做、做出过什么”，再回答“谁在做、在哪里做”。`What we run`、About 和独立 Contact 区块都不再重复占一屏。
 
 ---
 
@@ -868,12 +833,10 @@ B2B 买家的判断顺序是固定的两步：**先看"这家懂不懂我的问�
 
 | 优先级    | 素材            | 规格                                | 用在哪                  |
 | ------ | ------------- | --------------------------------- | -------------------- |
-| **P0** | 创始人肖像         | 1200×1500，自然光，低饱和，无影棚背景纸          | Studio               |
-| **P0** | 3 条客户证言       | 真名 + 职位 + 公司 + 书面授权，每条落在一个具体结果上   | 证言区块                 |
 | **P0** | 3 张案例图        | 1600×1000，每客户一张                   | Work 索引 hover        |
 | **P1** | 首屏主图无水印版      | 现有 `developer-activation` 右下有百度水印 | Hero                 |
 | **P1** | PublicAI logo | SVG                               | 信任带（现在只能用文字代替）       |
-| **P2** | 2-3 张现场补充图    | 1600×1000                         | Services 收尾、Insights |
+| **P2** | 2-3 张现场补充图    | 1600×1000                         | Approach、Insights |
 
 
 **不要用图库图。** 你们做的是真实活动、真实投放，实拍照片的可信度是图库图给不了的。
@@ -885,7 +848,7 @@ B2B 买家的判断顺序是固定的两步：**先看"这家懂不懂我的问�
 改版最大的风险不在视觉，在这里。以下**一律不动**：
 
 1. **URL 和路由**：单页站，只有 `/`，不动。
-2. **锚点 ID**：`#studio` `#approach` `#leadership` `#capabilities` `#proof` `#insights` `#faq` `#contact` 全部保留，即使导航 label 改了。
+2. **新锚点 ID**：导航固定使用 `#work` `#approach` `#team` `#insights` `#contact`；运营范围使用 `#locations`。旧的 `#proof` `#studio` `#leadership` `#capabilities` `#faq` 在生产实现中保留兼容定位。
 3. **FAQ 结构化数据**：`schema.org/FAQPage` 的全部 `itemprop` 标记原样搬运。
 4. `**llms.txt` / `sitemap.xml` / `robots.txt`**：同步更新区块名称。
 5. **meta title / description / OG**：不在本次改版范围内，除非单独评审。
@@ -916,8 +879,8 @@ B2B 买家的判断顺序是固定的两步：**先看"这家懂不懂我的问�
 | **1** | 接入品牌核：字体换 Inter、主色统一 `#06f5b7`、灰阶换 `surface-`*、去外发光、圆角统一 12/8/6、补齐对比度与 12px 底线、区块留白 160 | 低   | 高   |
 | **2** | 文案裁剪：按第 14 节的预算表砍到 390 词，暂不动结构                                                          | 低   | 高   |
 | **3** | Header + Hero 重构                                                                        | 中   | 最高  |
-| **4** | Work 前移 + 索引化；Services 收成 3 支柱左轨                                                        | 中   | 高   |
-| **5** | 地图重做、Studio 重组、Insights 压缩、页脚重建、**新增证言区块**（等证言采集齐）                                      | 中   | 高   |
+| **4** | Approach 与原 Services 合并；删除 `What we run` 整屏；Work 前移并索引化                                   | 中   | 高   |
+| **5** | Team 重组并前置到地图之前；地图重做、Insights 压缩、页脚重建                                                   | 中   | 高   |
 | **6** | 动效层：滚动揭示、hover 揭图、光标光晕、视差                                                               | 低   | 中   |
 
 
@@ -949,9 +912,9 @@ artifacts/homepage-redesign-v2/
 │   ├── 00-system.png  ~  10-mobile.png
 │   └── before-*.png            ← 现状对照
 ├── mock/
-│   ├── full-page.html          ← 【总览】9 个区块拼成的完整首页，浏览器直接打开
+│   ├── full-page.html          ← 【总览】8 个区块拼成的完整首页，浏览器直接打开
 │   ├── base.css                ← 设计系统 token（= WeLike 品牌核）
-│   └── 00 ~ 11 .html           ← 分区块源文件，可直接改
+│   └── 分区块 .html             ← 分区块源文件；05-services 已删除
 ├── render.sh                   ← 重渲某个区块图: ./render.sh 02-hero 900
 └── build-full.py               ← 改完分区块后重新拼总览页: python3 build-full.py
 ```
@@ -962,4 +925,4 @@ artifacts/homepage-redesign-v2/
 open /Users/zheng/Documents/GitHub/JE/artifacts/homepage-redesign-v2/mock/full-page.html
 ```
 
-按 1440px 宽设计，窗口拉到 1440 以上看最准。可交互的部分：导航吸顶、Work 三行 hover 出图、Services 左轨吸附滚动。页面底部有一条 `APPENDIX` 分隔线，线以下是设计系统、Header 对照和移动端稿，**不属于首页内容**。
+按 1440px 宽设计，窗口拉到 1440 以上看最准。可交互的部分：导航吸顶、Approach 滚动叙事、Work 三行 hover 出图。页面底部有一条 `APPENDIX` 分隔线，线以下是设计系统、Header 对照和移动端稿，**不属于首页内容**。

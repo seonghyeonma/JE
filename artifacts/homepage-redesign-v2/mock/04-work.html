@@ -108,21 +108,35 @@
   }
   /* the aggregate row summarises the three cases above it */
   .total {
-    margin-top: 56px;
-    padding-top: 34px;
-    border-top: 1px solid var(--line-strong);
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    gap: 64px;
+    margin-top: 72px;
+    padding: 46px 48px 48px;
+    border: 1px solid var(--line);
+    border-radius: var(--r-surface);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.012));
+  }
+  .total h3 {
+    max-width: 10ch;
+    margin: 0;
+    font-size: 27px;
+    line-height: 1.18;
+    letter-spacing: -0.025em;
+    font-weight: 500;
+    color: var(--text-2);
   }
   .total .row {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 34px;
-    margin-top: 24px;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 64px;
+    row-gap: 42px;
   }
   .total .row div strong {
     display: block;
     font-family: var(--mono);
     font-weight: 500;
-    font-size: 44px;
+    font-size: 48px;
     line-height: 1;
     letter-spacing: -0.025em;
     color: var(--text);
@@ -143,16 +157,28 @@
     margin-top: 9px;
     max-width: 20ch;
   }
+  @media (max-width: 800px) {
+    .case,
+    .total {
+      grid-template-columns: 1fr;
+    }
+    .total {
+      gap: 36px;
+      padding: 32px;
+    }
+    .total h3 {
+      max-width: 18ch;
+    }
+  }
 </style>
 <div class="frame">
-  <div class="caption">Work / 案例（每个都带三个数字，紧跟方法论之后）</div>
+  <div class="caption">Work / 案例（每个都带三个数字）</div>
   <div class="wrap" style="padding-top: 76px; padding-bottom: 84px">
     <div class="head">
       <div>
-        <p class="label">Results</p>
-        <h2 class="d2" style="margin: 18px 0 0">What the system produced.</h2>
+        <p class="label">Work</p>
+        <h2 class="d2" style="margin: 18px 0 0">What the system produced</h2>
       </div>
-      <a class="btn btn--text" style="margin-bottom: 8px">All case studies</a>
     </div>
 
     <div class="cases">
@@ -232,7 +258,7 @@
     </div>
 
       <div class="total">
-        <p class="label">Across every engagement to date</p>
+        <h3>Across every engagement to date</h3>
         <div class="row">
           <div><strong>100+</strong><span>high-tech engagements delivered</span></div>
           <div><strong>100M+</strong><span>technical impressions generated</span></div>

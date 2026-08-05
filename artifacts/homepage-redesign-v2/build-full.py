@@ -13,8 +13,16 @@ import pathlib
 HERE = pathlib.Path(__file__).parent
 MOCK = HERE / "mock"
 
-PAGE = ["02-hero", "03-proof", "12-approach", "04-work", "05-services",
-        "06-map", "07-studio", "08-insights", "09-close"]
+PAGE = [
+    ("02-hero", "top"),
+    ("03-proof", "proof"),
+    ("12-approach", "approach"),
+    ("04-work", "work"),
+    ("07-studio", "team"),
+    ("06-map", "locations"),
+    ("08-insights", "insights"),
+    ("09-close", "contact"),
+]
 APPENDIX = [("00-system", "设计系统基线"),
             ("01-header", "Header 现状与提案对照"),
             ("10-mobile", "移动端 390px")]
@@ -102,8 +110,7 @@ def load(name: str):
 
 parts_css, parts_html = [], []
 
-for i, name in enumerate(PAGE):
-    sid = f"s{i}-{name.split('-', 1)[1]}"
+for name, sid in PAGE:
     css, body = load(name)
     parts_css.append(f"/* ---- {name} ---- */\n" + scope_css(css, sid))
     parts_html.append(f'<div id="{sid}" class="pagesec">{body}\n</div>')
@@ -124,17 +131,17 @@ html = f"""<!doctype html>
 <style>
   html {{ scroll-behavior: smooth; }}
   body {{ overflow-x: auto; }}
-  .page {{ width: 1440px; margin: 0 auto; }}
+  .page {{ width: 100%; margin: 0; }}
   .pagesec {{ position: relative; }}
   /* the header lives inside the hero section; make it behave like a real one */
-  #s0-hero .bar {{
+  #top .bar {{
     position: sticky;
     top: 0;
     z-index: 40;
     background: rgba(10, 10, 10, 0.82);
     backdrop-filter: blur(14px);
   }}
-  #s0-hero {{ z-index: 40; }}
+  #top {{ z-index: 40; }}
   .apxdiv {{
     margin: 120px 0 0;
     padding: 26px 48px;

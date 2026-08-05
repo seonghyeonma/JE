@@ -5,17 +5,17 @@
 <style>
   html { scroll-behavior: smooth; }
   body { overflow-x: auto; }
-  .page { width: 1440px; margin: 0 auto; }
+  .page { width: 100%; margin: 0; }
   .pagesec { position: relative; }
   /* the header lives inside the hero section; make it behave like a real one */
-  #s0-hero .bar {
+  #top .bar {
     position: sticky;
     top: 0;
     z-index: 40;
     background: rgba(10, 10, 10, 0.82);
     backdrop-filter: blur(14px);
   }
-  #s0-hero { z-index: 40; }
+  #top { z-index: 40; }
   .apxdiv {
     margin: 120px 0 0;
     padding: 26px 48px;
@@ -38,23 +38,31 @@
     padding: 0 48px;
   }
 /* ---- 02-hero ---- */
-#s0-hero .bar {
+#top .bar {
+    position: relative;
+    z-index: 4;
+    height: 64px;
+    border-bottom: 1px solid var(--line);
+  }
+#top .bar-inner {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 48px;
-    height: 64px;
-    border-bottom: 1px solid var(--line);
-    position: relative;
-    z-index: 4;
+    width: min(1280px, calc(100% - 96px));
+    height: 100%;
+    margin: 0 auto;
   }
-#s0-hero .nav {
+#top .nav {
     display: flex;
     gap: 34px;
     font-size: 14.5px;
     color: var(--text-2);
   }
-#s0-hero .brand {
+#top .nav a, #top .brand {
+    color: inherit;
+    text-decoration: none;
+  }
+#top .brand {
     display: flex;
     align-items: center;
     gap: 9px;
@@ -62,131 +70,175 @@
     font-weight: 500;
     letter-spacing: -0.02em;
   }
-#s0-hero .dot {
+#top .dot {
     width: 17px;
     height: 17px;
     border-radius: 5px;
     background: var(--accent);
   }
-#s0-hero .hero {
+#top .hero {
     position: relative;
     height: 772px;
-  }
-#s0-hero /* the panel runs past the fold and is masked to transparent at the bottom, #s0-hero so there is no edge to see. No border radius: a rounded corner is what
-     makes it read as a floating card instead of a bleed. */
-  .media {
-    position: absolute;
-    right: 0;
-    top: -64px;
-    width: 660px;
-    height: 1000px;
     overflow: hidden;
-    -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 58%, rgba(0, 0, 0, 0.35) 82%, transparent 97%);
-    mask-image: linear-gradient(180deg, #000 0%, #000 58%, rgba(0, 0, 0, 0.35) 82%, transparent 97%);
   }
-#s0-hero .media img {
+#top .media {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+#top .media img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: 46% 34%;
-    filter: saturate(0.3) contrast(1.05) brightness(0.55);
+    object-position: 50% 50%;
+    filter: saturate(0.78) contrast(1.03) brightness(0.86);
   }
-#s0-hero /* left edge fades into the page instead of cutting on a vertical seam */
-  .media::after {
+#top .media::after {
     content: "";
     position: absolute;
     inset: 0;
-    background: linear-gradient(94deg, #0a0a0a 0%, rgba(10, 10, 10, 0.72) 26%, rgba(10, 10, 10, 0.12) 68%, transparent 100%);
+    background: linear-gradient(
+      180deg,
+      rgba(10, 10, 10, 0.04) 0%,
+      rgba(10, 10, 10, 0.1) 52%,
+      rgba(10, 10, 10, 0.44) 100%
+    );
   }
-#s0-hero .glow {
-    position: absolute;
-    width: 700px;
-    height: 700px;
-    left: 130px;
-    top: 150px;
-    background: radial-gradient(circle, rgba(6, 245, 183, 0.1), transparent 62%);
+#top .glow {
+    display: none;
   }
-#s0-hero .copy {
+#top .copy {
     position: absolute;
-    left: 80px;
-    top: 190px;
-    width: 700px;
+    left: 50%;
+    top: 47%;
+    width: min(920px, calc(100% - 160px));
+    text-align: center;
+    transform: translate(-50%, -50%);
     z-index: 3;
   }
-#s0-hero .cta {
+#top .copy .d1 {
+    max-width: 920px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+#top .copy .d1 span {
+    display: block;
+    white-space: nowrap;
+  }
+#top .copy .lead {
+    margin-left: auto;
+    margin-right: auto;
+  }
+#top .cta {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 32px;
     margin-top: 44px;
   }
+@media (max-width: 900px) {
+#top .bar-inner {
+      width: calc(100% - 40px);
+    }
+#top .nav {
+      display: none;
+    }
+#top .hero {
+      min-height: 700px;
+      height: calc(100dvh - 64px);
+    }
+#top .copy {
+      width: calc(100% - 40px);
+    }
+#top .copy .d1 {
+      font-size: 48px !important;
+    }
+#top .copy .d1 span {
+      white-space: normal;
+    }
+}
 /* ---- 03-proof ---- */
-#s1-proof .logos {
+#proof .logos {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 0;
   }
-#s1-proof .logos img {
+#proof .logos img {
     height: 30px;
     opacity: 0.62;
     filter: grayscale(1) brightness(2.4);
   }
-#s1-proof .logos .word {
+#proof .logos .word {
     font-size: 23px;
     letter-spacing: -0.02em;
     font-weight: 500;
     color: rgba(237, 239, 238, 0.62);
   }
-#s1-proof .nums {
+#proof .nums {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     border-top: 1px solid var(--line);
   }
-#s1-proof .nums > div {
+#proof .nums > div {
     padding: 44px 34px 46px 0;
   }
-#s1-proof .nums > div + div {
+#proof .nums > div + div {
     border-left: 1px solid var(--line);
     padding-left: 34px;
   }
-#s1-proof .nums p.small {
+#proof .nums p.small {
     margin-top: 12px;
     max-width: 22ch;
   }
 /* ---- 12-approach ---- */
-#s2-approach .frame {
+#approach .frame {
     overflow: visible;
   }
-#s2-approach .head {
-    max-width: 66ch;
+#approach .head {
+    max-width: 820px;
+    margin: 0 auto;
+    text-align: center;
   }
-#s2-approach .sequence {
+#approach .head .d2, #approach .head .lead {
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+#approach .sequence {
     margin-top: 76px;
     display: grid;
-    grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
-    gap: 96px;
+    grid-template-columns: minmax(0, 0.84fr) minmax(0, 1.16fr);
+    grid-template-areas: "steps visual";
+    gap: 104px;
     align-items: start;
   }
-#s2-approach .ph {
+#approach .steps {
+    grid-area: steps;
+  }
+#approach .ph {
     position: relative;
-    min-height: 430px;
+    min-height: 390px;
     display: flex;
     align-items: center;
     border-top: 1px solid var(--line);
-    opacity: 0.58;
+    opacity: 0.74;
     transition: opacity 420ms cubic-bezier(0.16, 1, 0.3, 1);
   }
-#s2-approach .ph:last-child {
+#approach .ph:last-child {
     border-bottom: 1px solid var(--line);
   }
-#s2-approach .ph.is-active {
+#approach .ph.is-active {
     opacity: 1;
   }
-#s2-approach .ph-inner {
-    max-width: 410px;
-    padding: 72px 24px 72px 0;
+#approach .ph-inner {
+    max-width: 430px;
+    padding: 64px 28px 64px 0;
   }
-#s2-approach .ph .scope {
+#approach .ph .scope {
     font-family: var(--mono);
     font-size: 12px;
     line-height: 1.4;
@@ -196,37 +248,38 @@
     margin: 0 0 18px;
     transition: color 420ms cubic-bezier(0.16, 1, 0.3, 1);
   }
-#s2-approach .ph.is-active .scope {
+#approach .ph.is-active .scope {
     color: var(--accent);
   }
-#s2-approach .ph h3 {
+#approach .ph h3 {
     font-size: 34px;
     line-height: 1.12;
     letter-spacing: -0.025em;
     font-weight: 600;
     margin: 0 0 20px;
   }
-#s2-approach .ph p {
+#approach .ph p {
     font-size: 16px;
     line-height: 1.6;
     color: var(--text-2);
     margin: 0;
   }
-#s2-approach .ph-media {
+#approach .ph-media {
     display: none;
   }
-#s2-approach .visual-stage {
+#approach .visual-stage {
+    grid-area: visual;
     position: sticky;
     top: 82px;
-    width: min(100%, 560px);
-    height: 650px;
-    margin-left: auto;
+    width: 100%;
+    height: 720px;
+    margin: 0;
     overflow: hidden;
     border: 1px solid var(--line);
     border-radius: var(--r-surface);
     background: var(--ink-raise);
   }
-#s2-approach .visual-frame {
+#approach .visual-frame {
     position: absolute;
     inset: 0;
     margin: 0;
@@ -236,26 +289,26 @@
       transform 760ms cubic-bezier(0.16, 1, 0.3, 1);
     pointer-events: none;
   }
-#s2-approach .visual-frame.is-active {
+#approach .visual-frame.is-active {
     opacity: 1;
     transform: scale(1);
     pointer-events: auto;
   }
-#s2-approach .visual-frame img, #s2-approach .ph-media img {
+#approach .visual-frame img, #approach .ph-media img {
     display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
     filter: saturate(0.58) contrast(1.08) brightness(0.78);
   }
-#s2-approach .visual-frame::after, #s2-approach .ph-media::after {
+#approach .visual-frame::after, #approach .ph-media::after {
     content: "";
     position: absolute;
     inset: 0;
     background: linear-gradient(180deg, transparent 60%, rgba(10, 10, 10, 0.18));
     pointer-events: none;
   }
-#s2-approach .foot {
+#approach .foot {
     margin-top: 72px;
     padding-top: 26px;
     border-top: 1px solid var(--line);
@@ -264,39 +317,40 @@
     align-items: baseline;
     gap: 40px;
   }
-#s2-approach .foot p {
+#approach .foot p {
     margin: 0;
     font-size: 16px;
     color: var(--text-2);
     max-width: 62ch;
   }
-#s2-approach .foot b {
+#approach .foot b {
     color: var(--text);
     font-weight: 600;
   }
 @media (max-width: 767px) {
-#s2-approach .sequence {
+#approach .sequence {
       margin-top: 48px;
       grid-template-columns: 1fr;
+      grid-template-areas: "steps";
       gap: 0;
     }
-#s2-approach .ph {
+#approach .ph {
       min-height: 0;
       display: block;
       padding: 48px 0;
       opacity: 1;
     }
-#s2-approach .ph + .ph {
+#approach .ph + .ph {
       border-top: 1px solid var(--line);
     }
-#s2-approach .ph-inner {
+#approach .ph-inner {
       max-width: none;
       padding: 0;
     }
-#s2-approach .ph h3 {
+#approach .ph h3 {
       font-size: 29px;
     }
-#s2-approach .ph-media {
+#approach .ph-media {
       position: relative;
       display: block;
       height: 420px;
@@ -306,27 +360,27 @@
       border-radius: var(--r-surface);
       background: var(--ink-raise);
     }
-#s2-approach .visual-stage {
+#approach .visual-stage {
       display: none;
     }
-#s2-approach .foot {
+#approach .foot {
       align-items: flex-start;
       flex-direction: column;
     }
 }
 @media (prefers-reduced-motion: reduce) {
-#s2-approach .ph, #s2-approach .ph .scope, #s2-approach .visual-frame {
+#approach .ph, #approach .ph .scope, #approach .visual-frame {
       transition: none;
     }
 }
 /* ---- 04-work ---- */
-#s3-work .head {
+#work .head {
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
     padding-bottom: 46px;
   }
-#s3-work .case {
+#work .case {
     display: grid;
     grid-template-columns: 356px 1fr;
     gap: 52px;
@@ -335,34 +389,34 @@
     align-items: start;
     transition: opacity 260ms cubic-bezier(0.16, 1, 0.3, 1);
   }
-#s3-work .cases .case:last-child {
+#work .cases .case:last-child {
     border-bottom: 1px solid var(--line);
   }
-#s3-work .cases:hover .case {
+#work .cases:hover .case {
     opacity: 0.4;
   }
-#s3-work .cases .case:hover {
+#work .cases .case:hover {
     opacity: 1;
   }
-#s3-work .shot {
+#work .shot {
     position: relative;
     height: 232px;
     border-radius: var(--r-surface);
     overflow: hidden;
     background: var(--s900);
   }
-#s3-work .shot img {
+#work .shot img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     filter: saturate(0.32) brightness(0.62);
     transition: transform 620ms cubic-bezier(0.16, 1, 0.3, 1), filter 400ms;
   }
-#s3-work .case:hover .shot img {
+#work .case:hover .shot img {
     transform: scale(1.04);
     filter: saturate(0.5) brightness(0.8);
   }
-#s3-work /* the source photo carries a watermark in the lower right; crop it out */
+#work /* the source photo carries a watermark in the lower right; crop it out */
   .shot--crop img {
     position: absolute;
     width: 128%;
@@ -370,7 +424,7 @@
     left: -14%;
     top: -2%;
   }
-#s3-work .idx {
+#work .idx {
     position: absolute;
     left: 14px;
     top: 12px;
@@ -379,27 +433,27 @@
     letter-spacing: 0.1em;
     color: rgba(255, 255, 255, 0.66);
   }
-#s3-work .name {
+#work .name {
     font-size: 34px;
     letter-spacing: -0.028em;
     font-weight: 700;
     margin: 0;
     line-height: 1;
   }
-#s3-work .what {
+#work .what {
     font-size: 17px;
     line-height: 1.5;
     color: var(--text-2);
     margin: 14px 0 0;
     max-width: 56ch;
   }
-#s3-work .chips {
+#work .chips {
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
     margin-top: 20px;
   }
-#s3-work /* the three numbers are the point of the section */
+#work /* the three numbers are the point of the section */
   .nums {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -408,7 +462,7 @@
     padding-top: 24px;
     border-top: 1px solid var(--line);
   }
-#s3-work .nums div strong {
+#work .nums div strong {
     display: block;
     font-family: var(--mono);
     font-weight: 500;
@@ -417,7 +471,7 @@
     letter-spacing: -0.025em;
     color: var(--accent);
   }
-#s3-work /* not a number, #s3-work so it does not get the number treatment */
+#work /* not a number, #work so it does not get the number treatment */
   .nums div.qual strong {
     font-family: var(--sans);
     font-size: 25px;
@@ -425,28 +479,42 @@
     letter-spacing: -0.02em;
     color: var(--text-2);
   }
-#s3-work /* the aggregate row summarises the three cases above it */
+#work /* the aggregate row summarises the three cases above it */
   .total {
-    margin-top: 56px;
-    padding-top: 34px;
-    border-top: 1px solid var(--line-strong);
-  }
-#s3-work .total .row {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 34px;
-    margin-top: 24px;
+    grid-template-columns: 240px 1fr;
+    gap: 64px;
+    margin-top: 72px;
+    padding: 46px 48px 48px;
+    border: 1px solid var(--line);
+    border-radius: var(--r-surface);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.012));
   }
-#s3-work .total .row div strong {
+#work .total h3 {
+    max-width: 10ch;
+    margin: 0;
+    font-size: 27px;
+    line-height: 1.18;
+    letter-spacing: -0.025em;
+    font-weight: 500;
+    color: var(--text-2);
+  }
+#work .total .row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 64px;
+    row-gap: 42px;
+  }
+#work .total .row div strong {
     display: block;
     font-family: var(--mono);
     font-weight: 500;
-    font-size: 44px;
+    font-size: 48px;
     line-height: 1;
     letter-spacing: -0.025em;
     color: var(--text);
   }
-#s3-work .total .row div span {
+#work .total .row div span {
     display: block;
     font-size: 13.5px;
     line-height: 1.45;
@@ -454,7 +522,7 @@
     margin-top: 11px;
     max-width: 22ch;
   }
-#s3-work .nums div span {
+#work .nums div span {
     display: block;
     font-size: 13px;
     line-height: 1.45;
@@ -462,87 +530,201 @@
     margin-top: 9px;
     max-width: 20ch;
   }
-/* ---- 05-services ---- */
-#s4-services .split {
-    display: grid;
-    grid-template-columns: 400px 1fr;
-    gap: 90px;
-    align-items: start;
-  }
-#s4-services .rail {
-    position: sticky;
-    top: 120px;
-  }
-#s4-services .rail li {
-    list-style: none;
-    font-size: 33px;
-    letter-spacing: -0.025em;
-    font-weight: 500;
-    color: #525252;
-    padding: 15px 0 15px 22px;
-    border-left: 2px solid transparent;
-  }
-#s4-services .rail li.on {
-    color: var(--text);
-    border-left-color: var(--accent);
-  }
-#s4-services .rail ul {
-    margin: 26px 0 0;
-    padding: 0;
-  }
-#s4-services .panelrow {
-    display: grid;
-    gap: 18px;
-    padding: 30px 0;
-    border-top: 1px solid var(--line);
-  }
-#s4-services .panelrow:last-child {
-    border-bottom: 1px solid var(--line);
-  }
-#s4-services .prow-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    gap: 30px;
-  }
-#s4-services .chips {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-#s4-services .stat {
-    font-family: var(--mono);
-    font-size: 13px;
-    color: var(--accent);
+@media (max-width: 800px) {
+#work .case, #work .total {
+      grid-template-columns: 1fr;
+    }
+#work .total {
+      gap: 36px;
+      padding: 32px;
+    }
+#work .total h3 {
+      max-width: 18ch;
+    }
+}
+/* ---- 07-studio ---- */
+#team .team-head h2 {
+    margin-top: 18px;
     white-space: nowrap;
   }
-#s4-services .shot {
-    margin-top: 34px;
-    height: 196px;
-    border-radius: var(--r-surface);
+#team .founder {
+    display: grid;
+    grid-template-columns: 360px 1fr;
+    min-height: 480px;
+    margin-top: 54px;
     overflow: hidden;
     border: 1px solid var(--line);
+    border-radius: var(--r-surface);
+    background: linear-gradient(145deg, rgba(6, 245, 183, 0.05), rgba(255, 255, 255, 0.016) 58%);
   }
-#s4-services .shot img {
+#team .founder-photo {
+    min-height: 480px;
+    background: var(--ink-raise);
+  }
+#team .founder-photo img {
     width: 100%;
     height: 100%;
+    display: block;
     object-fit: cover;
-    filter: saturate(0.45) brightness(0.75);
+    object-position: center top;
+    filter: saturate(0.82) contrast(1.02);
   }
+#team .founder-copy {
+    padding: 44px 48px 40px;
+    display: flex;
+    flex-direction: column;
+  }
+#team .founder-copy h3 {
+    margin: 24px 0 0;
+    font-size: 58px;
+    line-height: 1;
+    letter-spacing: -0.045em;
+  }
+#team .founder-role {
+    margin: 12px 0 0;
+    font-size: 15px;
+    color: var(--accent);
+  }
+#team .founder-bio {
+    margin: 34px 0 0;
+    max-width: 47ch;
+    font-size: 18px;
+    line-height: 1.55;
+    color: var(--text-2);
+  }
+#team .credentials {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-top: auto;
+    padding-top: 30px;
+    border-top: 1px solid var(--line);
+  }
+#team .credential-name {
+    display: flex;
+    align-items: center;
+    min-height: 34px;
+  }
+#team .credential-logo {
+    width: 92px;
+    height: 32px;
+    flex: 0 0 auto;
+    display: block;
+    object-fit: contain;
+    object-position: left center;
+  }
+#team .credential-logo-nus {
+    width: 82px;
+  }
+#team .credential-logo-okx {
+    width: 76px;
+  }
+#team .credential span {
+    display: block;
+    margin-top: 10px;
+    font-size: 12.5px;
+    line-height: 1.45;
+    color: var(--text-3);
+    white-space: nowrap;
+  }
+#team .core-team {
+    display: grid;
+    grid-template-columns: 170px repeat(4, 1fr);
+    gap: 12px;
+    margin-top: 32px;
+    padding-top: 30px;
+    border-top: 1px solid var(--line);
+    align-items: stretch;
+  }
+#team .core-head {
+    padding: 0 18px 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+#team .core-head h3 {
+    margin: 0;
+    font-size: 22px;
+    line-height: 1.2;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+  }
+#team .member {
+    min-height: 104px;
+    padding: 16px;
+    border: 1px solid var(--line);
+    border-radius: var(--r-surface);
+    background: var(--ink-raise);
+    display: grid;
+    grid-template-columns: 68px 1fr;
+    gap: 14px;
+    align-items: center;
+  }
+#team .member img {
+    width: 68px;
+    height: 68px;
+    border-radius: 9px;
+    object-fit: cover;
+    filter: saturate(0.72) contrast(1.02);
+  }
+#team .member b {
+    display: block;
+    font-size: 16px;
+    line-height: 1.2;
+    font-weight: 500;
+    letter-spacing: -0.015em;
+  }
+#team .member em {
+    display: block;
+    margin-top: 6px;
+    font-style: normal;
+    font-size: 12.5px;
+    color: var(--text-3);
+  }
+@media (max-width: 900px) {
+#team .team-head h2 {
+      white-space: normal;
+    }
+#team .founder {
+      grid-template-columns: 1fr;
+    }
+#team .founder-photo {
+      min-height: 0;
+      height: 440px;
+    }
+#team .credentials {
+      margin-top: 48px;
+    }
+#team .core-team {
+      grid-template-columns: repeat(2, 1fr);
+    }
+#team .core-head {
+      grid-column: 1 / -1;
+    }
+}
+@media (max-width: 560px) {
+#team .founder-copy {
+      padding: 32px 28px;
+    }
+#team .credentials, #team .core-team {
+      grid-template-columns: 1fr;
+    }
+}
 /* ---- 06-map ---- */
-#s5-map .head {
+#locations .head {
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
     margin-bottom: 40px;
   }
-#s5-map .mapbox {
+#locations .mapbox {
     position: relative;
     width: 1184px;
     height: 470px;
     overflow: hidden;
   }
-#s5-map .dots {
+#locations .dots {
     position: absolute;
     left: 0;
     top: -22px;
@@ -557,24 +739,24 @@
     -webkit-mask-repeat: no-repeat;
     mask-repeat: no-repeat;
   }
-#s5-map .node, #s5-map .hub {
+#locations .node, #locations .hub {
     position: absolute;
     border-radius: 50%;
   }
-#s5-map .node {
+#locations .node {
     width: 5px;
     height: 5px;
     background: rgba(6, 245, 183, 0.6);
     margin: -2.5px 0 0 -2.5px;
   }
-#s5-map .hub {
+#locations .hub {
     width: 9px;
     height: 9px;
     background: var(--accent);
     margin: -4.5px 0 0 -4.5px;
     box-shadow: 0 0 0 5px rgba(6, 245, 183, 0.15);
   }
-#s5-map .hublab {
+#locations .hublab {
     position: absolute;
     font-family: var(--mono);
     font-size: 11.5px;
@@ -583,7 +765,7 @@
     transform: translate(14px, -7px);
     white-space: nowrap;
   }
-#s5-map .card {
+#locations .card {
     position: absolute;
     width: 272px;
     padding: 16px 18px;
@@ -591,13 +773,13 @@
     background: rgba(23, 23, 23, 0.95);
     border: 1px solid var(--line-strong);
   }
-#s5-map .card .t {
+#locations .card .t {
     font-size: 14.5px;
     line-height: 1.35;
     letter-spacing: -0.01em;
     margin: 0;
   }
-#s5-map .card .m {
+#locations .card .m {
     font-family: var(--mono);
     font-size: 11px;
     color: var(--text-3);
@@ -605,131 +787,43 @@
     text-transform: uppercase;
     margin: 0 0 9px;
   }
-#s5-map .card .n {
+#locations .card .n {
     font-family: var(--mono);
     font-size: 20px;
     color: var(--accent);
     margin: 12px 0 0;
   }
-#s5-map .rail {
+#locations .rail {
     display: flex;
     gap: 10px;
     margin-top: 30px;
     flex-wrap: wrap;
   }
-#s5-map .rail .chip.on {
+#locations .rail .chip.on {
     border-color: rgba(6, 245, 183, 0.42);
     color: var(--text);
   }
-#s5-map .rail .chip b {
+#locations .rail .chip b {
     font-family: var(--mono);
     font-weight: 400;
     font-size: 11px;
     color: var(--text-3);
     margin-left: 9px;
   }
-/* ---- 07-studio ---- */
-#s6-studio .top {
-    display: grid;
-    grid-template-columns: 1fr 388px;
-    gap: 72px;
-    align-items: end;
-  }
-#s6-studio .quote {
-    font-size: 40px;
-    line-height: 1.18;
-    letter-spacing: -0.028em;
-    font-weight: 400;
-    margin: 0;
-    max-width: 17ch;
-  }
-#s6-studio .by {
-    margin-top: 32px;
-    display: flex;
-    align-items: baseline;
-    gap: 14px;
-  }
-#s6-studio .by strong {
-    font-size: 17px;
-    font-weight: 500;
-  }
-#s6-studio .by span {
-    font-size: 14px;
-    color: var(--text-2);
-  }
-#s6-studio .cred {
-    font-family: var(--mono);
-    font-size: 12px;
-    letter-spacing: 0.1em;
-    color: var(--text-3);
-    margin-top: 14px;
-  }
-#s6-studio .portrait {
-    height: 424px;
-    border-radius: var(--r-surface);
-    border: 1px dashed rgba(255, 255, 255, 0.2);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    background: linear-gradient(180deg, #171717, #0b0d0f);
-  }
-#s6-studio .portrait p {
-    font-family: var(--mono);
-    font-size: 11.5px;
-    letter-spacing: 0.1em;
-    color: var(--text-3);
-    line-height: 1.9;
-  }
-#s6-studio .team {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 0;
-    margin-top: 82px;
-    border-top: 1px solid var(--line);
-  }
-#s6-studio .p {
-    padding: 30px 26px 34px 0;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-  }
-#s6-studio .p + .p {
-    border-left: 1px solid var(--line);
-    padding-left: 26px;
-  }
-#s6-studio .p img {
-    width: 52px;
-    height: 52px;
-    border-radius: 50%;
-    filter: grayscale(1) contrast(1.05);
-  }
-#s6-studio .p b {
-    display: block;
-    font-size: 16px;
-    font-weight: 500;
-  }
-#s6-studio .p em {
-    display: block;
-    font-style: normal;
-    font-size: 13px;
-    color: var(--text-3);
-    margin-top: 3px;
-  }
 /* ---- 08-insights ---- */
-#s7-insights .head {
+#insights .head {
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
     margin-bottom: 44px;
   }
-#s7-insights .bento {
+#insights .bento {
     display: grid;
     grid-template-columns: 1.35fr 1fr;
     gap: 20px;
     height: 388px;
   }
-#s7-insights .feat {
+#insights .feat {
     position: relative;
     border-radius: var(--r-surface);
     border: 1px solid var(--line);
@@ -742,7 +836,7 @@
     flex-direction: column;
     justify-content: space-between;
   }
-#s7-insights .feat .big {
+#insights .feat .big {
     position: absolute;
     right: 26px;
     bottom: -22px;
@@ -752,19 +846,19 @@
     color: rgba(6, 245, 183, 0.13);
     letter-spacing: -0.04em;
   }
-#s7-insights .stack {
+#insights .stack {
     display: grid;
     grid-template-rows: 1fr 1fr;
     gap: 20px;
   }
-#s7-insights .item {
+#insights .item {
     border-top: 1px solid var(--line);
     padding: 22px 4px 0;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
   }
-#s7-insights .meta {
+#insights .meta {
     display: flex;
     gap: 16px;
     align-items: center;
@@ -775,13 +869,13 @@
     color: var(--text-3);
   }
 /* ---- 09-close ---- */
-#s8-close .close {
+#contact .close {
     position: relative;
     padding: 118px 0 122px;
     text-align: center;
     overflow: hidden;
   }
-#s8-close .glow {
+#contact .glow {
     position: absolute;
     width: 900px;
     height: 620px;
@@ -791,7 +885,7 @@
     background: radial-gradient(ellipse at center, rgba(6, 245, 183, 0.13), transparent 62%);
     pointer-events: none;
   }
-#s8-close .close h2 {
+#contact .close h2 {
     position: relative;
     font-size: 60px;
     line-height: 1.05;
@@ -800,7 +894,7 @@
     margin: 0 auto;
     max-width: 17ch;
   }
-#s8-close .ways {
+#contact .ways {
     position: relative;
     display: flex;
     justify-content: center;
@@ -809,20 +903,20 @@
     font-size: 15px;
     color: var(--text-2);
   }
-#s8-close .ways b {
+#contact .ways b {
     color: var(--text);
     font-weight: 400;
   }
-#s8-close footer {
+#contact footer {
     border-top: 1px solid var(--line);
     padding: 54px 0 44px;
   }
-#s8-close .fgrid {
+#contact .fgrid {
     display: grid;
     grid-template-columns: 1.6fr 1fr 1fr 1fr;
     gap: 40px;
   }
-#s8-close .fgrid h4 {
+#contact .fgrid h4 {
     font-family: var(--mono);
     font-size: 11px;
     letter-spacing: 0.13em;
@@ -831,14 +925,14 @@
     margin: 0 0 16px;
     font-weight: 400;
   }
-#s8-close .fgrid a {
+#contact .fgrid a {
     display: block;
     font-size: 14.5px;
     color: var(--text-2);
     text-decoration: none;
     padding: 5px 0;
   }
-#s8-close .brand {
+#contact .brand {
     display: flex;
     align-items: center;
     gap: 9px;
@@ -846,13 +940,13 @@
     font-weight: 500;
     letter-spacing: -0.02em;
   }
-#s8-close .dot {
+#contact .dot {
     width: 17px;
     height: 17px;
     border-radius: 5px;
     background: var(--accent);
   }
-#s8-close .fbot {
+#contact .fbot {
     display: flex;
     justify-content: space-between;
     margin-top: 52px;
@@ -937,6 +1031,10 @@
     gap: 34px;
     font-size: 14.5px;
     color: var(--text-2);
+  }
+#apx-header .nav a, #apx-header .brand {
+    color: inherit;
+    text-decoration: none;
   }
 #apx-header .brand {
     display: flex;
@@ -1115,42 +1213,45 @@
 </style>
 
 <div class="page">
-<div id="s0-hero" class="pagesec">
+<div id="top" class="pagesec">
 
 
 
   <div class="bar">
-    <div class="brand"><span class="dot"></span>JE Labs</div>
-    <div class="nav">
-      <span style="color: var(--text)">Work</span><span>Services</span><span>Insights</span
-      ><span>Studio</span><span>Contact</span>
+    <div class="bar-inner">
+      <a class="brand" href="#top"><span class="dot"></span>JE Labs</a>
+      <nav class="nav" aria-label="Primary">
+        <a href="#approach">Approach</a><a href="#work">Work</a
+        ><a href="#team">Team</a><a href="#insights">Insights</a>
+      </nav>
+      <a class="btn btn--primary" href="#contact" style="height: 40px; font-size: 14px; padding: 0 20px"
+        >Start a conversation</a
+      >
     </div>
-    <a class="btn btn--primary" style="height: 40px; font-size: 14px; padding: 0 20px"
-      >Start a conversation</a
-    >
   </div>
 
   <div class="hero">
-    <div class="media"><img src="../img/assets/hero-western-audience.jpg" alt="" /></div>
+    <div class="media"><img src="../img/assets/hero-auditorium-fullbleed-v2.webp" alt="" /></div>
     <div class="glow"></div>
     <div class="copy">
       <p class="label" style="color: var(--accent)">Strategic growth partner for frontier tech builders</p>
       <h1 class="d1" style="font-size: 70px; margin-top: 28px">
-        Make the market want what you built.
+        <span>Make the market</span>
+        <span>want what you built</span>
       </h1>
       <p class="lead" style="margin-top: 30px; max-width: 44ch">
         We run market entry, narrative, global media, and KOL marketing for AI, crypto,
         and technology companies.
       </p>
       <div class="cta">
-        <a class="btn btn--primary">Start a conversation</a>
-        <a class="btn btn--text">See our results</a>
+        <a class="btn btn--primary" href="#contact">Start a conversation</a>
+        <a class="btn btn--text" href="#work">See our work</a>
       </div>
     </div>
   </div>
 
 </div>
-<div id="s1-proof" class="pagesec">
+<div id="proof" class="pagesec">
 
 
 
@@ -1166,15 +1267,15 @@
   </div>
 
 </div>
-<div id="s2-approach" class="pagesec">
+<div id="approach" class="pagesec">
 
 
 
   <div class="wrap" style="padding-top: 76px; padding-bottom: 80px">
     <div class="head">
-      <p class="label">How we work</p>
+      <p class="label">Approach</p>
       <h2 class="d2" style="margin: 18px 0 0; max-width: 18ch">
-        Turn strategy into market momentum.
+        Turn strategy into market momentum
       </h2>
       <p class="lead" style="margin-top: 22px; max-width: 62ch">
         One integrated engagement connects market-entry strategy and narrative design
@@ -1187,7 +1288,7 @@
         <div id="how-step-market-entry" class="ph is-active" data-step="0" aria-current="step">
           <div class="ph-inner">
             <p class="scope">Market entry</p>
-            <h3>Define the moat</h3>
+            <h3>Decide what the market remembers</h3>
             <p>
               Build the market-entry strategy, positioning, and narrative that turn
               technical advantage into an ownable category position.
@@ -1299,7 +1400,7 @@
         One operating system, delivered across <b>15+ global markets</b>. See what it has
         produced in the next section.
       </p>
-      <a class="btn btn--text" style="white-space: nowrap">See our results</a>
+      <a class="btn btn--text" href="#work" style="white-space: nowrap">See our work</a>
     </div>
   </div>
 
@@ -1343,17 +1444,16 @@
   </script>
 
 </div>
-<div id="s3-work" class="pagesec">
+<div id="work" class="pagesec">
 
 
 
   <div class="wrap" style="padding-top: 76px; padding-bottom: 84px">
     <div class="head">
       <div>
-        <p class="label">Results</p>
-        <h2 class="d2" style="margin: 18px 0 0">What the system produced.</h2>
+        <p class="label">Work</p>
+        <h2 class="d2" style="margin: 18px 0 0">What the system produced</h2>
       </div>
-      <a class="btn btn--text" style="margin-bottom: 8px">All case studies</a>
     </div>
 
     <div class="cases">
@@ -1433,7 +1533,7 @@
     </div>
 
       <div class="total">
-        <p class="label">Across every engagement to date</p>
+        <h3>Across every engagement to date</h3>
         <div class="row">
           <div><strong>100+</strong><span>high-tech engagements delivered</span></div>
           <div><strong>100M+</strong><span>technical impressions generated</span></div>
@@ -1444,72 +1544,83 @@
   </div>
 
 </div>
-<div id="s4-services" class="pagesec">
+<div id="team" class="pagesec">
 
 
 
-  <div class="wrap" style="padding-top: 74px; padding-bottom: 80px">
-    <div class="split">
-      <div class="rail">
-        <p class="label">What we run</p>
-        <ul>
-          <li class="on">Strategy<br />and narrative</li>
-          <li>Distribution</li>
-          <li>Ecosystem</li>
-        </ul>
+  <div class="wrap" style="padding-top: 88px; padding-bottom: 88px">
+    <header class="team-head">
+      <p class="label">Team</p>
+      <h2 class="d2">One team, close to every engagement</h2>
+    </header>
+
+    <article class="founder">
+      <div class="founder-photo">
+        <img src="../img/assets/evie-founder.png" alt="Evie, founder of JE Labs" />
       </div>
-
-      <div>
-        <h2 class="d2" style="max-width: 15ch; font-size: 46px">
-          Decide what the market remembers.
-        </h2>
-
-        <div style="margin-top: 44px">
-          <div class="panelrow">
-            <div class="prow-top">
-              <h3 class="h3">Go-to-market strategy</h3>
-              <span class="stat">100+ engagements</span>
+      <div class="founder-copy">
+        <p class="label">Founder</p>
+        <h3>Evie</h3>
+        <p class="founder-role">Founder, JE Labs</p>
+        <p class="founder-bio">
+          Leads market positioning, narrative design, and global expansion strategy for
+          frontier technology companies.
+        </p>
+        <div class="credentials">
+          <div class="credential">
+            <div class="credential-name">
+              <img class="credential-logo credential-logo-nus" src="../img/assets/nus-logo-white.png" alt="NUS" />
             </div>
-            <p class="body">
-              Market mapping, competitive positioning, and the message architecture that
-              everything downstream inherits.
-            </p>
-            <div class="chips">
-              <span class="chip">Industry mapping</span><span class="chip">Competitive analysis</span
-              ><span class="chip">Audience profiling</span><span class="chip">Brand positioning</span>
-            </div>
+            <span>Marketing and strategic management</span>
           </div>
-
-          <div class="panelrow">
-            <div class="prow-top">
-              <h3 class="h3">Founder storytelling</h3>
-              <span class="stat">500K+ views, one interview</span>
+          <div class="credential">
+            <div class="credential-name">
+              <img class="credential-logo" src="../img/assets/deloitte-logo-white.png" alt="Deloitte Consulting" />
             </div>
-            <p class="body">
-              We turn the founder's thesis into the version of the story the category
-              starts quoting back.
-            </p>
-            <div class="chips">
-              <span class="chip">Founder profiles</span><span class="chip">Long-form narrative</span
-              ><span class="chip">Interview production</span>
+            <span>Strategy and market analysis</span>
+          </div>
+          <div class="credential">
+            <div class="credential-name">
+              <img class="credential-logo credential-logo-okx" src="../img/assets/okx-logo-white.png" alt="OKX Wallet" />
             </div>
+            <span>Global growth</span>
           </div>
         </div>
-
-        <div class="shot"><img src="../img/assets/openclaw-stage-1200.webp" alt="" /></div>
       </div>
+    </article>
+
+    <div class="core-team">
+      <div class="core-head"><h3>Core team</h3></div>
+      <article class="member">
+        <img src="../img/assets/christine-160.webp" alt="Christine" />
+        <span><b>Christine</b><em>Product Director</em></span>
+      </article>
+      <article class="member">
+        <img src="../img/assets/nina-160.webp" alt="Nina" />
+        <span><b>Nina</b><em>Product Director</em></span>
+      </article>
+      <article class="member">
+        <img src="../img/assets/nicole-160.webp" alt="Nicole" />
+        <span><b>Nicole</b><em>Product Director</em></span>
+      </article>
+      <article class="member">
+        <img src="../img/assets/rebecca-160.webp" alt="Rebecca" />
+        <span><b>Rebecca</b><em>Product Associate</em></span>
+      </article>
     </div>
   </div>
 
 </div>
-<div id="s5-map" class="pagesec">
+<div id="locations" class="pagesec">
 
 
 
   <div class="wrap" style="padding-top: 70px; padding-bottom: 76px">
     <div class="head">
-      <h2 class="d2" style="max-width: 18ch">Three hubs. Fifteen markets that matter.</h2>
-      <a class="btn btn--text" style="margin-bottom: 10px">Where we operate</a>
+      <div>
+        <p class="label">Where we operate</p>
+        <h2 class="d2" style="max-width: 18ch; margin-top: 18px">Three hubs. Active across 15+ markets</h2>
+      </div>
     </div>
 
     <div class="mapbox">
@@ -1559,55 +1670,13 @@
   </div>
 
 </div>
-<div id="s6-studio" class="pagesec">
-
-
-
-  <div class="wrap" style="padding-top: 74px; padding-bottom: 78px">
-    <div class="top">
-      <div>
-        <p class="label">Studio</p>
-        <p class="quote" style="margin-top: 26px">
-          Complex technology only wins when the market can repeat the story back.
-        </p>
-        <div class="by">
-          <strong>Evie</strong><span>Founder, JE Labs</span>
-        </div>
-        <p class="cred">NUS / DELOITTE CONSULTING / OKX WALLET</p>
-      </div>
-      <div class="portrait">
-        <p>PORTRAIT REQUIRED<br />1200 x 1500, natural light<br />desaturated, no studio backdrop</p>
-      </div>
-    </div>
-
-    <div class="team">
-      <div class="p">
-        <img src="../img/assets/christine-160.webp" alt="" />
-        <span><b>Christine</b><em>Product Director</em></span>
-      </div>
-      <div class="p">
-        <img src="../img/assets/nina-160.webp" alt="" />
-        <span><b>Nina</b><em>Product Director</em></span>
-      </div>
-      <div class="p">
-        <img src="../img/assets/nicole-160.webp" alt="" />
-        <span><b>Nicole</b><em>Product Director</em></span>
-      </div>
-      <div class="p">
-        <img src="../img/assets/rebecca-160.webp" alt="" />
-        <span><b>Rebecca</b><em>Product Associate</em></span>
-      </div>
-    </div>
-  </div>
-
-</div>
-<div id="s7-insights" class="pagesec">
+<div id="insights" class="pagesec">
 
 
 
   <div class="wrap" style="padding-top: 72px; padding-bottom: 78px">
     <div class="head">
-      <h2 class="d2">What we publish.</h2>
+      <h2 class="d2">What we publish</h2>
       <a class="btn btn--text" style="margin-bottom: 10px">All insights</a>
     </div>
 
@@ -1617,7 +1686,7 @@
         <div class="meta">Playbook / Seoul</div>
         <div style="position: relative">
           <h3 style="font-size: 33px; line-height: 1.14; letter-spacing: -0.028em; font-weight: 500; margin: 0; max-width: 15ch">
-            The 2026 AI marketing playbook for the Seoul ecosystem.
+            The 2026 AI marketing playbook for the Seoul ecosystem
           </h3>
           <p class="body" style="margin-top: 16px; max-width: 40ch">
             Localized narrative systems, community integration, and how foreign AI teams
@@ -1630,13 +1699,13 @@
         <article class="item">
           <div class="meta">Search / GEO</div>
           <h3 class="h3" style="max-width: 24ch; margin-top: 14px">
-            From SEO to GEO: occupying model mindshare.
+            From SEO to GEO: occupying model mindshare
           </h3>
         </article>
         <article class="item">
           <div class="meta">APAC / Go-to-market</div>
           <h3 class="h3" style="max-width: 24ch; margin-top: 14px">
-            Five strategies that survive an APAC launch.
+            Five strategies that survive an APAC launch
           </h3>
         </article>
       </div>
@@ -1644,13 +1713,13 @@
   </div>
 
 </div>
-<div id="s8-close" class="pagesec">
+<div id="contact" class="pagesec">
 
 
 
   <div class="close">
     <div class="glow"></div>
-    <h2>Tell us the market you have not won yet.</h2>
+    <h2>Tell us the market you have not won yet</h2>
     <div style="position: relative; margin-top: 46px">
       <a class="btn btn--primary" style="height: 54px; padding: 0 32px; font-size: 16px"
         >Start a conversation</a
@@ -1675,12 +1744,13 @@
         </div>
         <div>
           <h4>Company</h4>
-          <a>Work</a><a>Services</a><a>Studio</a><a>Insights</a>
+          <a href="#approach">Approach</a><a href="#work">Work</a
+          ><a href="#team">Team</a><a href="#insights">Insights</a>
         </div>
         <div>
           <h4>Answers</h4>
           <a>What JE Labs does</a><a>Results to date</a><a>Markets we cover</a
-          ><a>How we work</a>
+          ><a href="#approach">Our approach</a>
         </div>
         <div>
           <h4>Elsewhere</h4>
@@ -1835,25 +1905,25 @@
 
   <hr class="rule" />
 
-  <div class="band"><p class="label">Proposed <span class="tag">5 links / 64px / one CTA</span></p></div>
+  <div class="band"><p class="label">Proposed <span class="tag">4 links / 64px / one CTA</span></p></div>
   <div class="bar" style="height: 64px">
-    <div class="brand"><span class="dot"></span>JE Labs</div>
-    <div class="nav" style="color: var(--text)">
-      <span>Work</span><span>Services</span><span>Insights</span><span>Studio</span
-      ><span>Contact</span>
-    </div>
-    <a class="btn btn--primary" style="height: 40px; font-size: 14px; padding: 0 20px"
+    <a class="brand" href="#top"><span class="dot"></span>JE Labs</a>
+    <nav class="nav" style="color: var(--text)" aria-label="Primary">
+      <a href="#approach">Approach</a><a href="#work">Work</a
+      ><a href="#team">Team</a><a href="#insights">Insights</a>
+    </nav>
+    <a class="btn btn--primary" href="#contact" style="height: 40px; font-size: 14px; padding: 0 20px"
       >Start a conversation</a
     >
   </div>
 
   <div class="scrolled">
-    <div class="brand" style="font-size: 15px"><span class="dot" style="width: 15px; height: 15px"></span>JE Labs</div>
-    <div class="nav" style="font-size: 13.5px; gap: 26px">
-      <span style="color: var(--accent)">Work</span><span>Services</span><span>Insights</span
-      ><span>Studio</span>
-    </div>
-    <a class="btn btn--primary" style="height: 36px; font-size: 13.5px; padding: 0 18px"
+    <a class="brand" href="#top" style="font-size: 15px"><span class="dot" style="width: 15px; height: 15px"></span>JE Labs</a>
+    <nav class="nav" style="font-size: 13.5px; gap: 26px" aria-label="Primary compact">
+      <a href="#approach" style="color: var(--accent)">Approach</a><a href="#work">Work</a
+      ><a href="#team">Team</a><a href="#insights">Insights</a>
+    </nav>
+    <a class="btn btn--primary" href="#contact" style="height: 36px; font-size: 13.5px; padding: 0 18px"
       >Start a conversation</a
     >
   </div>
@@ -1861,8 +1931,8 @@
     <span class="accent">/</span>
     <span
       >On scroll the bar condenses into a 56px floating capsule with backdrop blur and an
-      active-section marker. Studio absorbs Approach and Leadership. Proof becomes Work.
-      FAQ moves to the footer, schema markup intact.</span
+      active-section marker. The order mirrors the page: Approach, Work, Team,
+      and Insights. FAQ stays in the footer.</span
     >
   </div>
 
@@ -1887,7 +1957,7 @@
             Strategic growth partner
           </p>
           <h1 style="font-size: 38px; line-height: 1.05; letter-spacing: -0.03em; font-weight: 700; margin: 16px 0 0">
-            Make the market want what you built.
+            Make the market want what you built
           </h1>
           <p style="font-size: 15px; line-height: 1.55; color: var(--text-2); margin: 18px 0 0">
             Market entry, global media, and KOL marketing for AI, crypto, and technology
@@ -1905,7 +1975,7 @@
       <div class="ph">
         <div class="mpad" style="padding-top: 34px">
           <h2 style="font-size: 32px; letter-spacing: -0.03em; font-weight: 500; margin: 0 0 26px">
-            Selected engagements.
+            Selected engagements
           </h2>
           <div class="mrow">
             <span class="mname">PublicAI</span>
@@ -1922,35 +1992,6 @@
       <p class="phcap">Work (hover 变成常驻缩略图)</p>
     </div>
 
-    <div>
-      <div class="ph">
-        <div class="mpad" style="padding-top: 34px">
-          <p class="label" style="font-size: 10.5px">What we run</p>
-          <h2 style="font-size: 31px; letter-spacing: -0.03em; font-weight: 500; margin: 16px 0 28px">
-            Decide what the market remembers.
-          </h2>
-          <div class="acc">
-            <div class="acch"><span>Strategy and narrative</span><span class="accent">-</span></div>
-            <p style="font-size: 14.5px; line-height: 1.55; color: var(--text-2); margin: 12px 0 0">
-              Market mapping, positioning, and the message architecture everything
-              downstream inherits.
-            </p>
-            <div class="chips">
-              <span class="chip" style="height: 27px; font-size: 12px">Industry mapping</span
-              ><span class="chip" style="height: 27px; font-size: 12px">Positioning</span
-              ><span class="chip" style="height: 27px; font-size: 12px">Audience profiling</span>
-            </div>
-          </div>
-          <div class="acc">
-            <div class="acch"><span>Distribution</span><span style="color: var(--text-3)">+</span></div>
-          </div>
-          <div class="acc">
-            <div class="acch"><span>Ecosystem</span><span style="color: var(--text-3)">+</span></div>
-          </div>
-        </div>
-      </div>
-      <p class="phcap">Services (导轨降级为手风琴)</p>
-    </div>
   </div>
 
 </div>

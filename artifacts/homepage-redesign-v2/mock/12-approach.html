@@ -5,22 +5,33 @@
     overflow: visible;
   }
   .head {
-    max-width: 66ch;
+    max-width: 820px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .head .d2,
+  .head .lead {
+    margin-left: auto !important;
+    margin-right: auto !important;
   }
   .sequence {
     margin-top: 76px;
     display: grid;
-    grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
-    gap: 96px;
+    grid-template-columns: minmax(0, 0.84fr) minmax(0, 1.16fr);
+    grid-template-areas: "steps visual";
+    gap: 104px;
     align-items: start;
+  }
+  .steps {
+    grid-area: steps;
   }
   .ph {
     position: relative;
-    min-height: 430px;
+    min-height: 390px;
     display: flex;
     align-items: center;
     border-top: 1px solid var(--line);
-    opacity: 0.58;
+    opacity: 0.74;
     transition: opacity 420ms cubic-bezier(0.16, 1, 0.3, 1);
   }
   .ph:last-child {
@@ -30,8 +41,8 @@
     opacity: 1;
   }
   .ph-inner {
-    max-width: 410px;
-    padding: 72px 24px 72px 0;
+    max-width: 430px;
+    padding: 64px 28px 64px 0;
   }
   .ph .scope {
     font-family: var(--mono);
@@ -63,11 +74,12 @@
     display: none;
   }
   .visual-stage {
+    grid-area: visual;
     position: sticky;
     top: 82px;
-    width: min(100%, 560px);
-    height: 650px;
-    margin-left: auto;
+    width: 100%;
+    height: 720px;
+    margin: 0;
     overflow: hidden;
     border: 1px solid var(--line);
     border-radius: var(--r-surface);
@@ -127,6 +139,7 @@
     .sequence {
       margin-top: 48px;
       grid-template-columns: 1fr;
+      grid-template-areas: "steps";
       gap: 0;
     }
     .ph {
@@ -175,9 +188,9 @@
   <div class="caption">Approach / 四步顺序滚动叙事（每一步独立图片）</div>
   <div class="wrap" style="padding-top: 76px; padding-bottom: 80px">
     <div class="head">
-      <p class="label">How we work</p>
+      <p class="label">Approach</p>
       <h2 class="d2" style="margin: 18px 0 0; max-width: 18ch">
-        Turn strategy into market momentum.
+        Turn strategy into market momentum
       </h2>
       <p class="lead" style="margin-top: 22px; max-width: 62ch">
         One integrated engagement connects market-entry strategy and narrative design
@@ -190,7 +203,7 @@
         <div id="how-step-market-entry" class="ph is-active" data-step="0" aria-current="step">
           <div class="ph-inner">
             <p class="scope">Market entry</p>
-            <h3>Define the moat</h3>
+            <h3>Decide what the market remembers</h3>
             <p>
               Build the market-entry strategy, positioning, and narrative that turn
               technical advantage into an ownable category position.
@@ -302,7 +315,7 @@
         One operating system, delivered across <b>15+ global markets</b>. See what it has
         produced in the next section.
       </p>
-      <a class="btn btn--text" style="white-space: nowrap">See our results</a>
+      <a class="btn btn--text" href="#work" style="white-space: nowrap">See our work</a>
     </div>
   </div>
 

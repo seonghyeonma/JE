@@ -2,20 +2,29 @@
 <link rel="stylesheet" href="base.css" />
 <style>
   .bar {
+    position: relative;
+    z-index: 4;
+    height: 64px;
+    border-bottom: 1px solid var(--line);
+  }
+  .bar-inner {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 48px;
-    height: 64px;
-    border-bottom: 1px solid var(--line);
-    position: relative;
-    z-index: 4;
+    width: min(1280px, calc(100% - 96px));
+    height: 100%;
+    margin: 0 auto;
   }
   .nav {
     display: flex;
     gap: 34px;
     font-size: 14.5px;
     color: var(--text-2);
+  }
+  .nav a,
+  .brand {
+    color: inherit;
+    text-decoration: none;
   }
   .brand {
     display: flex;
@@ -34,83 +43,119 @@
   .hero {
     position: relative;
     height: 772px;
+    overflow: hidden;
   }
-  /* the panel runs past the fold and is masked to transparent at the bottom,
-     so there is no edge to see. No border radius: a rounded corner is what
-     makes it read as a floating card instead of a bleed. */
   .media {
     position: absolute;
+    left: 0;
     right: 0;
-    top: -64px;
-    width: 660px;
-    height: 1000px;
+    top: 0;
+    width: 100%;
+    height: 100%;
     overflow: hidden;
-    -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 58%, rgba(0, 0, 0, 0.35) 82%, transparent 97%);
-    mask-image: linear-gradient(180deg, #000 0%, #000 58%, rgba(0, 0, 0, 0.35) 82%, transparent 97%);
   }
   .media img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: 46% 34%;
-    filter: saturate(0.3) contrast(1.05) brightness(0.55);
+    object-position: 50% 50%;
+    filter: saturate(0.78) contrast(1.03) brightness(0.86);
   }
-  /* left edge fades into the page instead of cutting on a vertical seam */
   .media::after {
     content: "";
     position: absolute;
     inset: 0;
-    background: linear-gradient(94deg, #0a0a0a 0%, rgba(10, 10, 10, 0.72) 26%, rgba(10, 10, 10, 0.12) 68%, transparent 100%);
+    background: linear-gradient(
+      180deg,
+      rgba(10, 10, 10, 0.04) 0%,
+      rgba(10, 10, 10, 0.1) 52%,
+      rgba(10, 10, 10, 0.44) 100%
+    );
   }
   .glow {
-    position: absolute;
-    width: 700px;
-    height: 700px;
-    left: 130px;
-    top: 150px;
-    background: radial-gradient(circle, rgba(6, 245, 183, 0.1), transparent 62%);
+    display: none;
   }
   .copy {
     position: absolute;
-    left: 80px;
-    top: 190px;
-    width: 700px;
+    left: 50%;
+    top: 47%;
+    width: min(920px, calc(100% - 160px));
+    text-align: center;
+    transform: translate(-50%, -50%);
     z-index: 3;
+  }
+  .copy .d1 {
+    max-width: 920px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .copy .d1 span {
+    display: block;
+    white-space: nowrap;
+  }
+  .copy .lead {
+    margin-left: auto;
+    margin-right: auto;
   }
   .cta {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 32px;
     margin-top: 44px;
+  }
+  @media (max-width: 900px) {
+    .bar-inner {
+      width: calc(100% - 40px);
+    }
+    .nav {
+      display: none;
+    }
+    .hero {
+      min-height: 700px;
+      height: calc(100dvh - 64px);
+    }
+    .copy {
+      width: calc(100% - 40px);
+    }
+    .copy .d1 {
+      font-size: 48px !important;
+    }
+    .copy .d1 span {
+      white-space: normal;
+    }
   }
 </style>
 <div class="frame">
   <div class="bar">
-    <div class="brand"><span class="dot"></span>JE Labs</div>
-    <div class="nav">
-      <span style="color: var(--text)">Work</span><span>Services</span><span>Insights</span
-      ><span>Studio</span><span>Contact</span>
+    <div class="bar-inner">
+      <a class="brand" href="#top"><span class="dot"></span>JE Labs</a>
+      <nav class="nav" aria-label="Primary">
+        <a href="#approach">Approach</a><a href="#work">Work</a
+        ><a href="#team">Team</a><a href="#insights">Insights</a>
+      </nav>
+      <a class="btn btn--primary" href="#contact" style="height: 40px; font-size: 14px; padding: 0 20px"
+        >Start a conversation</a
+      >
     </div>
-    <a class="btn btn--primary" style="height: 40px; font-size: 14px; padding: 0 20px"
-      >Start a conversation</a
-    >
   </div>
 
   <div class="hero">
-    <div class="media"><img src="../img/assets/hero-western-audience.jpg" alt="" /></div>
+    <div class="media"><img src="../img/assets/hero-auditorium-fullbleed-v2.webp" alt="" /></div>
     <div class="glow"></div>
     <div class="copy">
       <p class="label" style="color: var(--accent)">Strategic growth partner for frontier tech builders</p>
       <h1 class="d1" style="font-size: 70px; margin-top: 28px">
-        Make the market want what you built.
+        <span>Make the market</span>
+        <span>want what you built</span>
       </h1>
       <p class="lead" style="margin-top: 30px; max-width: 44ch">
         We run market entry, narrative, global media, and KOL marketing for AI, crypto,
         and technology companies.
       </p>
       <div class="cta">
-        <a class="btn btn--primary">Start a conversation</a>
-        <a class="btn btn--text">See our results</a>
+        <a class="btn btn--primary" href="#contact">Start a conversation</a>
+        <a class="btn btn--text" href="#work">See our work</a>
       </div>
     </div>
   </div>
