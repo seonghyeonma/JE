@@ -7,6 +7,16 @@
     justify-content: space-between;
     margin-bottom: 40px;
   }
+  .locations-title {
+    max-width: none;
+    margin-top: 18px;
+    white-space: nowrap;
+  }
+  @media (max-width: 860px) {
+    .locations-title {
+      white-space: normal;
+    }
+  }
   .mapbox {
     position: relative;
     width: 1184px;
@@ -202,7 +212,7 @@
     <div class="head">
       <div>
         <p class="label">Where we operate</p>
-        <h2 class="d2" style="max-width: 18ch; margin-top: 18px">Four hubs. Active across 15+ markets</h2>
+        <h2 class="d2 locations-title">Four hubs. Active across 15+ markets</h2>
       </div>
     </div>
 
