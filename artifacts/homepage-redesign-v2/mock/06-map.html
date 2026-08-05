@@ -28,48 +28,131 @@
     -webkit-mask-repeat: no-repeat;
     mask-repeat: no-repeat;
   }
-  .node,
+  .route-layer {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    pointer-events: none;
+  }
+  .route {
+    fill: none;
+    stroke: var(--accent);
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    opacity: 0;
+    filter: drop-shadow(0 0 5px rgba(6, 245, 183, 0.45));
+  }
+  .hubspot {
+    position: absolute;
+    z-index: 2;
+    width: 1px;
+    height: 1px;
+  }
+  .hub-control {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: transparent;
+    color: inherit;
+    cursor: pointer;
+    transform: translate(-50%, -50%);
+  }
   .hub {
     position: absolute;
-    border-radius: 50%;
-  }
-  .node {
-    width: 5px;
-    height: 5px;
-    background: rgba(6, 245, 183, 0.6);
-    margin: -2.5px 0 0 -2.5px;
-  }
-  .hub {
+    left: 50%;
+    top: 50%;
     width: 9px;
     height: 9px;
+    border-radius: 50%;
     background: var(--accent);
-    margin: -4.5px 0 0 -4.5px;
-    box-shadow: 0 0 0 5px rgba(6, 245, 183, 0.15);
+    box-shadow:
+      0 0 0 5px rgba(6, 245, 183, 0.13),
+      0 0 14px rgba(6, 245, 183, 0.38);
+    transform: translate(-50%, -50%);
+  }
+  .hub::after {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border: 1px solid rgba(6, 245, 183, 0.72);
+    border-radius: inherit;
+    animation: locations-hub-pulse 2.4s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+    animation-delay: var(--pulse-delay, 0s);
+  }
+  .hubspot.is-active {
+    z-index: 4;
+  }
+  .hubspot.is-active .hub {
+    box-shadow:
+      0 0 0 6px rgba(6, 245, 183, 0.17),
+      0 0 20px rgba(6, 245, 183, 0.52);
+  }
+  .hub-control:focus-visible {
+    outline: 1px solid var(--accent);
+    outline-offset: 2px;
+  }
+  @keyframes locations-hub-pulse {
+    0% {
+      opacity: 0.68;
+      transform: scale(0.75);
+    }
+    72%,
+    100% {
+      opacity: 0;
+      transform: scale(3.5);
+    }
   }
   .hublab {
     position: absolute;
+    left: var(--label-x, 30px);
+    top: var(--label-y, 10px);
     font-family: var(--mono);
     font-size: 11.5px;
     letter-spacing: 0.06em;
     color: var(--text);
-    transform: translate(14px, -7px);
     white-space: nowrap;
   }
-  .card {
+  .hub-tooltip {
     position: absolute;
+    left: var(--tooltip-x);
+    top: var(--tooltip-y);
     width: 272px;
     padding: 16px 18px;
     border-radius: var(--r-surface);
     background: rgba(23, 23, 23, 0.95);
     border: 1px solid var(--line-strong);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(8px) scale(0.985);
+    transform-origin: var(--tooltip-origin, center);
+    transition:
+      opacity 220ms cubic-bezier(0.16, 1, 0.3, 1),
+      transform 220ms cubic-bezier(0.16, 1, 0.3, 1),
+      visibility 0s linear 220ms;
   }
-  .card .t {
+  .hubspot.is-active .hub-tooltip {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0) scale(1);
+    transition-delay: 0s;
+  }
+  .hub-tooltip .t {
     font-size: 14.5px;
     line-height: 1.35;
     letter-spacing: -0.01em;
     margin: 0;
   }
-  .card .m {
+  .hub-tooltip .m {
     font-family: var(--mono);
     font-size: 11px;
     color: var(--text-3);
@@ -77,11 +160,23 @@
     text-transform: uppercase;
     margin: 0 0 9px;
   }
-  .card .n {
+  .hub-tooltip .n {
     font-family: var(--mono);
     font-size: 20px;
     color: var(--accent);
     margin: 12px 0 0;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hub::after {
+      animation: none;
+      opacity: 0;
+    }
+    .hub-tooltip {
+      transition: none;
+    }
+    .route-layer {
+      display: none;
+    }
   }
   .rail {
     display: flex;
@@ -107,49 +202,89 @@
     <div class="head">
       <div>
         <p class="label">Where we operate</p>
-        <h2 class="d2" style="max-width: 18ch; margin-top: 18px">Three hubs. Active across 15+ markets</h2>
+        <h2 class="d2" style="max-width: 18ch; margin-top: 18px">Four hubs. Active across 15+ markets</h2>
       </div>
     </div>
 
-    <div class="mapbox">
+    <div class="mapbox" data-hub-map>
       <div class="dots"></div>
+      <svg class="route-layer" viewBox="0 0 1184 470" aria-hidden="true">
+        <path class="route" data-route data-duration="1800" d="M 193 160 Q 594 18 1004 145"></path>
+        <path class="route" data-route data-duration="800" d="M 1004 145 Q 1005 170 975 190"></path>
+        <path class="route" data-route data-duration="1100" d="M 975 190 Q 930 232 920 300"></path>
+        <path class="route" data-route data-duration="1800" d="M 920 300 Q 560 456 193 160"></path>
+      </svg>
 
-      <span class="node" style="left: 272px; top: 146px"></span>
-      <span class="node" style="left: 262px; top: 136px"></span>
-      <span class="node" style="left: 406px; top: 88px"></span>
-      <span class="node" style="left: 440px; top: 92px"></span>
-      <span class="node" style="left: 585px; top: 180px"></span>
-      <span class="node" style="left: 628px; top: 235px"></span>
-      <span class="node" style="left: 1045px; top: 145px"></span>
-      <span class="node" style="left: 952px; top: 205px"></span>
-      <span class="node" style="left: 905px; top: 250px"></span>
-      <span class="node" style="left: 912px; top: 328px"></span>
-      <span class="node" style="left: 373px; top: 379px"></span>
-
-      <span class="hub" style="left: 193px; top: 160px"></span>
-      <span class="hublab" style="left: 193px; top: 160px">SAN FRANCISCO</span>
-      <span class="hub" style="left: 1004px; top: 145px"></span>
-      <span class="hublab" style="left: 1004px; top: 145px">SEOUL</span>
-      <span class="hub" style="left: 920px; top: 300px"></span>
-      <span class="hublab" style="left: 920px; top: 300px">SINGAPORE</span>
-
-      <div class="card" style="left: 0px; top: 260px">
-        <p class="m">Media placement / US</p>
-        <p class="t">"The infrastructure layer nobody was watching"</p>
-        <p class="n">30+ outlets</p>
+      <div
+        class="hubspot is-active"
+        data-hub
+        style="left: 193px; top: 160px; --pulse-delay: 0s; --tooltip-x: -150px; --tooltip-y: 30px; --tooltip-origin: top center"
+      >
+        <button class="hub-control" type="button" aria-label="Show San Francisco activity" aria-controls="hub-tip-sf" aria-expanded="true">
+          <span class="hub" aria-hidden="true"></span>
+          <span class="hublab">SAN FRANCISCO</span>
+        </button>
+        <div class="hub-tooltip" id="hub-tip-sf" role="tooltip" data-hub-tooltip aria-hidden="false">
+          <p class="m">Media placement / US</p>
+          <p class="t">"The infrastructure layer nobody was watching"</p>
+          <p class="n">30+ outlets</p>
+        </div>
       </div>
 
-      <div class="card" style="right: 0px; top: 0px">
-        <p class="m">Creator activation / KR + JP</p>
-        <p class="t">Technical explainer series, 42 creators briefed</p>
-        <p class="n">100M+ impressions</p>
+      <div
+        class="hubspot"
+        data-hub
+        style="left: 1004px; top: 145px; --pulse-delay: 0.8s; --tooltip-x: -286px; --tooltip-y: -120px; --tooltip-origin: bottom right"
+      >
+        <button class="hub-control" type="button" aria-label="Show Seoul activity" aria-controls="hub-tip-seoul" aria-expanded="false">
+          <span class="hub" aria-hidden="true"></span>
+          <span class="hublab">SEOUL</span>
+        </button>
+        <div class="hub-tooltip" id="hub-tip-seoul" role="tooltip" data-hub-tooltip aria-hidden="true">
+          <p class="m">Creator activation / KR + JP</p>
+          <p class="t">Technical explainer series, 42 creators briefed</p>
+          <p class="n">100M+ impressions</p>
+        </div>
+      </div>
+
+      <div
+        class="hubspot"
+        data-hub
+        style="left: 975px; top: 190px; --pulse-delay: 1.6s; --label-x: -74px; --label-y: 10px; --tooltip-x: -286px; --tooltip-y: 30px; --tooltip-origin: top right"
+      >
+        <button class="hub-control" type="button" aria-label="Show Shanghai activity" aria-controls="hub-tip-shanghai" aria-expanded="false">
+          <span class="hub" aria-hidden="true"></span>
+          <span class="hublab">SHANGHAI</span>
+        </button>
+        <div class="hub-tooltip" id="hub-tip-shanghai" role="tooltip" data-hub-tooltip aria-hidden="true">
+          <p class="m">Market entry / China</p>
+          <p class="t">Localized narrative, media coordination, and partner outreach</p>
+          <p class="n">China hub</p>
+        </div>
+      </div>
+
+      <div
+        class="hubspot"
+        data-hub
+        style="left: 920px; top: 300px; --pulse-delay: 2.4s; --tooltip-x: -286px; --tooltip-y: 30px; --tooltip-origin: top right"
+      >
+        <button class="hub-control" type="button" aria-label="Show Singapore activity" aria-controls="hub-tip-singapore" aria-expanded="false">
+          <span class="hub" aria-hidden="true"></span>
+          <span class="hublab">SINGAPORE</span>
+        </button>
+        <div class="hub-tooltip" id="hub-tip-singapore" role="tooltip" data-hub-tooltip aria-hidden="true">
+          <p class="m">Market entry / Southeast Asia</p>
+          <p class="t">Regional strategy, partner outreach, and launch coordination</p>
+          <p class="n">APAC hub</p>
+        </div>
       </div>
     </div>
 
     <div class="rail">
-      <span class="chip on">Seoul <b>HUB</b></span>
-      <span class="chip on">Singapore <b>HUB</b></span>
       <span class="chip on">San Francisco <b>HUB</b></span>
+      <span class="chip on">Seoul <b>HUB</b></span>
+      <span class="chip on">Shanghai <b>HUB</b></span>
+      <span class="chip on">Singapore <b>HUB</b></span>
       <span class="chip">North America <b>03</b></span>
       <span class="chip">Japan <b>04</b></span>
       <span class="chip">Europe <b>03</b></span>
@@ -157,3 +292,162 @@
     </div>
   </div>
 </div>
+<script>
+  (() => {
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    document.querySelectorAll("[data-hub-map]").forEach((map) => {
+      const hubs = Array.from(map.querySelectorAll("[data-hub]"));
+      const routes = Array.from(map.querySelectorAll("[data-route]"));
+      const holdDuration = 4200;
+      let activeIndex = 0;
+      let holdTimer = null;
+      let routeAnimation = null;
+      let fadeAnimation = null;
+      let sequenceToken = 0;
+      let visible = false;
+      let pointerInside = false;
+      let focusInside = false;
+
+      const showHub = (index) => {
+        activeIndex = index;
+        hubs.forEach((hub, hubIndex) => {
+          const active = hubIndex === activeIndex;
+          hub.classList.toggle("is-active", active);
+          hub.querySelector(".hub-control")?.setAttribute("aria-expanded", String(active));
+          hub.querySelector("[data-hub-tooltip]")?.setAttribute("aria-hidden", String(!active));
+        });
+      };
+
+      const hideTooltips = () => {
+        hubs.forEach((hub) => {
+          hub.classList.remove("is-active");
+          hub.querySelector(".hub-control")?.setAttribute("aria-expanded", "false");
+          hub.querySelector("[data-hub-tooltip]")?.setAttribute("aria-hidden", "true");
+        });
+      };
+
+      const resetRoutes = () => {
+        routes.forEach((route) => {
+          route.getAnimations().forEach((animation) => animation.cancel());
+          route.style.opacity = "0";
+          route.style.strokeDasharray = "";
+          route.style.strokeDashoffset = "";
+        });
+        map.classList.remove("is-routing");
+      };
+
+      const stopSequence = () => {
+        sequenceToken += 1;
+        if (holdTimer !== null) {
+          window.clearTimeout(holdTimer);
+          holdTimer = null;
+        }
+        routeAnimation?.cancel();
+        fadeAnimation?.cancel();
+        routeAnimation = null;
+        fadeAnimation = null;
+        resetRoutes();
+      };
+
+      const canPlay = () =>
+        !reduceMotion && visible && !pointerInside && !focusInside && hubs.length > 1;
+
+      const scheduleRoute = () => {
+        if (holdTimer !== null) window.clearTimeout(holdTimer);
+        holdTimer = null;
+        if (!canPlay()) return;
+        holdTimer = window.setTimeout(startRoute, holdDuration);
+      };
+
+      const startRoute = () => {
+        holdTimer = null;
+        if (!canPlay()) return;
+
+        const route = routes[activeIndex];
+        if (!route) return;
+
+        const token = ++sequenceToken;
+        const nextIndex = (activeIndex + 1) % hubs.length;
+        const length = route.getTotalLength();
+        const duration = Number(route.dataset.duration) || 2600;
+
+        hideTooltips();
+        resetRoutes();
+        map.classList.add("is-routing");
+        route.style.opacity = "1";
+        route.style.strokeDasharray = `${length}`;
+        route.style.strokeDashoffset = `${length}`;
+
+        routeAnimation = route.animate(
+          [
+            { strokeDashoffset: `${length}`, opacity: 0.38 },
+            { strokeDashoffset: "0", opacity: 1 }
+          ],
+          {
+            duration,
+            easing: "cubic-bezier(0.16, 1, 0.3, 1)",
+            fill: "forwards"
+          }
+        );
+
+        routeAnimation.finished
+          .then(() => {
+            if (token !== sequenceToken) return;
+            routeAnimation = null;
+            map.classList.remove("is-routing");
+            showHub(nextIndex);
+
+            fadeAnimation = route.animate(
+              [{ opacity: 1 }, { opacity: 0 }],
+              { duration: 900, delay: 650, fill: "forwards" }
+            );
+            fadeAnimation.finished.catch(() => {});
+            scheduleRoute();
+          })
+          .catch(() => {});
+      };
+
+      const selectHub = (index) => {
+        stopSequence();
+        showHub(index);
+      };
+
+      hubs.forEach((hub, index) => {
+        hub.addEventListener("pointerenter", () => {
+          pointerInside = true;
+          selectHub(index);
+        });
+        hub.addEventListener("pointerleave", () => {
+          pointerInside = false;
+          scheduleRoute();
+        });
+        hub.addEventListener("focusin", () => {
+          focusInside = true;
+          selectHub(index);
+        });
+        hub.addEventListener("focusout", (event) => {
+          if (hub.contains(event.relatedTarget)) return;
+          focusInside = false;
+          scheduleRoute();
+        });
+        hub.querySelector(".hub-control")?.addEventListener("click", () => {
+          selectHub(index);
+        });
+      });
+
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          visible = entry.isIntersecting;
+          stopSequence();
+          showHub(activeIndex);
+          scheduleRoute();
+        },
+        { threshold: 0.35 }
+      );
+
+      observer.observe(map);
+      showHub(0);
+    });
+  })();
+</script>

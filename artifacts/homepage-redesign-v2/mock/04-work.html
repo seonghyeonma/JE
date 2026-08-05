@@ -15,42 +15,90 @@
     color: var(--text-2);
   }
   .cases {
-    margin-top: 96px;
+    margin-top: 88px;
   }
-  .case--featured {
-    display: grid;
-    grid-template-columns: minmax(0, 1.25fr) minmax(360px, 0.75fr);
-    gap: 62px;
+  .cases-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 28px;
+  }
+  .cases-title {
+    margin: 0;
+    font-size: 25px;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    font-weight: 600;
+  }
+  .case-nav {
+    display: flex;
+    gap: 10px;
+  }
+  .case-nav-button {
+    display: inline-grid;
+    width: 44px;
+    height: 44px;
+    place-items: center;
+    border: 1px solid var(--line-strong);
+    border-radius: var(--r-control);
+    background: transparent;
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 21px;
+    line-height: 1;
+    cursor: pointer;
+    transition: border-color 200ms ease, background-color 200ms ease,
+      color 200ms ease, transform 160ms ease;
+  }
+  .case-nav-button:hover:not(:disabled) {
+    border-color: var(--text-3);
+    background: rgba(255, 255, 255, 0.05);
+  }
+  .case-nav-button:active:not(:disabled) {
+    transform: translateY(1px);
+  }
+  .case-nav-button:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+  .case-nav-button:disabled {
+    border-color: var(--line);
+    color: var(--s500);
+    cursor: default;
+  }
+  .case-track {
+    display: flex;
     align-items: stretch;
-    padding-bottom: 94px;
-    border-bottom: 1px solid var(--line);
+    gap: 24px;
+    margin-right: -48px;
+    padding: 0 48px 22px 0;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
   }
-  .case-pair {
-    display: grid;
-    grid-template-columns: minmax(0, 1.12fr) minmax(0, 0.88fr);
-    gap: 34px;
-    align-items: start;
-    margin-top: 86px;
+  .case-track::-webkit-scrollbar {
+    display: none;
   }
-  .case--secondary:last-child {
-    margin-top: 136px;
+  .case {
+    flex: 0 0 clamp(540px, 44vw, 620px);
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
   }
   .case-media {
     position: relative;
+    aspect-ratio: 16 / 9;
     border-radius: var(--r-surface);
     overflow: hidden;
     background: var(--s900);
   }
-  .case--featured .case-media {
-    min-height: 560px;
-  }
-  .case--secondary:first-child .case-media {
-    height: 414px;
-  }
-  .case--secondary:last-child .case-media {
-    height: 326px;
-  }
   .case-media img {
+    display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -71,42 +119,32 @@
   }
   .case-story {
     min-width: 0;
-  }
-  .case--featured .case-story {
     display: flex;
     flex-direction: column;
-    padding: 12px 0 4px;
-  }
-  .case--secondary .case-story {
-    padding-top: 26px;
+    flex: 1;
+    padding-top: 24px;
   }
   .name {
-    font-size: 46px;
+    font-size: 34px;
     letter-spacing: -0.028em;
     font-weight: 700;
     margin: 0;
     line-height: 1;
   }
-  .case--secondary .name {
-    font-size: 34px;
-  }
   .what {
-    font-size: 17px;
+    min-height: 50px;
+    font-size: 16px;
     line-height: 1.5;
     color: var(--text-2);
-    margin: 18px 0 0;
-    max-width: 48ch;
-  }
-  .case--secondary .what {
     margin-top: 14px;
-    max-width: 50ch;
+    max-width: 58ch;
   }
   .case-scope {
     list-style: none;
     display: flex;
     flex-wrap: wrap;
     gap: 8px 0;
-    margin: 24px 0 0;
+    margin: 22px 0 0;
     padding: 0;
     font-size: 13px;
     line-height: 1.45;
@@ -119,49 +157,28 @@
   }
   .case-metrics {
     display: grid;
-  }
-  .case--featured .case-metrics {
-    grid-template-columns: 1fr;
-    gap: 24px;
-    margin-top: auto;
-    padding-top: 34px;
-    border-top: 1px solid var(--line);
-  }
-  .case--featured .case-metric {
-    display: grid;
-    grid-template-columns: minmax(132px, 0.72fr) minmax(0, 1fr);
-    gap: 20px;
-    align-items: baseline;
-  }
-  .case--secondary .case-metrics {
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 18px;
-    margin-top: 26px;
-    padding-top: 22px;
+    gap: 22px;
+    margin-top: 28px;
+    padding-top: 24px;
     border-top: 1px solid var(--line);
   }
   .case-metric strong {
     display: block;
     font-family: var(--mono);
     font-weight: 500;
-    font-size: 40px;
+    font-size: 35px;
     line-height: 1;
     letter-spacing: -0.025em;
     color: var(--accent);
   }
-  .case--secondary .case-metric strong {
-    font-size: 33px;
-  }
   /* not a number, so it does not get the number treatment */
   .case-metric.qual strong {
     font-family: var(--sans);
-    font-size: 27px;
+    font-size: 24px;
     font-weight: 600;
     letter-spacing: -0.02em;
     color: var(--text-2);
-  }
-  .case--secondary .case-metric.qual strong {
-    font-size: 23px;
   }
   /* aggregate impact opens Work; it is not a separate section */
   .total {
@@ -236,15 +253,23 @@
     margin-top: 8px;
     max-width: 22ch;
   }
-  .case--featured .case-metric span {
-    margin-top: 0;
-  }
   @media (prefers-reduced-motion: reduce) {
     .total-flow-canvas {
       display: none;
     }
     .case-media img {
       transition: none;
+    }
+    .case-track {
+      scroll-behavior: auto;
+    }
+    .case-nav-button {
+      transition: none;
+    }
+  }
+  @media (max-width: 1100px) {
+    .case {
+      flex-basis: min(640px, 72vw);
     }
   }
   @media (max-width: 800px) {
@@ -261,41 +286,6 @@
     .d2 {
       font-size: 38px;
     }
-    .case--featured {
-      grid-template-columns: 1fr;
-      gap: 34px;
-      padding-bottom: 68px;
-    }
-    .case--featured .case-media {
-      min-height: 390px;
-    }
-    .case--featured .case-story {
-      padding-top: 0;
-    }
-    .case--featured .case-metrics {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 18px;
-      margin-top: 32px;
-      padding-top: 24px;
-    }
-    .case--featured .case-metric {
-      display: block;
-    }
-    .case--featured .case-metric span {
-      margin-top: 8px;
-    }
-    .case-pair {
-      grid-template-columns: 1fr;
-      gap: 64px;
-      margin-top: 68px;
-    }
-    .case--secondary:last-child {
-      margin-top: 0;
-    }
-    .case--secondary:first-child .case-media,
-    .case--secondary:last-child .case-media {
-      height: 286px;
-    }
     .head {
       padding-bottom: 18px;
     }
@@ -304,7 +294,31 @@
       font-size: 15px;
     }
     .cases {
-      margin-top: 68px;
+      margin-top: 64px;
+    }
+    .cases-head {
+      margin-bottom: 22px;
+    }
+    .cases-title {
+      font-size: 21px;
+    }
+    .case-nav-button {
+      width: 40px;
+      height: 40px;
+    }
+    .case-track {
+      gap: 16px;
+      margin-right: -24px;
+      padding-right: 24px;
+    }
+    .case {
+      flex-basis: calc(88vw - 24px);
+    }
+    .case-story {
+      padding-top: 20px;
+    }
+    .what {
+      min-height: 0;
     }
     .total {
       margin-top: 0;
@@ -322,16 +336,16 @@
     .total .row div strong {
       font-size: 46px;
     }
-    .name,
-    .case--secondary .name {
+    .name {
       font-size: 32px;
     }
-    .case--featured .case-metric strong,
-    .case--secondary .case-metric strong {
+    .case-metrics {
+      gap: 14px;
+    }
+    .case-metric strong {
       font-size: 29px;
     }
-    .case--featured .case-metric.qual strong,
-    .case--secondary .case-metric.qual strong {
+    .case-metric.qual strong {
       font-size: 21px;
     }
     .case-metric span {
@@ -368,8 +382,36 @@
       </div>
     </div>
 
-    <div class="cases">
-      <article class="case case--featured">
+    <section class="cases" data-case-carousel aria-labelledby="selected-engagements-title">
+      <div class="cases-head">
+        <h3 class="cases-title" id="selected-engagements-title">Selected engagements</h3>
+        <div class="case-nav" aria-label="Case study navigation">
+          <button
+            class="case-nav-button"
+            type="button"
+            data-case-previous
+            aria-label="Show previous case study"
+          >
+            &#8592;
+          </button>
+          <button
+            class="case-nav-button"
+            type="button"
+            data-case-next
+            aria-label="Show next case study"
+          >
+            &#8594;
+          </button>
+        </div>
+      </div>
+
+      <div
+        class="case-track"
+        data-case-track
+        tabindex="0"
+        aria-label="Selected engagement case studies"
+      >
+      <article class="case" aria-label="PublicAI case study">
         <div class="case-media">
           <img
             src="../img/assets/hero-western-audience.jpg"
@@ -384,11 +426,6 @@
             Moved from regional relevance to global market credibility while keeping one
             coherent brand narrative.
           </p>
-          <ul class="case-scope" aria-label="PublicAI engagement scope">
-            <li>Region-specific positioning</li>
-            <li>Localized media across NA, EU and APAC</li>
-            <li>KOL activation</li>
-          </ul>
           <div class="case-metrics">
             <div class="case-metric">
               <strong>15+</strong><span>global markets penetrated</span>
@@ -400,11 +437,15 @@
               <strong>Expanded</strong><span>regional pipeline and lead generation</span>
             </div>
           </div>
+          <ul class="case-scope" aria-label="PublicAI engagement scope">
+            <li>Region-specific positioning</li>
+            <li>Localized media across NA, EU and APAC</li>
+            <li>KOL activation</li>
+          </ul>
         </div>
       </article>
 
-      <div class="case-pair">
-        <article class="case case--secondary">
+        <article class="case" aria-label="MOSS AI case study">
           <div class="case-media case-media--crop">
             <img
               src="../img/assets/developer-activation-1200.webp"
@@ -419,11 +460,6 @@
               Turned technical interest into deeper usage with developer-focused narratives
               and practical growth mechanics.
             </p>
-            <ul class="case-scope" aria-label="MOSS AI engagement scope">
-              <li>Segment-specific messaging</li>
-              <li>Meetups and hackathons</li>
-              <li>Product-led content and ABM</li>
-            </ul>
             <div class="case-metrics">
               <div class="case-metric">
                 <strong>350%</strong><span>campaign ROI generated</span>
@@ -435,10 +471,15 @@
                 <strong>10K+</strong><span>community contributions</span>
               </div>
             </div>
+            <ul class="case-scope" aria-label="MOSS AI engagement scope">
+              <li>Segment-specific messaging</li>
+              <li>Meetups and hackathons</li>
+              <li>Product-led content and ABM</li>
+            </ul>
           </div>
         </article>
 
-        <article class="case case--secondary">
+        <article class="case" aria-label="SURF AI case study">
           <div class="case-media">
             <img
               src="../img/assets/openclaw-stage-1200.webp"
@@ -453,11 +494,6 @@
               Broke through a saturated consumer AI market with narrative repositioning,
               influencer seeding, and community activation.
             </p>
-            <ul class="case-scope" aria-label="SURF AI engagement scope">
-              <li>Consumer-first repositioning</li>
-              <li>Multi-tier KOL activation</li>
-              <li>Referral loops and ambassadors</li>
-            </ul>
             <div class="case-metrics">
               <div class="case-metric"><strong>+350%</strong><span>DAU growth achieved</span></div>
               <div class="case-metric">
@@ -465,10 +501,15 @@
               </div>
               <div class="case-metric"><strong>500K+</strong><span>new user signups</span></div>
             </div>
+            <ul class="case-scope" aria-label="SURF AI engagement scope">
+              <li>Consumer-first repositioning</li>
+              <li>Multi-tier KOL activation</li>
+              <li>Referral loops and ambassadors</li>
+            </ul>
           </div>
         </article>
       </div>
-    </div>
+    </section>
   </div>
   <script>
     (() => {
@@ -611,6 +652,71 @@
       visibilityObserver.observe(canvas);
 
       frame = window.requestAnimationFrame(draw);
+    })();
+
+    (() => {
+      document.querySelectorAll("[data-case-carousel]").forEach((carousel) => {
+        const track = carousel.querySelector("[data-case-track]");
+        const previous = carousel.querySelector("[data-case-previous]");
+        const next = carousel.querySelector("[data-case-next]");
+        const cards = Array.from(carousel.querySelectorAll(".case"));
+        if (!track || !previous || !next || !cards.length) return;
+
+        const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+        let updateFrame = 0;
+
+        const cardLeft = (card) => card.offsetLeft - cards[0].offsetLeft;
+        const nearestIndex = () =>
+          cards.reduce(
+            (nearest, card, index) =>
+              Math.abs(cardLeft(card) - track.scrollLeft) < nearest.distance
+                ? { index, distance: Math.abs(cardLeft(card) - track.scrollLeft) }
+                : nearest,
+            { index: 0, distance: Number.POSITIVE_INFINITY }
+          ).index;
+
+        const updateControls = () => {
+          const maxScroll = Math.max(0, track.scrollWidth - track.clientWidth);
+          previous.disabled = track.scrollLeft <= 4;
+          next.disabled = track.scrollLeft >= maxScroll - 4;
+        };
+
+        const queueUpdate = () => {
+          window.cancelAnimationFrame(updateFrame);
+          updateFrame = window.requestAnimationFrame(updateControls);
+        };
+
+        const move = (direction) => {
+          const targetIndex = Math.max(
+            0,
+            Math.min(cards.length - 1, nearestIndex() + direction)
+          );
+          track.scrollTo({
+            left: cardLeft(cards[targetIndex]),
+            behavior: reduceMotion.matches ? "auto" : "smooth"
+          });
+        };
+
+        previous.addEventListener("click", () => move(-1));
+        next.addEventListener("click", () => move(1));
+        track.addEventListener("scroll", queueUpdate, { passive: true });
+        track.addEventListener("keydown", (event) => {
+          if (event.key === "ArrowLeft") {
+            event.preventDefault();
+            move(-1);
+          }
+          if (event.key === "ArrowRight") {
+            event.preventDefault();
+            move(1);
+          }
+        });
+
+        if ("ResizeObserver" in window) {
+          const observer = new ResizeObserver(queueUpdate);
+          observer.observe(track);
+        }
+        updateControls();
+      });
     })();
   </script>
 </div>

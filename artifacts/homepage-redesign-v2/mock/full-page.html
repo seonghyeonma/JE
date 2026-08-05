@@ -388,42 +388,90 @@
     color: var(--text-2);
   }
 #work .cases {
-    margin-top: 96px;
+    margin-top: 88px;
   }
-#work .case--featured {
-    display: grid;
-    grid-template-columns: minmax(0, 1.25fr) minmax(360px, 0.75fr);
-    gap: 62px;
+#work .cases-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 28px;
+  }
+#work .cases-title {
+    margin: 0;
+    font-size: 25px;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    font-weight: 600;
+  }
+#work .case-nav {
+    display: flex;
+    gap: 10px;
+  }
+#work .case-nav-button {
+    display: inline-grid;
+    width: 44px;
+    height: 44px;
+    place-items: center;
+    border: 1px solid var(--line-strong);
+    border-radius: var(--r-control);
+    background: transparent;
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 21px;
+    line-height: 1;
+    cursor: pointer;
+    transition: border-color 200ms ease, background-color 200ms ease,
+      color 200ms ease, transform 160ms ease;
+  }
+#work .case-nav-button:hover:not(:disabled) {
+    border-color: var(--text-3);
+    background: rgba(255, 255, 255, 0.05);
+  }
+#work .case-nav-button:active:not(:disabled) {
+    transform: translateY(1px);
+  }
+#work .case-nav-button:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+#work .case-nav-button:disabled {
+    border-color: var(--line);
+    color: var(--s500);
+    cursor: default;
+  }
+#work .case-track {
+    display: flex;
     align-items: stretch;
-    padding-bottom: 94px;
-    border-bottom: 1px solid var(--line);
+    gap: 24px;
+    margin-right: -48px;
+    padding: 0 48px 22px 0;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
   }
-#work .case-pair {
-    display: grid;
-    grid-template-columns: minmax(0, 1.12fr) minmax(0, 0.88fr);
-    gap: 34px;
-    align-items: start;
-    margin-top: 86px;
+#work .case-track::-webkit-scrollbar {
+    display: none;
   }
-#work .case--secondary:last-child {
-    margin-top: 136px;
+#work .case {
+    flex: 0 0 clamp(540px, 44vw, 620px);
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
   }
 #work .case-media {
     position: relative;
+    aspect-ratio: 16 / 9;
     border-radius: var(--r-surface);
     overflow: hidden;
     background: var(--s900);
   }
-#work .case--featured .case-media {
-    min-height: 560px;
-  }
-#work .case--secondary:first-child .case-media {
-    height: 414px;
-  }
-#work .case--secondary:last-child .case-media {
-    height: 326px;
-  }
 #work .case-media img {
+    display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -444,42 +492,32 @@
   }
 #work .case-story {
     min-width: 0;
-  }
-#work .case--featured .case-story {
     display: flex;
     flex-direction: column;
-    padding: 12px 0 4px;
-  }
-#work .case--secondary .case-story {
-    padding-top: 26px;
+    flex: 1;
+    padding-top: 24px;
   }
 #work .name {
-    font-size: 46px;
+    font-size: 34px;
     letter-spacing: -0.028em;
     font-weight: 700;
     margin: 0;
     line-height: 1;
   }
-#work .case--secondary .name {
-    font-size: 34px;
-  }
 #work .what {
-    font-size: 17px;
+    min-height: 50px;
+    font-size: 16px;
     line-height: 1.5;
     color: var(--text-2);
-    margin: 18px 0 0;
-    max-width: 48ch;
-  }
-#work .case--secondary .what {
     margin-top: 14px;
-    max-width: 50ch;
+    max-width: 58ch;
   }
 #work .case-scope {
     list-style: none;
     display: flex;
     flex-wrap: wrap;
     gap: 8px 0;
-    margin: 24px 0 0;
+    margin: 22px 0 0;
     padding: 0;
     font-size: 13px;
     line-height: 1.45;
@@ -492,49 +530,28 @@
   }
 #work .case-metrics {
     display: grid;
-  }
-#work .case--featured .case-metrics {
-    grid-template-columns: 1fr;
-    gap: 24px;
-    margin-top: auto;
-    padding-top: 34px;
-    border-top: 1px solid var(--line);
-  }
-#work .case--featured .case-metric {
-    display: grid;
-    grid-template-columns: minmax(132px, 0.72fr) minmax(0, 1fr);
-    gap: 20px;
-    align-items: baseline;
-  }
-#work .case--secondary .case-metrics {
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 18px;
-    margin-top: 26px;
-    padding-top: 22px;
+    gap: 22px;
+    margin-top: 28px;
+    padding-top: 24px;
     border-top: 1px solid var(--line);
   }
 #work .case-metric strong {
     display: block;
     font-family: var(--mono);
     font-weight: 500;
-    font-size: 40px;
+    font-size: 35px;
     line-height: 1;
     letter-spacing: -0.025em;
     color: var(--accent);
   }
-#work .case--secondary .case-metric strong {
-    font-size: 33px;
-  }
 #work /* not a number, #work so it does not get the number treatment */
   .case-metric.qual strong {
     font-family: var(--sans);
-    font-size: 27px;
+    font-size: 24px;
     font-weight: 600;
     letter-spacing: -0.02em;
     color: var(--text-2);
-  }
-#work .case--secondary .case-metric.qual strong {
-    font-size: 23px;
   }
 #work /* aggregate impact opens Work; it is not a separate section */
   .total {
@@ -609,15 +626,23 @@
     margin-top: 8px;
     max-width: 22ch;
   }
-#work .case--featured .case-metric span {
-    margin-top: 0;
-  }
 @media (prefers-reduced-motion: reduce) {
 #work .total-flow-canvas {
       display: none;
     }
 #work .case-media img {
       transition: none;
+    }
+#work .case-track {
+      scroll-behavior: auto;
+    }
+#work .case-nav-button {
+      transition: none;
+    }
+}
+@media (max-width: 1100px) {
+#work .case {
+      flex-basis: min(640px, 72vw);
     }
 }
 @media (max-width: 800px) {
@@ -634,40 +659,6 @@
 #work .d2 {
       font-size: 38px;
     }
-#work .case--featured {
-      grid-template-columns: 1fr;
-      gap: 34px;
-      padding-bottom: 68px;
-    }
-#work .case--featured .case-media {
-      min-height: 390px;
-    }
-#work .case--featured .case-story {
-      padding-top: 0;
-    }
-#work .case--featured .case-metrics {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 18px;
-      margin-top: 32px;
-      padding-top: 24px;
-    }
-#work .case--featured .case-metric {
-      display: block;
-    }
-#work .case--featured .case-metric span {
-      margin-top: 8px;
-    }
-#work .case-pair {
-      grid-template-columns: 1fr;
-      gap: 64px;
-      margin-top: 68px;
-    }
-#work .case--secondary:last-child {
-      margin-top: 0;
-    }
-#work .case--secondary:first-child .case-media, #work .case--secondary:last-child .case-media {
-      height: 286px;
-    }
 #work .head {
       padding-bottom: 18px;
     }
@@ -676,7 +667,31 @@
       font-size: 15px;
     }
 #work .cases {
-      margin-top: 68px;
+      margin-top: 64px;
+    }
+#work .cases-head {
+      margin-bottom: 22px;
+    }
+#work .cases-title {
+      font-size: 21px;
+    }
+#work .case-nav-button {
+      width: 40px;
+      height: 40px;
+    }
+#work .case-track {
+      gap: 16px;
+      margin-right: -24px;
+      padding-right: 24px;
+    }
+#work .case {
+      flex-basis: calc(88vw - 24px);
+    }
+#work .case-story {
+      padding-top: 20px;
+    }
+#work .what {
+      min-height: 0;
     }
 #work .total {
       margin-top: 0;
@@ -694,13 +709,16 @@
 #work .total .row div strong {
       font-size: 46px;
     }
-#work .name, #work .case--secondary .name {
+#work .name {
       font-size: 32px;
     }
-#work .case--featured .case-metric strong, #work .case--secondary .case-metric strong {
+#work .case-metrics {
+      gap: 14px;
+    }
+#work .case-metric strong {
       font-size: 29px;
     }
-#work .case--featured .case-metric.qual strong, #work .case--secondary .case-metric.qual strong {
+#work .case-metric.qual strong {
       font-size: 21px;
     }
 #work .case-metric span {
@@ -904,47 +922,131 @@
     -webkit-mask-repeat: no-repeat;
     mask-repeat: no-repeat;
   }
-#locations .node, #locations .hub {
+#locations .route-layer {
     position: absolute;
-    border-radius: 50%;
+    inset: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    pointer-events: none;
   }
-#locations .node {
-    width: 5px;
-    height: 5px;
-    background: rgba(6, 245, 183, 0.6);
-    margin: -2.5px 0 0 -2.5px;
+#locations .route {
+    fill: none;
+    stroke: var(--accent);
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    opacity: 0;
+    filter: drop-shadow(0 0 5px rgba(6, 245, 183, 0.45));
+  }
+#locations .hubspot {
+    position: absolute;
+    z-index: 2;
+    width: 1px;
+    height: 1px;
+  }
+#locations .hub-control {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: transparent;
+    color: inherit;
+    cursor: pointer;
+    transform: translate(-50%, -50%);
   }
 #locations .hub {
+    position: absolute;
+    left: 50%;
+    top: 50%;
     width: 9px;
     height: 9px;
+    border-radius: 50%;
     background: var(--accent);
-    margin: -4.5px 0 0 -4.5px;
-    box-shadow: 0 0 0 5px rgba(6, 245, 183, 0.15);
+    box-shadow:
+      0 0 0 5px rgba(6, 245, 183, 0.13),
+      0 0 14px rgba(6, 245, 183, 0.38);
+    transform: translate(-50%, -50%);
+  }
+#locations .hub::after {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border: 1px solid rgba(6, 245, 183, 0.72);
+    border-radius: inherit;
+    animation: locations-hub-pulse 2.4s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+    animation-delay: var(--pulse-delay, 0s);
+  }
+#locations .hubspot.is-active {
+    z-index: 4;
+  }
+#locations .hubspot.is-active .hub {
+    box-shadow:
+      0 0 0 6px rgba(6, 245, 183, 0.17),
+      0 0 20px rgba(6, 245, 183, 0.52);
+  }
+#locations .hub-control:focus-visible {
+    outline: 1px solid var(--accent);
+    outline-offset: 2px;
+  }
+@keyframes locations-hub-pulse {
+    0% {
+      opacity: 0.68;
+      transform: scale(0.75);
+    }
+    72%,
+    100% {
+      opacity: 0;
+      transform: scale(3.5);
+    }
   }
 #locations .hublab {
     position: absolute;
+    left: var(--label-x, 30px);
+    top: var(--label-y, 10px);
     font-family: var(--mono);
     font-size: 11.5px;
     letter-spacing: 0.06em;
     color: var(--text);
-    transform: translate(14px, -7px);
     white-space: nowrap;
   }
-#locations .card {
+#locations .hub-tooltip {
     position: absolute;
+    left: var(--tooltip-x);
+    top: var(--tooltip-y);
     width: 272px;
     padding: 16px 18px;
     border-radius: var(--r-surface);
     background: rgba(23, 23, 23, 0.95);
     border: 1px solid var(--line-strong);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(8px) scale(0.985);
+    transform-origin: var(--tooltip-origin, center);
+    transition:
+      opacity 220ms cubic-bezier(0.16, 1, 0.3, 1),
+      transform 220ms cubic-bezier(0.16, 1, 0.3, 1),
+      visibility 0s linear 220ms;
   }
-#locations .card .t {
+#locations .hubspot.is-active .hub-tooltip {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0) scale(1);
+    transition-delay: 0s;
+  }
+#locations .hub-tooltip .t {
     font-size: 14.5px;
     line-height: 1.35;
     letter-spacing: -0.01em;
     margin: 0;
   }
-#locations .card .m {
+#locations .hub-tooltip .m {
     font-family: var(--mono);
     font-size: 11px;
     color: var(--text-3);
@@ -952,12 +1054,24 @@
     text-transform: uppercase;
     margin: 0 0 9px;
   }
-#locations .card .n {
+#locations .hub-tooltip .n {
     font-family: var(--mono);
     font-size: 20px;
     color: var(--accent);
     margin: 12px 0 0;
   }
+@media (prefers-reduced-motion: reduce) {
+#locations .hub::after {
+      animation: none;
+      opacity: 0;
+    }
+#locations .hub-tooltip {
+      transition: none;
+    }
+#locations .route-layer {
+      display: none;
+    }
+}
 #locations .rail {
     display: flex;
     gap: 10px;
@@ -1739,8 +1853,36 @@
       </div>
     </div>
 
-    <div class="cases">
-      <article class="case case--featured">
+    <section class="cases" data-case-carousel aria-labelledby="selected-engagements-title">
+      <div class="cases-head">
+        <h3 class="cases-title" id="selected-engagements-title">Selected engagements</h3>
+        <div class="case-nav" aria-label="Case study navigation">
+          <button
+            class="case-nav-button"
+            type="button"
+            data-case-previous
+            aria-label="Show previous case study"
+          >
+            &#8592;
+          </button>
+          <button
+            class="case-nav-button"
+            type="button"
+            data-case-next
+            aria-label="Show next case study"
+          >
+            &#8594;
+          </button>
+        </div>
+      </div>
+
+      <div
+        class="case-track"
+        data-case-track
+        tabindex="0"
+        aria-label="Selected engagement case studies"
+      >
+      <article class="case" aria-label="PublicAI case study">
         <div class="case-media">
           <img
             src="../img/assets/hero-western-audience.jpg"
@@ -1755,11 +1897,6 @@
             Moved from regional relevance to global market credibility while keeping one
             coherent brand narrative.
           </p>
-          <ul class="case-scope" aria-label="PublicAI engagement scope">
-            <li>Region-specific positioning</li>
-            <li>Localized media across NA, EU and APAC</li>
-            <li>KOL activation</li>
-          </ul>
           <div class="case-metrics">
             <div class="case-metric">
               <strong>15+</strong><span>global markets penetrated</span>
@@ -1771,11 +1908,15 @@
               <strong>Expanded</strong><span>regional pipeline and lead generation</span>
             </div>
           </div>
+          <ul class="case-scope" aria-label="PublicAI engagement scope">
+            <li>Region-specific positioning</li>
+            <li>Localized media across NA, EU and APAC</li>
+            <li>KOL activation</li>
+          </ul>
         </div>
       </article>
 
-      <div class="case-pair">
-        <article class="case case--secondary">
+        <article class="case" aria-label="MOSS AI case study">
           <div class="case-media case-media--crop">
             <img
               src="../img/assets/developer-activation-1200.webp"
@@ -1790,11 +1931,6 @@
               Turned technical interest into deeper usage with developer-focused narratives
               and practical growth mechanics.
             </p>
-            <ul class="case-scope" aria-label="MOSS AI engagement scope">
-              <li>Segment-specific messaging</li>
-              <li>Meetups and hackathons</li>
-              <li>Product-led content and ABM</li>
-            </ul>
             <div class="case-metrics">
               <div class="case-metric">
                 <strong>350%</strong><span>campaign ROI generated</span>
@@ -1806,10 +1942,15 @@
                 <strong>10K+</strong><span>community contributions</span>
               </div>
             </div>
+            <ul class="case-scope" aria-label="MOSS AI engagement scope">
+              <li>Segment-specific messaging</li>
+              <li>Meetups and hackathons</li>
+              <li>Product-led content and ABM</li>
+            </ul>
           </div>
         </article>
 
-        <article class="case case--secondary">
+        <article class="case" aria-label="SURF AI case study">
           <div class="case-media">
             <img
               src="../img/assets/openclaw-stage-1200.webp"
@@ -1824,11 +1965,6 @@
               Broke through a saturated consumer AI market with narrative repositioning,
               influencer seeding, and community activation.
             </p>
-            <ul class="case-scope" aria-label="SURF AI engagement scope">
-              <li>Consumer-first repositioning</li>
-              <li>Multi-tier KOL activation</li>
-              <li>Referral loops and ambassadors</li>
-            </ul>
             <div class="case-metrics">
               <div class="case-metric"><strong>+350%</strong><span>DAU growth achieved</span></div>
               <div class="case-metric">
@@ -1836,10 +1972,15 @@
               </div>
               <div class="case-metric"><strong>500K+</strong><span>new user signups</span></div>
             </div>
+            <ul class="case-scope" aria-label="SURF AI engagement scope">
+              <li>Consumer-first repositioning</li>
+              <li>Multi-tier KOL activation</li>
+              <li>Referral loops and ambassadors</li>
+            </ul>
           </div>
         </article>
       </div>
-    </div>
+    </section>
   </div>
   <script>
     (() => {
@@ -1983,6 +2124,71 @@
 
       frame = window.requestAnimationFrame(draw);
     })();
+
+    (() => {
+      document.querySelectorAll("[data-case-carousel]").forEach((carousel) => {
+        const track = carousel.querySelector("[data-case-track]");
+        const previous = carousel.querySelector("[data-case-previous]");
+        const next = carousel.querySelector("[data-case-next]");
+        const cards = Array.from(carousel.querySelectorAll(".case"));
+        if (!track || !previous || !next || !cards.length) return;
+
+        const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+        let updateFrame = 0;
+
+        const cardLeft = (card) => card.offsetLeft - cards[0].offsetLeft;
+        const nearestIndex = () =>
+          cards.reduce(
+            (nearest, card, index) =>
+              Math.abs(cardLeft(card) - track.scrollLeft) < nearest.distance
+                ? { index, distance: Math.abs(cardLeft(card) - track.scrollLeft) }
+                : nearest,
+            { index: 0, distance: Number.POSITIVE_INFINITY }
+          ).index;
+
+        const updateControls = () => {
+          const maxScroll = Math.max(0, track.scrollWidth - track.clientWidth);
+          previous.disabled = track.scrollLeft <= 4;
+          next.disabled = track.scrollLeft >= maxScroll - 4;
+        };
+
+        const queueUpdate = () => {
+          window.cancelAnimationFrame(updateFrame);
+          updateFrame = window.requestAnimationFrame(updateControls);
+        };
+
+        const move = (direction) => {
+          const targetIndex = Math.max(
+            0,
+            Math.min(cards.length - 1, nearestIndex() + direction)
+          );
+          track.scrollTo({
+            left: cardLeft(cards[targetIndex]),
+            behavior: reduceMotion.matches ? "auto" : "smooth"
+          });
+        };
+
+        previous.addEventListener("click", () => move(-1));
+        next.addEventListener("click", () => move(1));
+        track.addEventListener("scroll", queueUpdate, { passive: true });
+        track.addEventListener("keydown", (event) => {
+          if (event.key === "ArrowLeft") {
+            event.preventDefault();
+            move(-1);
+          }
+          if (event.key === "ArrowRight") {
+            event.preventDefault();
+            move(1);
+          }
+        });
+
+        if ("ResizeObserver" in window) {
+          const observer = new ResizeObserver(queueUpdate);
+          observer.observe(track);
+        }
+        updateControls();
+      });
+    })();
   </script>
 
 </div>
@@ -2061,56 +2267,255 @@
     <div class="head">
       <div>
         <p class="label">Where we operate</p>
-        <h2 class="d2" style="max-width: 18ch; margin-top: 18px">Three hubs. Active across 15+ markets</h2>
+        <h2 class="d2" style="max-width: 18ch; margin-top: 18px">Four hubs. Active across 15+ markets</h2>
       </div>
     </div>
 
-    <div class="mapbox">
+    <div class="mapbox" data-hub-map>
       <div class="dots"></div>
+      <svg class="route-layer" viewBox="0 0 1184 470" aria-hidden="true">
+        <path class="route" data-route data-duration="1800" d="M 193 160 Q 594 18 1004 145"></path>
+        <path class="route" data-route data-duration="800" d="M 1004 145 Q 1005 170 975 190"></path>
+        <path class="route" data-route data-duration="1100" d="M 975 190 Q 930 232 920 300"></path>
+        <path class="route" data-route data-duration="1800" d="M 920 300 Q 560 456 193 160"></path>
+      </svg>
 
-      <span class="node" style="left: 272px; top: 146px"></span>
-      <span class="node" style="left: 262px; top: 136px"></span>
-      <span class="node" style="left: 406px; top: 88px"></span>
-      <span class="node" style="left: 440px; top: 92px"></span>
-      <span class="node" style="left: 585px; top: 180px"></span>
-      <span class="node" style="left: 628px; top: 235px"></span>
-      <span class="node" style="left: 1045px; top: 145px"></span>
-      <span class="node" style="left: 952px; top: 205px"></span>
-      <span class="node" style="left: 905px; top: 250px"></span>
-      <span class="node" style="left: 912px; top: 328px"></span>
-      <span class="node" style="left: 373px; top: 379px"></span>
-
-      <span class="hub" style="left: 193px; top: 160px"></span>
-      <span class="hublab" style="left: 193px; top: 160px">SAN FRANCISCO</span>
-      <span class="hub" style="left: 1004px; top: 145px"></span>
-      <span class="hublab" style="left: 1004px; top: 145px">SEOUL</span>
-      <span class="hub" style="left: 920px; top: 300px"></span>
-      <span class="hublab" style="left: 920px; top: 300px">SINGAPORE</span>
-
-      <div class="card" style="left: 0px; top: 260px">
-        <p class="m">Media placement / US</p>
-        <p class="t">"The infrastructure layer nobody was watching"</p>
-        <p class="n">30+ outlets</p>
+      <div
+        class="hubspot is-active"
+        data-hub
+        style="left: 193px; top: 160px; --pulse-delay: 0s; --tooltip-x: -150px; --tooltip-y: 30px; --tooltip-origin: top center"
+      >
+        <button class="hub-control" type="button" aria-label="Show San Francisco activity" aria-controls="hub-tip-sf" aria-expanded="true">
+          <span class="hub" aria-hidden="true"></span>
+          <span class="hublab">SAN FRANCISCO</span>
+        </button>
+        <div class="hub-tooltip" id="hub-tip-sf" role="tooltip" data-hub-tooltip aria-hidden="false">
+          <p class="m">Media placement / US</p>
+          <p class="t">"The infrastructure layer nobody was watching"</p>
+          <p class="n">30+ outlets</p>
+        </div>
       </div>
 
-      <div class="card" style="right: 0px; top: 0px">
-        <p class="m">Creator activation / KR + JP</p>
-        <p class="t">Technical explainer series, 42 creators briefed</p>
-        <p class="n">100M+ impressions</p>
+      <div
+        class="hubspot"
+        data-hub
+        style="left: 1004px; top: 145px; --pulse-delay: 0.8s; --tooltip-x: -286px; --tooltip-y: -120px; --tooltip-origin: bottom right"
+      >
+        <button class="hub-control" type="button" aria-label="Show Seoul activity" aria-controls="hub-tip-seoul" aria-expanded="false">
+          <span class="hub" aria-hidden="true"></span>
+          <span class="hublab">SEOUL</span>
+        </button>
+        <div class="hub-tooltip" id="hub-tip-seoul" role="tooltip" data-hub-tooltip aria-hidden="true">
+          <p class="m">Creator activation / KR + JP</p>
+          <p class="t">Technical explainer series, 42 creators briefed</p>
+          <p class="n">100M+ impressions</p>
+        </div>
+      </div>
+
+      <div
+        class="hubspot"
+        data-hub
+        style="left: 975px; top: 190px; --pulse-delay: 1.6s; --label-x: -74px; --label-y: 10px; --tooltip-x: -286px; --tooltip-y: 30px; --tooltip-origin: top right"
+      >
+        <button class="hub-control" type="button" aria-label="Show Shanghai activity" aria-controls="hub-tip-shanghai" aria-expanded="false">
+          <span class="hub" aria-hidden="true"></span>
+          <span class="hublab">SHANGHAI</span>
+        </button>
+        <div class="hub-tooltip" id="hub-tip-shanghai" role="tooltip" data-hub-tooltip aria-hidden="true">
+          <p class="m">Market entry / China</p>
+          <p class="t">Localized narrative, media coordination, and partner outreach</p>
+          <p class="n">China hub</p>
+        </div>
+      </div>
+
+      <div
+        class="hubspot"
+        data-hub
+        style="left: 920px; top: 300px; --pulse-delay: 2.4s; --tooltip-x: -286px; --tooltip-y: 30px; --tooltip-origin: top right"
+      >
+        <button class="hub-control" type="button" aria-label="Show Singapore activity" aria-controls="hub-tip-singapore" aria-expanded="false">
+          <span class="hub" aria-hidden="true"></span>
+          <span class="hublab">SINGAPORE</span>
+        </button>
+        <div class="hub-tooltip" id="hub-tip-singapore" role="tooltip" data-hub-tooltip aria-hidden="true">
+          <p class="m">Market entry / Southeast Asia</p>
+          <p class="t">Regional strategy, partner outreach, and launch coordination</p>
+          <p class="n">APAC hub</p>
+        </div>
       </div>
     </div>
 
     <div class="rail">
-      <span class="chip on">Seoul <b>HUB</b></span>
-      <span class="chip on">Singapore <b>HUB</b></span>
       <span class="chip on">San Francisco <b>HUB</b></span>
+      <span class="chip on">Seoul <b>HUB</b></span>
+      <span class="chip on">Shanghai <b>HUB</b></span>
+      <span class="chip on">Singapore <b>HUB</b></span>
       <span class="chip">North America <b>03</b></span>
       <span class="chip">Japan <b>04</b></span>
       <span class="chip">Europe <b>03</b></span>
       <span class="chip">Southeast Asia <b>02</b></span>
     </div>
   </div>
+</div>
+<script>
+  (() => {
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+    document.querySelectorAll("[data-hub-map]").forEach((map) => {
+      const hubs = Array.from(map.querySelectorAll("[data-hub]"));
+      const routes = Array.from(map.querySelectorAll("[data-route]"));
+      const holdDuration = 4200;
+      let activeIndex = 0;
+      let holdTimer = null;
+      let routeAnimation = null;
+      let fadeAnimation = null;
+      let sequenceToken = 0;
+      let visible = false;
+      let pointerInside = false;
+      let focusInside = false;
+
+      const showHub = (index) => {
+        activeIndex = index;
+        hubs.forEach((hub, hubIndex) => {
+          const active = hubIndex === activeIndex;
+          hub.classList.toggle("is-active", active);
+          hub.querySelector(".hub-control")?.setAttribute("aria-expanded", String(active));
+          hub.querySelector("[data-hub-tooltip]")?.setAttribute("aria-hidden", String(!active));
+        });
+      };
+
+      const hideTooltips = () => {
+        hubs.forEach((hub) => {
+          hub.classList.remove("is-active");
+          hub.querySelector(".hub-control")?.setAttribute("aria-expanded", "false");
+          hub.querySelector("[data-hub-tooltip]")?.setAttribute("aria-hidden", "true");
+        });
+      };
+
+      const resetRoutes = () => {
+        routes.forEach((route) => {
+          route.getAnimations().forEach((animation) => animation.cancel());
+          route.style.opacity = "0";
+          route.style.strokeDasharray = "";
+          route.style.strokeDashoffset = "";
+        });
+        map.classList.remove("is-routing");
+      };
+
+      const stopSequence = () => {
+        sequenceToken += 1;
+        if (holdTimer !== null) {
+          window.clearTimeout(holdTimer);
+          holdTimer = null;
+        }
+        routeAnimation?.cancel();
+        fadeAnimation?.cancel();
+        routeAnimation = null;
+        fadeAnimation = null;
+        resetRoutes();
+      };
+
+      const canPlay = () =>
+        !reduceMotion && visible && !pointerInside && !focusInside && hubs.length > 1;
+
+      const scheduleRoute = () => {
+        if (holdTimer !== null) window.clearTimeout(holdTimer);
+        holdTimer = null;
+        if (!canPlay()) return;
+        holdTimer = window.setTimeout(startRoute, holdDuration);
+      };
+
+      const startRoute = () => {
+        holdTimer = null;
+        if (!canPlay()) return;
+
+        const route = routes[activeIndex];
+        if (!route) return;
+
+        const token = ++sequenceToken;
+        const nextIndex = (activeIndex + 1) % hubs.length;
+        const length = route.getTotalLength();
+        const duration = Number(route.dataset.duration) || 2600;
+
+        hideTooltips();
+        resetRoutes();
+        map.classList.add("is-routing");
+        route.style.opacity = "1";
+        route.style.strokeDasharray = `${length}`;
+        route.style.strokeDashoffset = `${length}`;
+
+        routeAnimation = route.animate(
+          [
+            { strokeDashoffset: `${length}`, opacity: 0.38 },
+            { strokeDashoffset: "0", opacity: 1 }
+          ],
+          {
+            duration,
+            easing: "cubic-bezier(0.16, 1, 0.3, 1)",
+            fill: "forwards"
+          }
+        );
+
+        routeAnimation.finished
+          .then(() => {
+            if (token !== sequenceToken) return;
+            routeAnimation = null;
+            map.classList.remove("is-routing");
+            showHub(nextIndex);
+
+            fadeAnimation = route.animate(
+              [{ opacity: 1 }, { opacity: 0 }],
+              { duration: 900, delay: 650, fill: "forwards" }
+            );
+            fadeAnimation.finished.catch(() => {});
+            scheduleRoute();
+          })
+          .catch(() => {});
+      };
+
+      const selectHub = (index) => {
+        stopSequence();
+        showHub(index);
+      };
+
+      hubs.forEach((hub, index) => {
+        hub.addEventListener("pointerenter", () => {
+          pointerInside = true;
+          selectHub(index);
+        });
+        hub.addEventListener("pointerleave", () => {
+          pointerInside = false;
+          scheduleRoute();
+        });
+        hub.addEventListener("focusin", () => {
+          focusInside = true;
+          selectHub(index);
+        });
+        hub.addEventListener("focusout", (event) => {
+          if (hub.contains(event.relatedTarget)) return;
+          focusInside = false;
+          scheduleRoute();
+        });
+        hub.querySelector(".hub-control")?.addEventListener("click", () => {
+          selectHub(index);
+        });
+      });
+
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          visible = entry.isIntersecting;
+          stopSequence();
+          showHub(activeIndex);
+          scheduleRoute();
+        },
+        { threshold: 0.35 }
+      );
+
+      observer.observe(map);
+      showHub(0);
+    });
+  })();
+</script>
 </div>
 <div id="insights" class="pagesec">
 
