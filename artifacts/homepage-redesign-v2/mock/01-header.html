@@ -22,16 +22,14 @@
   .brand {
     display: flex;
     align-items: center;
-    gap: 9px;
-    font-size: 17px;
-    font-weight: 500;
-    letter-spacing: -0.02em;
   }
-  .dot {
-    width: 17px;
-    height: 17px;
-    border-radius: 5px;
-    background: var(--accent);
+  .brand-logo {
+    display: block;
+    width: 84px;
+    height: auto;
+  }
+  .brand-logo--compact {
+    width: 76px;
   }
   .band {
     padding: 28px 48px 8px;
@@ -76,8 +74,8 @@
 
   <div class="band"><p class="label">Now <span class="tag tag--bad">8 links + duplicate CTA</span></p></div>
   <div class="bar old" style="height: 84px">
-    <div class="brand" style="color: var(--accent); font-family: var(--mono); font-size: 15px">
-      JE Labs
+    <div class="brand">
+      <img class="brand-logo" src="../img/assets/logo.png" alt="JE Labs" width="1093" height="512" />
     </div>
     <div class="nav">
       <span>Studio</span><span>Approach</span><span>Leadership</span><span>Services</span
@@ -97,7 +95,9 @@
 
   <div class="band"><p class="label">Proposed <span class="tag">4 links / 64px / one CTA</span></p></div>
   <div class="bar" style="height: 64px">
-    <a class="brand" href="#top"><span class="dot"></span>JE Labs</a>
+    <a class="brand" href="#top" aria-label="JE Labs home">
+      <img class="brand-logo" src="../img/assets/logo.png" alt="JE Labs" width="1093" height="512" />
+    </a>
     <nav class="nav" style="color: var(--text)" aria-label="Primary">
       <a href="#approach">Approach</a><a href="#work">Work</a
       ><a href="#team">Team</a><a href="#insights">Insights</a>
@@ -108,7 +108,9 @@
   </div>
 
   <div class="scrolled">
-    <a class="brand" href="#top" style="font-size: 15px"><span class="dot" style="width: 15px; height: 15px"></span>JE Labs</a>
+    <a class="brand" href="#top" aria-label="JE Labs home">
+      <img class="brand-logo brand-logo--compact" src="../img/assets/logo.png" alt="JE Labs" width="1093" height="512" />
+    </a>
     <nav class="nav" style="font-size: 13.5px; gap: 26px" aria-label="Primary compact">
       <a href="#approach" style="color: var(--accent)">Approach</a><a href="#work">Work</a
       ><a href="#team">Team</a><a href="#insights">Insights</a>

@@ -38,10 +38,10 @@ The user supplied Attentive and UNRVLD as direct visual references. The redesign
 2. Aggregate impact stays directly below the heading and remains part of Work.
 3. The directional data-flow artwork retains its left-to-right motion.
 4. `100+`, `100M+`, `1,000+`, and `15` are now static `#06F5B7`; the text gradient animation was removed.
-5. `Selected engagements` introduces a horizontal work track with explicit previous and next controls.
-6. PublicAI, MOSS AI and SURF AI use equal widths, equal 16:9 media frames and identical content order.
-7. Each case presents its outcome, three metrics and one plain-text scope line outside the image.
-8. Desktop shows two full cases and a visible portion of the third. Mobile uses an 88vw scroll-snap card with the next case visible at the edge.
+5. `Results for frontier tech brands` introduces a horizontal work track with explicit previous and next controls.
+6. PublicAI, MOSS AI and SURF AI use equal widths, equal 16:9 media frames and one clearly bounded card structure.
+7. Each case now reads in the order company context, JE Labs outcome, a self-contained three-row results panel, then one plain-text scope line.
+8. Desktop keeps the original 24px track gap and shows two full cases plus a visible portion of the third. Mobile keeps a 16px gap and an 88vw scroll-snap card, so separation comes from the card design rather than extra whitespace.
 9. Navigation works with buttons, touch scrolling and keyboard arrow keys. Buttons disable correctly at both ends.
 
 ## Fidelity surfaces
@@ -55,9 +55,10 @@ The user supplied Attentive and UNRVLD as direct visual references. The redesign
 ## Visual findings
 
 - The prior asymmetric gallery made comparison harder because image scale and metric alignment changed by case.
-- V5 reads as one curated work collection with clear and repeatable evidence.
+- V6 reads as one curated work collection while each customer remains a self-contained case.
 - The horizontal edge preview makes the third case discoverable without autoplay or page-scroll hijacking.
-- Metrics remain immediately scannable and attached to the correct customer.
+- Company context now appears before the engagement outcome, so a reader does not need prior knowledge of PublicAI, MOSS AI or SURF AI.
+- The three-row inset results panel keeps metrics immediately scannable and visually attached to the correct customer.
 - Real photography creates visual variation while the component anatomy stays stable.
 
 ## Checks
@@ -68,6 +69,9 @@ The user supplied Attentive and UNRVLD as direct visual references. The redesign
 - [x] Keep aggregate figures static mint green.
 - [x] Replace the asymmetric featured-and-secondary hierarchy.
 - [x] Use one consistent case anatomy without a static three-column grid.
+- [x] Keep the compact desktop and mobile track gaps; create separation inside each case instead.
+- [x] Add verified company context before every engagement outcome.
+- [x] Group each customer’s metrics in its own three-row results panel.
 - [x] Add visible next-case preview and explicit controls.
 - [x] Remove labels over images.
 - [x] Add meaningful image alt text.

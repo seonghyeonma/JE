@@ -15,7 +15,12 @@
     color: var(--text-2);
   }
   .cases {
+    --case-edge: max(
+      48px,
+      calc((100% - var(--content-max)) / 2 + 48px)
+    );
     margin-top: 88px;
+    padding-bottom: 84px;
   }
   .cases-head {
     display: flex;
@@ -70,12 +75,13 @@
   .case-track {
     display: flex;
     align-items: stretch;
-    gap: 24px;
-    margin-right: -48px;
-    padding: 0 48px 22px 0;
+    width: 100%;
+    gap: clamp(24px, 2.2vw, 36px);
+    padding: 0 var(--case-edge) 28px;
     overflow-x: auto;
     overscroll-behavior-inline: contain;
     scroll-behavior: smooth;
+    scroll-padding-inline: var(--case-edge);
     scroll-snap-type: x mandatory;
     scrollbar-width: none;
   }
@@ -83,7 +89,7 @@
     display: none;
   }
   .case {
-    flex: 0 0 clamp(540px, 44vw, 620px);
+    flex: 0 0 clamp(560px, 42vw, 720px);
     min-width: 0;
     display: flex;
     flex-direction: column;
@@ -92,9 +98,10 @@
   }
   .case-media {
     position: relative;
-    aspect-ratio: 16 / 9;
-    border-radius: var(--r-surface);
+    aspect-ratio: 16 / 8.7;
     overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: var(--r-surface);
     background: var(--s900);
   }
   .case-media img {
@@ -102,7 +109,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: saturate(0.5) brightness(0.74);
+    filter: saturate(0.56) brightness(0.78);
     transition: transform 620ms cubic-bezier(0.16, 1, 0.3, 1), filter 400ms;
   }
   .case:hover .case-media img {
@@ -119,66 +126,74 @@
   }
   .case-story {
     min-width: 0;
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    padding-top: 24px;
+    padding: 24px 0 0;
+  }
+  .case-summary {
+    display: grid;
+    grid-template-columns: minmax(170px, 0.32fr) minmax(0, 1fr);
+    align-items: start;
+    gap: clamp(38px, 6vw, 88px);
   }
   .name {
-    font-size: 34px;
+    font-size: 32px;
     letter-spacing: -0.028em;
-    font-weight: 700;
+    font-weight: 650;
     margin: 0;
     line-height: 1;
   }
-  .what {
-    min-height: 50px;
-    font-size: 16px;
-    line-height: 1.5;
-    color: var(--text-2);
-    margin-top: 14px;
-    max-width: 58ch;
-  }
-  .case-scope {
-    list-style: none;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px 0;
-    margin: 22px 0 0;
-    padding: 0;
-    font-size: 13px;
-    line-height: 1.45;
+  .case-description {
+    margin: -3px 0 0;
+    max-width: 72ch;
+    font-size: 15px;
+    line-height: 1.6;
     color: var(--text-3);
-  }
-  .case-scope li + li::before {
-    content: "/";
-    color: var(--s700);
-    margin: 0 10px;
   }
   .case-metrics {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 22px;
-    margin-top: 28px;
-    padding-top: 24px;
+    margin-top: 26px;
+    padding-top: 22px;
     border-top: 1px solid var(--line);
+  }
+  .case-metric {
+    display: grid;
+    grid-template-columns: 30px minmax(0, 1fr);
+    grid-template-rows: auto auto;
+    align-items: start;
+    column-gap: 12px;
+    row-gap: 7px;
+    min-height: 72px;
+    padding-right: 26px;
+  }
+  .case-metric + .case-metric {
+    padding-left: 26px;
+    border-left: 1px solid var(--line);
+  }
+  .metric-icon {
+    grid-column: 1;
+    grid-row: 1 / 3;
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 23px;
+    line-height: 1;
   }
   .case-metric strong {
     display: block;
+    grid-column: 2;
     font-family: var(--mono);
     font-weight: 500;
-    font-size: 35px;
+    font-size: 34px;
     line-height: 1;
     letter-spacing: -0.025em;
-    color: var(--accent);
+    color: var(--text);
   }
   /* not a number, so it does not get the number treatment */
   .case-metric.qual strong {
     font-family: var(--sans);
-    font-size: 24px;
+    font-size: 22px;
     font-weight: 600;
     letter-spacing: -0.02em;
-    color: var(--text-2);
+    color: var(--text);
   }
   /* aggregate impact opens Work; it is not a separate section */
   .total {
@@ -259,13 +274,14 @@
     margin-top: 13px;
     max-width: 21ch;
   }
-  .case-metric span {
+  .case-metric > span:not(.metric-icon) {
     display: block;
+    grid-column: 2;
     font-size: 13px;
     line-height: 1.45;
     color: var(--text-3);
-    margin-top: 8px;
-    max-width: 22ch;
+    margin-top: 0;
+    max-width: 28ch;
   }
   @media (prefers-reduced-motion: reduce) {
     .total-flow-canvas {
@@ -283,7 +299,7 @@
   }
   @media (max-width: 1100px) {
     .case {
-      flex-basis: min(640px, 72vw);
+      flex-basis: min(660px, 72vw);
     }
   }
   @media (max-width: 800px) {
@@ -308,7 +324,9 @@
       font-size: 15px;
     }
     .cases {
+      --case-edge: 24px;
       margin-top: 64px;
+      padding-bottom: 64px;
     }
     .cases-head {
       margin-bottom: 22px;
@@ -321,18 +339,20 @@
       height: 40px;
     }
     .case-track {
-      gap: 16px;
-      margin-right: -24px;
-      padding-right: 24px;
+      gap: 20px;
     }
     .case {
-      flex-basis: calc(88vw - 24px);
+      flex-basis: calc(90vw - 24px);
     }
     .case-story {
       padding-top: 20px;
     }
-    .what {
-      min-height: 0;
+    .case-summary {
+      grid-template-columns: 1fr;
+      gap: 13px;
+    }
+    .case-description {
+      margin-top: 0;
     }
     .total {
       margin-top: 0;
@@ -351,10 +371,22 @@
       font-size: 46px;
     }
     .name {
-      font-size: 32px;
+      font-size: 30px;
     }
     .case-metrics {
-      gap: 14px;
+      grid-template-columns: 1fr;
+      margin-top: 22px;
+      padding-top: 0;
+    }
+    .case-metric {
+      grid-template-columns: 28px minmax(0, 1fr);
+      min-height: 68px;
+      padding: 17px 0;
+      border-top: 1px solid var(--line);
+    }
+    .case-metric + .case-metric {
+      padding-left: 0;
+      border-left: 0;
     }
     .case-metric strong {
       font-size: 29px;
@@ -369,12 +401,12 @@
 </style>
 <div class="frame">
   <div class="caption">Work / 案例（每个都带三个数字）</div>
-  <div class="wrap" style="padding-top: 76px; padding-bottom: 84px">
+  <div class="wrap" style="padding-top: 76px">
     <div class="head">
       <div>
         <p class="label">Work</p>
         <h2 class="d2" style="margin: 18px 0 0">What the system produced</h2>
-        <p class="work-scope">Across every engagement to date</p>
+        <p class="work-scope">Our track record to date</p>
       </div>
     </div>
 
@@ -395,10 +427,12 @@
         <div><strong>15</strong><span>markets entered across NA, EU and APAC</span></div>
       </div>
     </div>
+  </div>
 
-    <section class="cases" data-case-carousel aria-labelledby="selected-engagements-title">
+  <section class="cases" data-case-carousel aria-labelledby="selected-engagements-title">
+    <div class="wrap">
       <div class="cases-head">
-        <h3 class="cases-title" id="selected-engagements-title">Selected engagements</h3>
+        <h3 class="cases-title" id="selected-engagements-title">Results for frontier tech brands</h3>
         <div class="case-nav" aria-label="Case study navigation">
           <button
             class="case-nav-button"
@@ -418,13 +452,14 @@
           </button>
         </div>
       </div>
+    </div>
 
-      <div
-        class="case-track"
-        data-case-track
-        tabindex="0"
-        aria-label="Selected engagement case studies"
-      >
+    <div
+      class="case-track"
+      data-case-track
+      tabindex="0"
+      aria-label="Selected engagement case studies"
+    >
       <article class="case" aria-label="PublicAI case study">
         <div class="case-media">
           <img
@@ -435,27 +470,28 @@
           />
         </div>
         <div class="case-story">
-          <h3 class="name">PublicAI</h3>
-          <p class="what">
-            Moved from regional relevance to global market credibility while keeping one
-            coherent brand narrative.
-          </p>
+          <div class="case-summary">
+            <h3 class="name">PublicAI</h3>
+            <p class="case-description">
+              PublicAI is a decentralized AI data infrastructure network powered by global
+              contributors, and JE Labs built its market credibility through one coherent
+              global narrative.
+            </p>
+          </div>
           <div class="case-metrics">
             <div class="case-metric">
+              <span class="metric-icon" aria-hidden="true">&#9678;</span>
               <strong>15+</strong><span>global markets penetrated</span>
             </div>
             <div class="case-metric">
+              <span class="metric-icon" aria-hidden="true">&#8599;</span>
               <strong>300%</strong><span>increase in local media exposure</span>
             </div>
             <div class="case-metric qual">
+              <span class="metric-icon" aria-hidden="true">&#8594;</span>
               <strong>Expanded</strong><span>regional pipeline and lead generation</span>
             </div>
           </div>
-          <ul class="case-scope" aria-label="PublicAI engagement scope">
-            <li>Region-specific positioning</li>
-            <li>Localized media across NA, EU and APAC</li>
-            <li>KOL activation</li>
-          </ul>
         </div>
       </article>
 
@@ -469,27 +505,28 @@
             />
           </div>
           <div class="case-story">
-            <h3 class="name">MOSS AI</h3>
-            <p class="what">
-              Turned technical interest into deeper usage with developer-focused narratives
-              and practical growth mechanics.
-            </p>
+            <div class="case-summary">
+              <h3 class="name">MOSS AI</h3>
+              <p class="case-description">
+                MOSS AI is a natural-language platform for AI trading agents, and JE Labs
+                turned technical interest into deeper usage through developer narratives and
+                practical growth mechanics.
+              </p>
+            </div>
             <div class="case-metrics">
               <div class="case-metric">
+                <span class="metric-icon" aria-hidden="true">&#8599;</span>
                 <strong>350%</strong><span>campaign ROI generated</span>
               </div>
               <div class="case-metric">
+                <span class="metric-icon" aria-hidden="true">&#9678;</span>
                 <strong>85%</strong><span>target developer participation</span>
               </div>
               <div class="case-metric">
+                <span class="metric-icon" aria-hidden="true">&#43;</span>
                 <strong>10K+</strong><span>community contributions</span>
               </div>
             </div>
-            <ul class="case-scope" aria-label="MOSS AI engagement scope">
-              <li>Segment-specific messaging</li>
-              <li>Meetups and hackathons</li>
-              <li>Product-led content and ABM</li>
-            </ul>
           </div>
         </article>
 
@@ -503,28 +540,32 @@
             />
           </div>
           <div class="case-story">
-            <h3 class="name">SURF AI</h3>
-            <p class="what">
-              Broke through a saturated consumer AI market with narrative repositioning,
-              influencer seeding, and community activation.
-            </p>
+            <div class="case-summary">
+              <h3 class="name">SURF AI</h3>
+              <p class="case-description">
+                SURF AI is an intelligence platform for crypto research, and JE Labs broke
+                through a crowded market with narrative repositioning, creator seeding, and
+                community activation.
+              </p>
+            </div>
             <div class="case-metrics">
-              <div class="case-metric"><strong>+350%</strong><span>DAU growth achieved</span></div>
               <div class="case-metric">
+                <span class="metric-icon" aria-hidden="true">&#8599;</span>
+                <strong>+350%</strong><span>DAU growth achieved</span>
+              </div>
+              <div class="case-metric">
+                <span class="metric-icon" aria-hidden="true">&#215;</span>
                 <strong>2.5x</strong><span>engagement rate increase</span>
               </div>
-              <div class="case-metric"><strong>500K+</strong><span>new user signups</span></div>
+              <div class="case-metric">
+                <span class="metric-icon" aria-hidden="true">&#43;</span>
+                <strong>500K+</strong><span>new user signups</span>
+              </div>
             </div>
-            <ul class="case-scope" aria-label="SURF AI engagement scope">
-              <li>Consumer-first repositioning</li>
-              <li>Multi-tier KOL activation</li>
-              <li>Referral loops and ambassadors</li>
-            </ul>
           </div>
         </article>
-      </div>
-    </section>
-  </div>
+    </div>
+  </section>
   <script>
     (() => {
       const canvas = document.querySelector("[data-impact-flow]");

@@ -36,16 +36,11 @@
   .mbrand {
     display: flex;
     align-items: center;
-    gap: 8px;
-    font-size: 15px;
-    font-weight: 500;
-    letter-spacing: -0.02em;
   }
-  .mdot {
-    width: 14px;
-    height: 14px;
-    border-radius: 4px;
-    background: var(--accent);
+  .mbrand-logo {
+    display: block;
+    width: 74px;
+    height: auto;
   }
   .burger {
     font-family: var(--mono);
@@ -74,22 +69,27 @@
     filter: saturate(0.42) brightness(0.6);
   }
   .mrow {
-    padding: 18px 0;
-    border-top: 1px solid var(--line);
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: var(--r-surface);
+    background: var(--s900);
   }
-  .mrow:last-child {
-    border-bottom: 1px solid var(--line);
+  .mrow + .mrow {
+    margin-top: 16px;
+  }
+  .mbody {
+    padding: 16px;
   }
   .mname {
+    display: block;
     font-size: 25px;
     letter-spacing: -0.025em;
     font-weight: 500;
   }
   .mshot {
-    height: 104px;
-    border-radius: 10px;
+    height: 116px;
     overflow: hidden;
-    margin-top: 12px;
+    border-bottom: 1px solid var(--line);
   }
   .mshot img {
     width: 100%;
@@ -98,9 +98,21 @@
     filter: saturate(0.5) brightness(0.85);
   }
   .mval {
+    display: grid;
+    grid-template-columns: 62px 1fr;
+    align-items: baseline;
+    gap: 12px;
     font-family: var(--mono);
     font-size: 19px;
-    margin-top: 10px;
+    margin: 14px 0 0;
+    padding-top: 13px;
+    border-top: 1px solid var(--line);
+  }
+  .mintro {
+    margin: 8px 0 0;
+    font-size: 12.5px;
+    line-height: 1.5;
+    color: var(--text-2);
   }
   .acc {
     padding: 20px 0;
@@ -130,7 +142,9 @@
     <div>
       <div class="ph">
         <div class="mbar">
-          <div class="mbrand"><span class="mdot"></span>JE Labs</div>
+          <div class="mbrand">
+            <img class="mbrand-logo" src="../img/assets/logo.png" alt="JE Labs" width="1093" height="512" />
+          </div>
           <span class="burger">MENU</span>
         </div>
         <div class="mmedia">
@@ -159,17 +173,23 @@
       <div class="ph">
         <div class="mpad" style="padding-top: 34px">
           <h2 style="font-size: 32px; letter-spacing: -0.03em; font-weight: 500; margin: 0 0 26px">
-            Selected engagements
+            Results for frontier tech brands
           </h2>
           <div class="mrow">
-            <span class="mname">PublicAI</span>
-            <div class="mshot"><img src="../img/assets/openclaw-stage-1200.webp" alt="" /></div>
-            <p class="mval">15 <span style="font-family: var(--sans); font-size: 12.5px; color: var(--text-3)">markets entered</span></p>
+            <div class="mshot"><img src="../img/assets/hero-western-audience.jpg" alt="" /></div>
+            <div class="mbody">
+              <span class="mname">PublicAI</span>
+              <p class="mintro">Decentralized AI data infrastructure powered by a global contributor network.</p>
+              <p class="mval">15+ <span style="font-family: var(--sans); font-size: 12.5px; color: var(--text-3)">global markets penetrated</span></p>
+            </div>
           </div>
           <div class="mrow">
-            <span class="mname">MOSS AI</span>
             <div class="mshot"><img src="../img/assets/developer-activation-1200.webp" alt="" /></div>
-            <p class="mval">350% <span style="font-family: var(--sans); font-size: 12.5px; color: var(--text-3)">campaign ROI</span></p>
+            <div class="mbody">
+              <span class="mname">MOSS AI</span>
+              <p class="mintro">Open platform for building and running AI trading agents with natural language.</p>
+              <p class="mval">350% <span style="font-family: var(--sans); font-size: 12.5px; color: var(--text-3)">campaign ROI generated</span></p>
+            </div>
           </div>
         </div>
       </div>
