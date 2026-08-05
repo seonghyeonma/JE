@@ -676,13 +676,13 @@ PublicAI、MOSS AI 与 SURF AI 都补充公司定位。PublicAI 写明其去中�
 
 ---
 
-## 9. Global Reach 全球版图
+## 9. Team 内的 Global Reach 全球版图
 
-![Global Reach](img/06-map.png)
+![Global Reach](img/qa/team-map-title-v8.png)
 
 **顺序调整**
 
-团队先于运营范围出现。先让访客知道是谁在负责这些市场，再展示覆盖范围，叙事会从“人和能力”自然推进到“全球执行网络”；地图不再抢在信任主体之前出现。
+全球覆盖不再作为独立一级章节，而是结构上嵌入 `#team`，放在 Founder 与 Core team 之后。先让访客知道是谁在负责这些市场，再用地图补充团队的执行范围。
 
 **现在的问题**
 
@@ -692,16 +692,16 @@ PublicAI、MOSS AI 与 SURF AI 都补充公司定位。PublicAI 写明其去中�
 
 **改成什么**
 
-- 小标签使用 `Where we operate`，不再做成看起来可点击但没有去向的文字链接。
-- 标题改为 `Three hubs. Active across 15+ markets`，让 hub 数和市场覆盖的关系更准确。
-- 底图换成点阵世界地图；只有 San Francisco / Seoul / Singapore 三个 hub 用主色。
+- 删除 `Where we operate` 小标签，避免地图看起来像导航中不存在的另一个一级章节。
+- 标题使用 `Four hubs. Active across 15+ markets`，居中并从 50px 降到最高 42px，字重降为 500。
+- 底图换成点阵世界地图；只有 San Francisco / Seoul / Shanghai / Singapore 四个 hub 用主色。
 - 叠两张真实执行证据卡，把全球覆盖从装饰地图变成业务证明。
 - 底部市场 chip 在 hover 时高亮对应区域。
 
 **为什么**
 
 - 一张没有信息的地图只是装饰。真实的媒体、创作者和市场对象才是地图上的证据。
-- 3 个 hub 用主色、其余全中性，让“团队坐标”和“运营覆盖”在 0.5 秒内可读。
+- 4 个 hub 用主色、其余全中性，让“团队坐标”和“运营覆盖”在 0.5 秒内可读。
 - 用 CSS mask 做点阵，比 canvas 逐帧绘制少一个持续动画循环，移动端更稳。
 
 **参考**：shopify.com/jp（地图叠真实业务对象）、Stripe global、Cloudflare network map。
@@ -834,12 +834,11 @@ PublicAI、MOSS AI 与 SURF AI 都补充公司定位。PublicAI 写明其去中�
 | 2 | 客户 logo 墙 | — | 快速资格证明 |
 | 3 | Approach | `#approach` | 四步方法，同时承接原 Services 的有效能力信息 |
 | 4 | Work | `#work` | 案例、结果与聚合数字 |
-| 5 | Team | `#team` | 先介绍实际执行这些工作的团队 |
-| 6 | Global Reach | `#locations` | 再展示三大 hub 与 15+ 市场覆盖 |
-| 7 | Insights | `#insights` | 展示判断力与观点 |
-| 8 | 结尾 CTA + Footer | `#contact` | 转化与 FAQ/站内链接 |
+| 5 | Team + Global Reach | `#team` / `#locations` | 介绍实际执行团队，并在同一区块补充四大 hub 与 15+ 市场覆盖 |
+| 6 | Insights | `#insights` | 展示判断力与观点 |
+| 7 | 结尾 CTA + Footer | `#contact` | 转化与 FAQ/站内链接 |
 
-12 个区块 → **8 个**。新顺序：Hero → logo 墙 → Approach → Work → **Team → Global Reach** → Insights → 结尾。
+12 个区块 → **7 个顶层区块**。新顺序：Hero → logo 墙 → Approach → Work → **Team（含 Global Reach）** → Insights → 结尾。
 
 这条顺序先回答“我们是谁、怎么做、做出过什么”，再回答“谁在做、在哪里做”。`What we run`、About 和独立 Contact 区块都不再重复占一屏。
 

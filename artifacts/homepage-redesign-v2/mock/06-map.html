@@ -2,18 +2,21 @@
 <link rel="stylesheet" href="base.css" />
 <style>
   .head {
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    margin-bottom: 40px;
+    margin-bottom: 28px;
+    text-align: center;
   }
   .locations-title {
     max-width: none;
-    margin-top: 18px;
+    margin: 0;
+    font-size: clamp(30px, 3.2vw, 42px);
+    font-weight: 500;
+    line-height: 1.08;
+    letter-spacing: -0.03em;
     white-space: nowrap;
   }
   @media (max-width: 860px) {
     .locations-title {
+      font-size: clamp(28px, 6vw, 36px);
       white-space: normal;
     }
   }
@@ -208,12 +211,9 @@
 </style>
 <div class="frame">
   <div class="caption">Global reach / 全球版图 (参考 shopify.com/jp)</div>
-  <div class="wrap" style="padding-top: 70px; padding-bottom: 76px">
+  <div class="wrap" style="padding-top: 48px; padding-bottom: 76px">
     <div class="head">
-      <div>
-        <p class="label">Where we operate</p>
-        <h2 class="d2 locations-title">Four hubs. Active across 15+ markets</h2>
-      </div>
+      <h2 id="locations-title" class="locations-title">Four hubs. Active across 15+ markets</h2>
     </div>
 
     <div class="mapbox" data-hub-map>
